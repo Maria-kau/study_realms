@@ -1,0 +1,77 @@
+{% load static %}
+
+    <nav class="navegacao conteiner3" id="menu">
+        <div class="btn-menu" id="btn-menu">
+            <i class="bi bi-list"></i>
+        </div>
+        <div class="perfil">
+            <div class="informaçao-perfil">
+                <div class="foto-perfil">
+                    <img src="{% static 'img/perfil/perfil-f2.png' %}" alt="perfil">
+                </div>
+                <div class="dados-perfil">
+                    <span class="nome" id="nome">nome</span>
+                    <span class="classe-usuario" id="classe-usuario">classe</span>
+                    <span class="nivel">nivel</span>
+                    <span class="xp" id="xp">xp</span>
+                    <span class="aura" id="aura">aura</span>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li class="item-menu">
+                <a href="{% url 'home' %}">
+                    <span class="icon"><i class="bi bi-house-door"></i></span>
+                    <span class="text">Inicio</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="{% url 'cronograma' %}">
+                    <span class="icon"><i class="bi bi-calendar4-week"></i></span>
+                    <span class="text">Cronograma</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="{% url 'to-list' %}">
+                    <span class="icon"><i class="bi bi-card-checklist"></i></span>
+                    <span class="text">to-list</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="{% url 'biblioteca' %}">
+                    <span class="icon"><i class="bi bi-book"></i></span>
+                    <span class="text">Biblioteca</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="{% url 'progresso' %}">
+                    <span class="icon"><i class="bi bi-bar-chart"></i></span>
+                    <span class="text">Desempenho</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="{% url 'configuracao' %}">
+                    <span class="icon"><i class="bi bi-gear"></i></span>
+                    <span class="text">Configuração</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="{% url 'perfil' %}">
+                    <span class="icon"><i class="bi bi-person-circle"></i></span>
+                    <span class="text">Perfil</span>
+                </a>
+            </li>
+        </ul>
+        <div class="logo">
+            <img src="{% static 'img/icones/ico-login1.png' %}" alt="logo">
+            <div class="intro-logo">
+                <h1>RealMify</h1>
+                <p>Seu reino do conhecimento</p>
+            </div>
+            
+        </div>
+        <div class="btn-sair">
+            <i class="bi bi-box-arrow-right"></i>
+        </div>
+    </nav>
+    <script src="{% static 'js/menu.js' %}"></script>

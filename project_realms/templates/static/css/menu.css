@@ -1,0 +1,161 @@
+
+.navegacao{
+    height: 100vh;
+    width: 60px;
+    padding: 5px  0 5px 1%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+
+    top: 0;
+    left: 0;
+}
+.navegacao.abrir-menu{
+    width: 300px;
+}
+/* ====== botao menu e logout=====*/
+
+.btn-menu > i:hover , .btn-sair > i:hover{
+    color: rgb(119, 205, 255);
+    font-size: 30px;
+}
+.btn-menu > i, .btn-sair > i{
+    color: rgb(111, 111, 232);
+    font-size: 25px;
+    cursor: pointer;
+}
+/*======= logo infor ========*/
+.logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    z-index: 2;
+}
+.logo p{
+    color: aliceblue;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 11px;
+}
+.logo img{
+    width: 60px;
+
+}
+.logo h1{
+    font-size: 24px;
+}
+.logo,.perfil{
+    opacity: 0;
+    transition: 300ms;
+}
+.navegacao.abrir-menu .logo,.navegacao.abrir-menu .perfil{
+    opacity: 1;
+}
+
+@media (max-width: 768px){
+    .logo{
+        justify-content: center;
+
+        text-align: center;
+
+        flex-direction: column;
+    }
+
+    .logo img{
+        width: 60px;
+    }
+
+    .logo h1{
+        font-size: 1.4rem;
+    }
+
+    .logo p{
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px){
+
+    .logo img{
+        width: 50px;
+    }
+
+    .logo h1{
+        font-size: 1.1rem;
+    }
+
+    .logo p{
+        font-size: 0.55rem;
+    }
+}
+/*========== perfil ==========*/
+.perfil{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.informaçao-perfil{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0 5px;
+
+}
+.foto-perfil{
+    display: flex;
+    justify-content: center;
+    background-position: center;
+}
+.foto-perfil img{
+    width: 90px;
+    height: 120px;
+    background-color: rgb(62, 13, 107);
+    border: 1px solid rgb(135, 138, 223);
+    border-radius: 25px;
+    background-size: contain;
+}
+.dados-perfil{
+    display: flex;
+    flex-direction: column;
+}
+.dados-perfil span{
+    color: #fff;
+    font-size: 12px;
+}
+.pontos{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 0 0 20px;
+}
+/*============ menu ==============*/
+ul{
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+ul li.item-menu a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 20px 2px;
+    display: flex;
+    gap: 25px;
+}
+ul li a .icon>i{
+    font-size: 18px;
+}
+ul li.item-menu{
+    transition: 500ms;
+}
+ul li.item-menu:hover{
+    background-color: rgba(121, 44, 255, 0.353);
+}

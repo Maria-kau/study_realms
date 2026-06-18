@@ -1,0 +1,674 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*=======reset=========*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cinzel Decorative', cursive;
+}
+input, button, select, textarea {
+    font-family: 'Cinzel Decorative', sans-serif;
+}
+/*===========fontes===========*/
+p{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(147, 201, 209);
+    font-size: 14px;
+    line-height: 1.5;
+}
+h1{
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #bf953f,
+        0 0 30px #bf953f;
+    animation: brilho-h1 2s ease-in-out infinite alternate;
+}
+h2{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background:
+    linear-gradient(
+        135deg,
+        #0091ff,
+        #6533fdb7,
+        #00f2ff,
+        #5100ff,
+        #01a2ff
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+    drop-shadow(0 0 5px #00bfff91)
+    drop-shadow(0 0 10px #9000ff85);
+    animation: brilho-h2 4s ease-in-out infinite alternate;
+}
+h3{
+    font-size: 16px;
+    background:
+    linear-gradient(
+        to right,
+        #8948bb,
+        #bd9cff,
+        #8028b3
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+/*==========conteiner=============*/
+.conteiner{
+    background: 
+    rgb(29, 29, 88);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    border:
+    1px solid rgba(64, 62, 103, 0.688);
+    box-shadow:
+    0 0 15px rgba(121, 44, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+}/*conteiner normal, sem animação*/
+.conteiner2{
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,25,55,0.78),
+        rgba(8,10,25,0.88)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    transition: 0.35s ease;
+}/* conteiner com animação com giro de cores + onde passa o mouse cria uma borda brilhante*/
+/* brilho interno */
+.conteiner2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner2 > *{
+    position: relative;
+    z-index: 2;
+}
+/* hover mágico */
+.conteiner2:hover{
+    border:
+    1px solid rgb(120,255,253);
+    box-shadow:
+    0 0 15px rgba(82,255,243,0.5),
+    0 0 35px rgba(59,130,246,0.18);
+}
+/* brilho interno */
+
+.conteiner2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner2 > *{
+    position: relative;
+    z-index: 2;
+}
+/* hover mágico */
+.conteiner2:hover{
+    border:
+    1px solid rgb(120,255,253);
+    box-shadow:
+    0 0 15px rgba(82,255,243,0.5),
+    0 0 35px rgba(59,130,246,0.18);
+}
+
+.conteiner3{
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,25,55,0.78),
+        rgba(8,10,25,0.88)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    box-shadow:
+    0 0 15px rgba(121, 44, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+    transition: 0.35s ease;
+} /*conteiner3 so tem a animação com giro de cor*/
+.conteiner3::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner4{
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,25,55,0.78),
+        rgba(8,10,25,0.88)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    transition: 0.35s ease;
+}/*conteiner com giro de e sombra roxa*/ 
+/* brilho interno */
+.conteiner4::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner4 > *{
+    position: relative;
+    z-index: 2;
+}
+/* hover mágico */
+.conteiner4:hover{
+    border:
+    1px solid #7b5cff;
+    box-shadow:
+    0 0 15px rgba(82,255,243,0.5),
+    0 0 35px rgba(59,130,246,0.18);
+}
+/*=======estrela e bolilha brilhantes===========*/
+
+.estrelas{
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.estrela{
+    /* O container controla o tamanho, a posição e o brilho neon */
+    position: absolute;
+    width: 10px;  /* Aumentei um pouquinho para destacar o corte */
+    height: 10px;
+    z-index: 2;
+    /* Um degradê de brilho: o primeiro é mais forte e perto, o segundo é mais suave e longe */
+    filter: drop-shadow(0px 10px 3px rgba(255, 255, 255, 0.871)) 
+            drop-shadow(0px 10px 18px rgba(139, 253, 226, 0.904));
+    
+    animation: piscar 2.5s infinite alternate ease-in-out;
+
+    /* Ajustei os pontos para as pontas ficarem um pouco mais finas e elegantes */
+    clip-path: polygon(
+        50% 0%,
+        58% 42%,
+        100% 50%,
+        58% 58%,
+        50% 100%,
+        42% 58%,
+        0% 50%,
+        42% 42%
+    );
+    animation: cor  15s infinite linear;
+}
+/* _____________ ESTILO DAS BOLINHAS BRILHANTES _____________ */
+.brilhos {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.brilho {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    z-index: 2;
+    border-radius: 20px; /* Torna um círculo perfeito */
+    box-shadow:
+        /* Pontinhos Centrais Brancos (Miolo brilhante) */
+        0px 2px 4px rgba(244, 169, 255, 0.9),
+        0px 2px 4px rgba(161, 255, 253, 0.9)
+    ;
+    /* Aplica as duas animações: o piscar (tamanho) e a troca de cores mágica */
+    animation:
+        piscar 2.5s infinite alternate ease-in-out,
+        cor 12s infinite linear;
+}
+
+@keyframes piscar{
+    from{
+        transform: scale(0);
+        opacity: 0.2;
+    }
+    to{
+        transform: scale(5.0);
+        opacity: 1;
+    }
+}
+@keyframes cor{
+    0%{
+        background: #d5b5ed72;
+    }
+    10%{
+        background: #9efcff7b;
+    }
+    25%{
+        background: #bcf2fe;
+    }
+
+    50%{
+        background: #c77dff;
+    }
+
+    75%{
+        background: #ffe066;
+    }
+
+    100%{
+        background: #ffffff;
+    }
+}
+/* =========================
+   SEPARADOR
+========================= */
+.separador{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 3px;
+    z-index: 3;
+}
+/* =========================
+   LINHAS
+========================= */
+.linha{
+    width: 150px;
+    height: 1px;
+    background:
+    linear-gradient(
+        to right,
+        transparent,
+        #8c64ff,
+        transparent
+    );
+    box-shadow:
+    0 0 20px rgba(123,92,255,0.9);
+}
+/* =========================
+   ANEL
+========================= */
+.anel{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border:
+    2px solid rgba(123,92,255,0.45);
+    box-shadow:
+    0 0 40px rgba(123,92,255,0.8);
+    animation:
+    girar 12s linear infinite;
+}
+/* =========================
+   ESTRELA GIGANTE
+========================= */
+.separador-estrela{
+    position: relative;
+    width: 15px;
+    height: 15px;
+    z-index: 3;
+    background:
+    radial-gradient(
+        circle,
+        #ffffff 0%,
+        #efe6ff 15%,
+        #c084fc 40%,
+        #7b5cff 65%,
+        #5ce1ff 100%
+    );
+    clip-path: polygon(
+        50% 0%,
+        62% 38%,
+        100% 50%,
+        62% 62%,
+        50% 100%,
+        38% 62%,
+        0% 50%,
+        38% 38%
+    );
+    filter:
+    drop-shadow(0 0 25px rgba(157,0,255,1))
+    drop-shadow(0 0 60px rgba(0,213,255,0.9))
+    drop-shadow(0 0 120px rgba(123,92,255,1));
+    animation:
+    pulsar 3s ease-in-out infinite;
+}
+/* =========================
+   NÚCLEO
+========================= */
+.separador-estrela::before{
+    content: "";
+    position: absolute;
+    inset: 55px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    filter:
+    blur(18px);
+}
+/* =========================
+   PULSO
+========================= */
+@keyframes pulsar{
+    0%{
+        transform:
+        scale(1)
+        rotate(0deg);
+    }
+    50%{
+        transform:
+        scale(1.18)
+        rotate(10deg);
+    }
+    100%{
+        transform:
+        scale(1)
+        rotate(0deg);
+    }
+}
+/* =========================
+   GIRO
+========================= */
+@keyframes girar{
+    from{
+        transform:
+        rotate(0deg);
+    }
+    to{
+        transform:
+        rotate(360deg);
+    }
+}
+@keyframes glow{
+    0%{
+        filter:
+        drop-shadow(0 0 8px #a855f7)
+        drop-shadow(0 0 20px #7c3aed);
+    }
+    50%{
+        filter:
+        drop-shadow(0 0 18px #c084fc)
+        drop-shadow(0 0 40px #5ce1ff);
+    }
+    100%{
+        filter:
+        drop-shadow(0 0 8px #a855f7)
+        drop-shadow(0 0 20px #7c3aed);
+    }
+}
+@keyframes glow2{
+    0%{
+        filter:
+        drop-shadow(0 0 4px #a955f79b)
+        drop-shadow(0 0 10px #7c3aed71);
+    }
+    50%{
+        filter:
+        drop-shadow(0 0 9px #c084fc93)
+        drop-shadow(0 0 20px #5ce1ff8e);
+    }
+    100%{
+        filter:
+        drop-shadow(0 0 4px #a955f77c)
+        drop-shadow(0 0 10px #7c3aed83);
+    }
+}
+@keyframes brilho-h1 {
+    from{
+        text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 15px #bf953f;
+    }
+    to{
+        text-shadow:
+        0 0 10px #fff,
+        0 0 20px #fcf6ba,
+        0 0 30px #bf953f;
+    }
+}
+@keyframes brilho-h2 {
+    from{
+        background-position: 0% center;
+        filter:
+        drop-shadow(0 0 5px #00bfff91)
+        drop-shadow(0 0 10px #9000ff85);
+    }
+    to{
+        background-position: 100% center;
+        filter:
+        drop-shadow(0 0 15px #3356b6)
+        drop-shadow(0 0 25px #c800ff);
+    }
+}
+/* ========================= */
+/* ANIMAÇÕES */
+/* ========================= */
+@keyframes aura{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+/* ========================= */
+/* HOVER GERAL */
+/* ========================= */
+.hover-up{
+    transition: 0.3s ease;
+}
+.hover-up:hover{
+    transform: translateY(-4px);
+}
+
+/* =========================
+   SURGIR
+========================= */
+
+@keyframes surgir{
+
+    0%{
+
+        opacity: 0;
+
+        transform:
+        perspective(1200px)
+        translateY(140px)
+        scale(0.25)
+        rotateX(45deg);
+
+        filter:
+        blur(25px);
+
+    }
+
+    40%{
+
+        opacity: 0.5;
+
+        transform:
+        perspective(1200px)
+        translateY(60px)
+        scale(0.6)
+        rotateX(18deg);
+
+        filter:
+        blur(10px);
+
+    }
+
+    100%{
+
+        opacity: 1;
+
+        transform:
+        perspective(1200px)
+        translateY(0)
+        scale(1)
+        rotateX(0deg);
+
+        filter:
+        blur(0px);
+
+    }
+
+}
+
+
+/* =========================
+   ENERGIA
+========================= */
+
+@keyframes energia{
+
+    0%{
+
+        transform:
+        scale(1);
+
+    }
+
+    50%{
+
+        transform:
+        scale(1.15);
+
+    }
+
+    100%{
+
+        transform:
+        scale(1);
+
+    }
+
+}
+@keyframes sumir{
+
+    0%{
+
+        opacity: 1;
+
+        transform:
+        scale(1);
+
+        filter:
+        blur(0px);
+
+    }
+
+    100%{
+
+        opacity: 0;
+
+        transform:
+        scale(1.15)
+        translateY(-40px);
+
+        filter:
+        blur(20px);
+
+    }
+
+}
+
+.navegacao{
+    position: relative;
+}
+
+.botao-menu{
+    cursor: pointer;
+}
+
+/* menu escondido */
+.menu{
+    display: none;
+
+    position: absolute;
+
+    top: 50px;
+    right: 0;
+
+    width: 200px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: #1d1433;
+}
+
+/* menu aberto */
+.menu.ativo{
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}

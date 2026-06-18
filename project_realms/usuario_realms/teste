@@ -1,0 +1,607 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib import messages
+
+from .models import (
+    Profile,
+    Attributes,
+    Progress
+)
+
+
+# =========================================================
+# CADASTRO
+# =========================================================
+
+def register_view(request):
+
+    # Se já estiver logado
+    if request.user.is_authenticated:
+        return redirect("home")
+
+
+    # =====================================================
+    # RECEBER FORMULÁRIO
+    # =====================================================
+
+    if request.method == "POST":
+
+        # =========================
+        # DADOS DO USUÁRIO
+        # =========================
+
+        username = request.POST["username"].strip()
+
+        email = request.POST["email"].strip()
+
+        password = request.POST["password"]
+
+        confirm_password = request.POST["confirm_password"]
+
+
+        # =========================
+        # DADOS RPG
+        # =========================
+
+        genero_usuario = request.POST.get(
+            "genero_usuario"
+        )
+
+        genero_personagem = request.POST.get(
+            "genero_personagem"
+        )
+
+        objetivo = request.POST.get(
+            "objetivo"
+        )
+
+        horas_estudo = request.POST.get(
+            "horas_estudo"
+        )
+
+
+        # =====================================================
+        # LISTA DE ERROS
+        # =====================================================
+
+        errors = []
+
+
+        # =====================================================
+        # VALIDAÇÕES
+        # =====================================================
+
+        # Usuário já existe
+        if User.objects.filter(
+            username=username
+        ).exists():
+
+            errors.append(
+                "Usuário já existe!"
+            )
+
+
+        # Email já existe
+        if User.objects.filter(
+            email=email
+        ).exists():
+
+            errors.append(
+                "Email já cadastrado!"
+            )
+
+
+        # Senhas diferentes
+        if password != confirm_password:
+
+            errors.append(
+                "As senhas não coincidem!"
+            )
+
+
+        # Username pequeno
+        if len(username) < 3:
+
+            errors.append(
+                "Usuário muito pequeno!"
+            )
+
+
+        # Username com espaço
+        if " " in username:
+
+            errors.append(
+                "O usuário não pode ter espaços!"
+            )
+
+
+        # Username só letras
+        if not username.isalpha():
+
+            errors.append(
+                "O usuário deve conter apenas letras!"
+            )
+
+
+        # Senha pequena
+        if len(password) < 8:
+
+            errors.append(
+                "A senha precisa ter pelo menos 8 caracteres!"
+            )
+
+
+        # Letra maiúscula
+        if not any(char.isupper() for char in password):
+
+            errors.append(
+                "A senha precisa ter letra maiúscula!"
+            )
+
+
+        # Letra minúscula
+        if not any(char.islower() for char in password):
+
+            errors.append(
+                "A senha precisa ter letra minúscula!"
+            )
+
+
+        # Número
+        if not any(char.isdigit() for char in password):
+
+            errors.append(
+                "A senha precisa ter número!"
+            )
+
+
+        # Caractere especial
+        if not any(char in "!@#$%&*?" for char in password):
+
+            errors.append(
+                "A senha precisa ter caractere especial!"
+            )
+
+
+        # =====================================================
+        # SE TIVER ERROS
+        # =====================================================
+
+        if errors:
+
+            for error in errors:
+
+                messages.error(
+                    request,
+                    error
+                )
+
+            return redirect("register")
+
+
+        # =====================================================
+        # CRIAR USUÁRIO
+        # =====================================================
+
+        user = User.objects.create_user(
+
+            username=username,
+
+            email=email,
+
+            password=password,
+
+            user_gender=genero_usuario
+        )
+
+
+        # =====================================================
+        # CRIAR PROFILE
+        # =====================================================
+
+        Profile.objects.create(
+
+            user=user,
+
+            genero_usuario=genero_usuario,
+
+            genero_personagem=genero_personagem,
+
+            objetivo=objetivo,
+
+            horas_estudo=horas_estudo,
+
+            level=1,
+
+            xp=0,
+
+            energia="nenhuma"
+
+        )
+
+
+        # =====================================================
+        # CRIAR ATTRIBUTES
+        # =====================================================
+
+        Attributes.objects.create(
+
+            user=user,
+
+            inteligencia=0,
+
+            sabedoria=0,
+
+            forca=0,
+
+            destreza=0
+
+        )
+
+
+        # =====================================================
+        # CRIAR PROGRESSOS INICIAIS
+        # =====================================================
+
+        materias = [
+
+            "matematica",
+
+            "fisica",
+
+            "quimica",
+
+            "historia",
+
+            "geografia"
+
+        ]
+
+
+        for materia in materias:
+
+            Progress.objects.create(
+
+                user=user,
+
+                materia=materia,
+
+                aulas_assistidas=0,
+
+                questoes_acertadas=0,
+
+                questoes_erradas=0
+
+            )
+
+
+        # =====================================================
+        # SUCESSO
+        # =====================================================
+
+        messages.success(
+            request,
+            "Conta criada com sucesso!"
+        )
+
+        return redirect("login")
+
+
+    return render(
+        request,
+        "usuario_realms/cadastro.html"
+    )
+
+
+
+# =========================================================
+# LOGIN
+# =========================================================
+
+def login_view(request):
+
+    if request.user.is_authenticated:
+        return redirect("home")
+
+
+    if request.method == "POST":
+
+        username = request.POST[
+            "username"
+        ].strip()
+
+        password = request.POST[
+            "password"
+        ]
+
+
+        errors = []
+
+
+        # Usuário vazio
+        if not username:
+
+            errors.append(
+                "Digite seu usuário!"
+            )
+
+
+        # Senha vazia
+        if not password:
+
+            errors.append(
+                "Digite sua senha!"
+            )
+
+
+        # Mostrar erros
+        if errors:
+
+            for error in errors:
+
+                messages.error(
+                    request,
+                    error
+                )
+
+            return redirect("login")
+
+
+        # Autenticar usuário
+        user = authenticate(
+
+            request,
+
+            username=username,
+
+            password=password
+
+        )
+
+
+        # Se existir
+        if user:
+
+            login(
+                request,
+                user
+            )
+
+            return redirect(
+                "home"
+            )
+
+        else:
+
+            messages.error(
+                request,
+                "Usuário ou senha inválidos!"
+            )
+
+
+    return render(
+        request,
+        "usuario_realms/login.html"
+    )
+
+
+
+# =========================================================
+# RESET PASSWORD
+# =========================================================
+
+def reset_password(request):
+
+    if request.method == "POST":
+
+        username = request.POST[
+            "username"
+        ].strip()
+
+        new_password = request.POST[
+            "new_password"
+        ]
+
+        confirm_password = request.POST[
+            "confirm_password"
+        ]
+
+
+        # Senhas diferentes
+        if new_password != confirm_password:
+
+            messages.error(
+                request,
+                "As senhas não coincidem!"
+            )
+
+            return redirect(
+                "reset_password"
+            )
+
+
+        # Procurar usuário
+        try:
+
+            user = User.objects.get(
+                username=username
+            )
+
+        except User.DoesNotExist:
+
+            messages.error(
+                request,
+                "Usuário não encontrado!"
+            )
+
+            return redirect(
+                "reset_password"
+            )
+
+
+        # Alterar senha
+        user.set_password(
+            new_password
+        )
+
+        user.save()
+
+
+        messages.success(
+            request,
+            "Senha alterada com sucesso!"
+        )
+
+        return redirect(
+            "login"
+        )
+
+
+    return render(
+        request,
+        "usuario_realms/reset_password.html"
+    )
+
+
+
+# =========================================================
+# LOGOUT
+# =========================================================
+
+def logout_view(request):
+
+    logout(request)
+
+    return redirect("login")
+
+
+
+# =========================================================
+# PROGRESSO
+# =========================================================
+
+@login_required
+def progresso(request):
+
+    return render(
+        request,
+        "usuario_realms/progresso.html"
+    )
+
+#--------------------------------------------------------
+#---------------------------------------------------------
+# -------------------------------------------------------#
+
+from .models import Avatar
+
+
+def escolher_avatar(request):
+
+    profile = request.user.profile
+
+
+    avatars = Avatar.objects.filter(
+
+        classe=profile.classe,
+
+        level_minimo__lte=profile.level
+
+    )
+
+
+    if request.method == "POST":
+
+        avatar_id = request.POST.get(
+            "avatar"
+        )
+
+
+        avatar = Avatar.objects.get(
+            id=avatar_id
+        )
+
+
+        profile.avatar = avatar
+
+        profile.save()
+
+
+        return redirect("perfil")
+
+
+    return render(
+
+        request,
+
+        "usuario_realms/avatar.html",
+
+        {
+            "avatars": avatars
+        }
+
+    )
+
+
+
+
+
+from django.contrib.auth.models import User
+from django.db import models
+# =========================================================
+# AVATARES DISPONÍVEIS
+# =========================================================
+
+class Avatar(models.Model):
+
+    GENERO_PERSONAGEM_CHOICES = [
+        ('feminino', 'Feminino'),
+        ('masculino', 'Masculino'),
+    ]
+
+    CLASSE_CHOICES = [
+
+        ('iniciante', 'Iniciante'),
+
+        ('mago', 'Mago'),
+
+        ('guerreiro', 'Guerreiro'),
+
+        ('assassino', 'Assassino'),
+
+        ('clerigo', 'Clérigo'),
+
+    ]
+
+
+    nome = models.CharField(
+        max_length=50
+    )
+
+
+    imagem = models.CharField(
+        max_length=100
+    )
+
+
+    classe = models.CharField(
+        max_length=20,
+        choices=CLASSE_CHOICES
+    )
+
+    genero_personagem = models.CharField(
+        max_length=20,
+        choices=GENERO_PERSONAGEM_CHOICES
+    )
+
+    level_minimo = models.IntegerField(
+        default=1
+    )
+
+
+    def __str__(self):
+
+        return self.nome
+
+

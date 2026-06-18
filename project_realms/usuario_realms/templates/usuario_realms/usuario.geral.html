@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/users.style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/geral.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>{% block titulo %}{% endblock %}</title>
+</head>
+
+<body>
+    <main class="{% block tipo_fundo %}{% endblock %}">
+        <div class="estrelas"></div>
+        <div class="brilhos"></div>
+        
+        <div class="conteiner_geral conteiner4">
+
+            <header>
+                <div class="logo">
+                    <img src="{% static 'img\icones\ico-login1.png' %}" alt="logo-user">
+                    <h1 class="logo_text">RealMify</h1>
+                </div>
+            </header>
+            <div class="cont_form">
+                <h2 class="intro">
+                    {% block intro %}
+                    {% endblock %}
+                </h2>
+                <div class="separador">
+                    <span class="linha"></span>
+                    <span class="anel"></span>
+                    <span class="separador-estrela"></span>
+                    <span class="linha"></span>
+                </div>
+                {% block form %}{% endblock %}
+            </div>
+
+        </div>
+
+    </main>
+    <script src="{% static 'js/users.js' %}"></script>
+</body>
+</html>

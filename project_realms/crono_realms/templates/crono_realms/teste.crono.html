@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma</title>
+    <link rel="stylesheet" href="{% static 'css/crono.style.css' %}">
+    <!-- CSS Estilos -->
+    <link rel="stylesheet" href="{% static 'css/geral.css' %}">
+</head>
+<body>
+     <!-- =========================
+            MENU LATERAL
+    ========================== -->
+
+    <nav class="menu-lateral">
+
+        <!-- LOGO -->
+        <div class="logo-menu">
+
+            <div class="icone-logo"></div>
+
+            <h1>Realmify</h1>
+
+        </div>
+
+        <!-- PERFIL -->
+        <div class="perfil-menu">
+
+            <img 
+                src="{% static 'img/perfil.png' %}" 
+                alt="Perfil"
+            >
+
+            <div class="info-perfil">
+
+                <h2>Kau</h2>
+
+                <p>Nível 12</p>
+
+            </div>
+
+        </div>
+
+        <!-- NAVEGAÇÃO -->
+        <ul class="lista-menu">
+
+            <li>
+                <a href="#">
+                    <span>🏰</span>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span>📚</span>
+                    Biblioteca
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span>🗓️</span>
+                    Cronograma
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span>📝</span>
+                    To-List
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span>👤</span>
+                    Perfil
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span>⚙️</span>
+                    Configurações
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <main class="fundo">
+        <!-- Camada do Mapa -->
+        
+        <div id="mapa"></div>
+        <div class="estrelas"></div>
+        <div class="brilhos"></div>
+        <!-- Cabeçalho (Topo) -->
+        <header class="superior">
+            <div class="superior-esquerdo">
+                <div class="titulo">
+                    <div class="menu conteiner3">
+                        <div class="ico-menu"></div>
+                    </div>
+                    <div class="emblema">
+                        <div class="ico-emblema"></div>
+                    </div>
+                    <div class="titulo-area conteiner3">
+                        <h1>RealmIfy</h1>
+                        <p>ORGANIZE SEUS ESTUDOS E CONQUISTE SEUS OBJETIVOS</p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="direito">
+                <div class="barra-progresso">
+                    <div class="sequencia conteiner3">
+                        <h3>SEQUÊNCIA</h3>
+                        <div class="zona-sequencia">
+                            <div class="progresso-sequencia"></div>
+                            <div class="contador-sequencia"></div>
+                        </div>
+                    </div>
+                    <div class="area-player conteiner3">
+                        <h3>Musica</h3>
+                        <div class="player"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="meio">
+            <div class="esquerdo">
+                <div class="fixa-estudo conteiner2"> 
+                    <h3>Assunto Atual</h3>
+                    <div class="card-assunto">
+                        <div class="ico-assunto"></div>
+                        <div class="fixa"></div>
+                    </div>
+                </div>
+                <div class="cronometro conteiner2"> 
+                    <h3>cronometro</h3>
+                    
+                </div>
+                <div class="list-dia conteiner2"> <h3>lista</h3></div>
+            </div>
+            <div class="centro"></div>
+            <div class="direito">
+                <div class="perfil conteiner2"> <h3>perfil</h3></div>
+                <div class="progresso conteiner2"> <h3>progresso</h3></div>
+            </div>
+        </section>
+        <footer class="inferior">
+            <div class="barra-status conteiner3">
+
+                <div class="estado">
+                    <h3>Estado do Reino</h3>
+                    <div class="construcoes">
+                        
+                        <div class="cons-arvore">
+                            <div class="ico-arvore"></div>
+                            <div class="esquerda-const">
+                                <div id="quantidade-arvore">
+                                    <p class="p2">N</p>
+                                </div>
+                                <p>Arvore</p>
+                            </div>
+                        </div>
+                        <div class="cons-casas">
+                            <div class="ico-casas"></div>
+                            <div class="esquerda-const">
+                                <div id="quantidade-casas">
+                                    <p class="p2">N</p>
+                                </div>
+                                <p>Casas</p>
+                            </div>
+                        </div>
+                        <div class="cons-especial">
+                            <div class="ico-especial"></div>
+                            <div class="esquerda-const">
+                                <div id="quantidade-especial">
+                                    <p class="p2">N</p>
+                                </div>
+                                <p>Especial</p>
+                            </div>
+                        </div>
+                        <div class="cons-castelo">
+                            <div class="ico-castelo"></div>
+                            <div class="esquerda-const">
+                                <div id="quantidade-castelo">
+                                    <p class="p2">N</p>
+                                </div>
+                                <p>Castelo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="status">
+                    <div class="area-aura">
+                        <div class="ico-aura"></div>
+                        <div class="quant-aura"> 
+                            <p id="quant-aura">valor</p>
+                            <p>AURA</p>
+                        </div>
+                    </div>
+                    <div class="area-xp ">
+                        <div class="ico-xp"></div>
+                        <div class="quant-xp"> 
+                            <p id="quant-xp">valor</p>
+                            <p>XP</p>
+                        </div>
+                    </div>
+                    <div class="area-nivel">
+                        <div class="ico-nivel"></div>
+                        <div class="quant-nivel"> 
+                            <p id="quant-nivel">valor</p>
+                            <p>NIVEL</p>
+                        </div>
+                    </div>    
+                </div>
+                <div class="recompensas">
+                    <div class="missao-xp">
+                        <h3>MISSÕES DE XP</h3>
+                        <div class="area-missao">
+                            <div class="ico-missoes-xp"></div>
+                            <div class="recompensa"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="missao-aura">
+                        <h3>MISSÕES DE AURA</h3>
+                        <div class="area-missao">
+                            <div class="ico-missoes-aura"></div>
+                            <div class="recompensa"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <script src="{% static 'js/crono.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'usuario_realms/usuario.geral.html' %}
+{% load static %}
+
+{% block titulo %} login {% endblock %}
+
+{% block tipo_fundo %}fundo-login{% endblock %}
+
+{% block intro %}
+    Seu futuro é forjado pelas escolhas de hoje.
+{% endblock %}
+
+{% block form %}
+<form method="POST" class="form-login">
+    {% csrf_token %}
+
+    <div class="input-box">
+        <i class="bi bi-person"></i>
+        <input type="text" name="username" placeholder="Usuário">
+    </div>
+
+    <div class="input-box">
+        <i class="bi bi-lock"></i>
+        <input type="password" name="password" placeholder="Senha">
+    </div>
+
+    <a href="{% url 'reset_password' %}" class="log">
+        Esqueceu a senha?
+        <span>Redefinir Senha</span>
+    </a>
+
+    <button type="submit" class="btn-login">
+        Entrar
+    </button>
+
+    <a href="{% url 'register' %}" class="log">
+        Não tem cadastro?
+        <span>Criar Conta</span>
+    </a>
+</form>
+{% endblock %}

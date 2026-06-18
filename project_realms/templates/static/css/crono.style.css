@@ -1,0 +1,17 @@
+.fundo {
+    position:absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../img/fundo/mapa3.jpeg");
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1;
+    padding: 0 5px 5px 5px;
+}
+
