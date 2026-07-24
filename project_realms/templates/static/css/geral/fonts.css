@@ -1,0 +1,209 @@
+
+/*fontes*/
+
+p{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(147, 201, 209);
+
+    line-height: 1.5;
+}
+.cintilante{
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #bf953f,
+        0 0 30px #bf953f;
+    animation: brilho-h1 2s ease-in-out infinite alternate;
+}
+.titulo-brilho{
+    
+
+    color: #ffffff;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,.8),
+        0 0 10px rgba(255,255,255,.7),
+        0 0 20px rgba(255,255,255,.6),
+        0 0 35px rgba(180,220,255,.5),
+        0 0 60px rgba(120,180,255,.4);
+
+    animation: brilhoTitulo 3s ease-in-out infinite alternate;
+}
+
+@keyframes brilhoTitulo{
+
+    0%{
+        text-shadow:
+            0 0 5px rgba(255, 255, 255, 0.322),
+            0 0 10px rgba(255,255,255,.0.322),
+            0 0 20px rgba(255,255,255,0.322),
+            0 0 35px rgba(180,220,255,0.322);
+
+        transform: scale(1);
+    }
+
+    50%{
+        text-shadow:
+            0 0 8px rgba(255, 255, 255, 0.629),
+            0 0 18px rgba(255,255,255, 0.629),
+            0 0 35px rgba(255,255,255, 0.629),
+            0 0 55px rgba(180,220,255, 0.629),
+            0 0 80px rgba(120,180,255, 0.629);
+
+        transform: scale(1.02);
+    }
+
+    100%{
+        text-shadow:
+            0 0 6px rgba(255,255,255,.7),
+            0 0 12px rgba(255,255,255,.6),
+            0 0 25px rgba(255,255,255,.5),
+            0 0 40px rgba(180,220,255,.4);
+
+        transform: scale(1);
+    }
+
+}
+.titulo-pagina{
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    letter-spacing: 4px;
+
+    /* Prata */
+    color: #e8e8f0;
+
+    /* Brilho roxo */
+    text-shadow:
+        0 0 4px #ffffff,
+        0 0 10px #c084fc,
+        0 0 20px #8b5cf6,
+        0 0 40px #6d28d9;
+
+    margin-bottom: 35px;
+
+    animation: brilhoTitulo 3s ease-in-out infinite;
+}
+.titulo-pagina::after{
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -12px;
+
+    width: 75%;
+    height: 3px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #d8b4fe,
+        #8b5cf6,
+        transparent
+    );
+
+    box-shadow:
+        0 0 10px #a855f7,
+        0 0 20px #7c3aed;
+}
+.titulo-pagina::before{
+    content:"✦";
+
+    position:absolute;
+
+    right:-28px;
+    top:2px;
+
+    color:#e8e8f0;
+
+    font-size:18px;
+
+    text-shadow:
+        0 0 10px #ffffff,
+        0 0 18px #8b5cf6;
+}
+.h3{
+    font-size: 16px;
+    background: linear-gradient(
+        to right,
+        #fff6d5,
+        #f3d46b,
+        #c89b2c
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.letra-roxa {
+    color: #a66bff; /* roxo suave */
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 2px rgba(166, 107, 255, 0.25),
+        0 0 4px rgba(90, 40, 160, 0.15);
+
+    font-family: "Poppins", sans-serif;
+}
+.h2-roxo{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background:
+    linear-gradient(
+        135deg,
+        #0091ff,
+        #6533fdb7,
+        #00f2ff,
+        #5100ff,
+        #01a2ff
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+    drop-shadow(0 0 5px #00bfff91)
+    drop-shadow(0 0 10px #9000ff85);
+    animation: brilho-h2 4s ease-in-out infinite alternate;
+}
+h3{
+    font-size: 16px;
+    background:
+    linear-gradient(
+        to right,
+        #8948bb,
+        #bd9cff,
+        #8028b3
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.text-dourado{
+    font-size: 16px;
+    background: linear-gradient(
+        to right,
+        #fff6d5,
+        #f3d46b,
+        #c89b2c
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+    
+}

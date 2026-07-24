@@ -65,54 +65,79 @@
     </div>
 
     <!-- ETAPA 2 -->
-    <div class="etapa" id="etapa2">
-        <div class="input-box">
-            <i class="bi bi-hourglass-split"></i>
-            <input
-                type="number"
-                name="horas_estudo"
-                placeholder="Horas de estudo">
-        </div>
-        </div>
+    <!-- ETAPA 2 -->
+<div class="etapa" id="etapa2">
 
-        <div class="input-box">
-            <i class="bi bi-bullseye"></i>
-            <input
-                type="text"
-                name="objetivo"
-                placeholder="Objetivo principal">
-        </div>
-       <div class="campo-select">
-            <label for="genero-personagem">
-                <i class="bi bi-people-fill"></i>
-
-            </label>
-            <select name="genero_personagem" id="genero-personagem">
-                <option value="" disabled selected>
-                    Selecione genero do Personagem
-                </option>
-                <option value="feminino">
-                    Feminino
-                </option>
-                <option value="masculino">
-                    Masculino
-                </option>
-            </select>
-            
-        </div>
-        <a href="{% url 'login' %}" class="btn-cadastro">
-            Criar Contar
-        </a>
-            
-        <a href="{% url 'login' %}" class="cad">
-            Já possui uma Senha? <span>Entrar</span>
-        </a>
-        <button type="button" onclick="voltarEtapa()" class="btn-voltar">
-            <i class="bi bi-arrow-return-left"></i>
-            Voltar
-        </button>
-    
+    <div class="input-box">
+        <i class="bi bi-hourglass-split"></i>
+        <input type="number" name="horas_estudos" placeholder="Horas de estudo">
     </div>
+
+    <div class="input-box">
+        <i class="bi bi-bullseye"></i>
+        <input type="text" name="objetivo" placeholder="Objetivo principal">
+    </div>
+
+    <div class="input-box">
+        <i class="bi bi-book"></i>
+        <input type="text" name="curso" placeholder="Curso ou área de interesse">
+    </div>
+
+    <div class="campo-select">
+        <label for="nivel-escolar">
+            <i class="bi bi-mortarboard-fill"></i>
+        </label>
+        <select name="nivel_escolar" id="nivel-escolar">
+            <option value="" disabled selected>Selecione seu nível escolar</option>
+            <option value="1_em">1º ano EM</option>
+            <option value="2_em">2º ano EM</option>
+            <option value="3_em">3º ano EM</option>
+            <option value="concluido">Concluído / Cursinho</option>
+        </select>
+    </div>
+
+    <div class="campo-select">
+        <label for="turno-escolar">
+            <i class="bi bi-clock-fill"></i>
+        </label>
+        <select name="turno_escolar" id="turno-escolar">
+            <option value="" disabled selected>Selecione o turno</option>
+            <option value="manha">Manhã</option>
+            <option value="tarde">Tarde</option>
+            <option value="noite">Noite</option>
+            <option value="flexivel">Flexível</option>
+        </select>
+    </div>
+
+    <div class="campo-select">
+        <label for="genero-personagem">
+            <i class="bi bi-people-fill"></i>
+        </label>
+
+        <select name="genero_personagem" id="genero-personagem">
+            <option value="" disabled selected>
+                Selecione gênero do Personagem
+            </option>
+            <option value="feminino">Feminino</option>
+            <option value="masculino">Masculino</option>
+        </select>
+    </div>
+
+    <!-- 🔥 BOTÃO CERTO DE ENVIO -->
+    <button type="submit" class="btn-cadastro">
+        Criar Conta
+    </button>
+
+    <a href="{% url 'login' %}" class="cad">
+        Já possui uma Senha? <span>Entrar</span>
+    </a>
+
+    <button type="button" onclick="voltarEtapa()" class="btn-voltar">
+        <i class="bi bi-arrow-return-left"></i>
+        Voltar
+    </button>
+
+</div>
 </div>
 
 </form>

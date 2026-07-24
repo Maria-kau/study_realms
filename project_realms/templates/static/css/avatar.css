@@ -1,0 +1,171 @@
+/* ==========================================================
+   CONTAINER E RESET
+========================================================== */
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Trava o scroll da página inteira */
+    height: 100vh;
+}
+
+.cont-geral {
+    margin-left: 80px; /* Espaço para o seu menu lateral */
+    width: calc(100% - 80px);
+    height: 100vh;
+    padding: 40px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    overscroll-behavior-y: contain; /* Impede efeito elástico no final */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Scroll Customizado */
+.cont-geral::-webkit-scrollbar { width: 10px; }
+.cont-geral::-webkit-scrollbar-thumb { background: #4c00ff; border-radius: 10px; }
+.cont-geral::-webkit-scrollbar-track { background: #111827; }
+
+/* ==========================================================
+   HEADER
+========================================================== */
+.header-avatar { text-align: center; margin-bottom: 45px; }
+.header-avatar h1 { font-size: 2.5rem; color: #ffffff; margin-bottom: 12px; }
+.header-avatar p { color: #94a3b8; font-size: 1rem; }
+
+/* ==========================================================
+   GRID
+========================================================== */
+.grid-avatar {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 35px;
+}
+
+.form-avatar { width: 100%; }
+
+/* ==========================================================
+   CARD
+========================================================== */
+.card-avatar {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    border: none;
+    outline: none;
+    border-radius: 22px;
+    overflow: hidden;
+    cursor: pointer;
+    background: linear-gradient(180deg, #1b2740, #0b1220);
+    display: flex;
+    flex-direction: column;
+    transition: .35s;
+    border: 2px solid #24344d;
+}
+
+.card-avatar:hover {
+    transform: translateY(-8px);
+    border-color: #5fa8ff;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+}
+
+.badge-raridade {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: #5b21b6;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+/* ==========================================================
+   PERSONAGEM
+========================================================== */
+.avatar-corpo {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 70%);
+}
+
+.avatar-corpo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: .35s;
+}
+
+.avatar-mini {
+    position: absolute;
+    right: 18px;
+    top: 230px;
+    width: 90px;
+    height: 90px;
+    border-radius: 18px;
+    background: #111827;
+    border: 2px solid #3b82f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.avatar-mini img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ==========================================================
+   INFORMAÇÕES
+========================================================== */
+.avatar-info {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-info h2 { text-align: center; color: white; font-size: 1.6rem; margin-bottom: 10px; }
+
+.linha-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border-radius: 12px;
+    background: #172131;
+}
+
+.linha-info span { color: #94a3b8; }
+.linha-info strong { color: #60a5fa; }
+
+.botao-avatar {
+    margin-top: auto;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.card-avatar:hover .botao-avatar { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+
+/* ==========================================================
+   RESPONSIVIDADE
+========================================================== */
+@media (max-width: 1024px) {
+    .grid-avatar { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+}
+
+@media (max-width: 600px) {
+    .cont-geral { margin-left: 0 !important; width: 100% !important; padding: 15px; }
+    .grid-avatar { grid-template-columns: 1fr; }
+    .card-avatar { min-height: 420px; }
+    .avatar-corpo { height: 220px; }
+    .avatar-mini { width: 70px; height: 70px; top: 180px; }
+}

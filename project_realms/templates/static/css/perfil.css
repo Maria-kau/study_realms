@@ -1,85 +1,1781 @@
-body {
-    background: #0f0f1a;
-    font-family: Arial, sans-serif;
-    color: white;
-}
+/*=========================
+            GERAL
+=========================*/
 
-/* CARD PRINCIPAL */
-.profile-card {
-    width: 380px;
-    background: linear-gradient(145deg, #1a1a2e, #11111a);
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.05);
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* HEADER */
-.profile-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
 
-.avatar img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid #7c3aed;
-    object-fit: cover;
-}
+*{
 
-.profile-info h2 {
     margin: 0;
-    font-size: 20px;
-}
+    padding: 0;
 
-.classe {
-    color: #a78bfa;
-    font-size: 14px;
-}
+    color: #b3c2d1;
 
-.genero {
     font-size: 12px;
-    opacity: 0.7;
 }
 
-/* STATS */
-.stats {
+
+ul{
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/*=========================
+        ESTRUTURA
+=========================*/
+
+
+.cont-geral{
+
+    width: 100%;
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:20px;
+
+    box-sizing:border-box;
+}
+
+
+/*=========================
+        LADO ESQUERDO
+=========================*/
+
+
+.cont-esquerda{
+
+    width:35%;
+    height:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:5px 20px;
+}
+
+
+/*=========================
+        LADO DIREITO
+=========================*/
+
+
+.cont-direita{
+
+    width:65%;
+    height:100%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    padding:15px;
+
+    gap:5px;
+}
+
+
+
+.cont-direita-superior{
+
+    width:100%;
+    height:70%;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:space-around;
+}
+
+
+
+.superior-esquerda{
+
+    height:100%;
+
+    width:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    border-radius:20px;
+}
+
+
+
+.superior-direitar{
+
+    width:50%;
+    height:100%;
+}
+
+
+
+.cont-direita-inferior{
+
+    width:100%;
+
+    height:42%;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    padding:10px 0;
+}
+
+
+
+/*=========================
+        PERFIL GRANDE
+=========================*/
+
+
+.cont-esquerda .inferior{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+
+
+.perfil_corpo{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+
+
+.perfil_corpo img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:5;
+}
+
+/*=========================
+        AREA USUARIO
+=========================*/
+
+
+.area-user{
+
+    width:100%;
+
+    height:40%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    border-radius:20px;
+}
+
+
+
+.perfil_mini{
+
+    height:100%;
+
+    width:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    padding:10px;
+}
+
+
+
+.perfil_mini i{
+
+    font-size:20px;
+
+    background:linear-gradient(
+        to right,
+        #fff6d5,
+        #f3d46b,
+        #c89b2c
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.perfil_mini img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    z-index:2;
+
+    border-radius:50%;
+}
+
+
+
+/*=========================
+        RANK / CLASSE
+=========================*/
+
+
+.campo-rank-classe{
+
+    width:50%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:flex-start;
+
+    flex-direction:column;
+
+    padding:10px;
+}
+
+.campo-rank-classe a{
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: row;
+    gap: 8px;
 }
 
-.stat {
-    text-align: center;
-    background: rgba(255,255,255,0.05);
-    padding: 10px;
-    border-radius: 12px;
-    width: 30%;
+.campo-rank-classe h2{
+
+    font-size:20px;
 }
 
-.stat span {
-    display: block;
-    font-size: 11px;
-    opacity: 0.7;
+
+
+.rank,
+.classe{
+
+    display:flex;
+
+    flex-direction:row;
+
+    gap:20px;
 }
 
-.stat strong {
-    font-size: 16px;
-    color: #22c55e;
+
+
+.rank i,.classe i{
+
+    font-size:22px;
+
+    background:linear-gradient(
+        135deg,
+        #fff4b5,
+        #fbbf24,
+        #b8860b
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
 }
 
-/* OBJETIVO */
-.objective {
-    margin-top: 20px;
-    padding: 10px;
-    background: rgba(255,255,255,0.03);
-    border-radius: 10px;
+
+
+.discricao{
+
+    display:flex;
+
+    flex-direction:row;
+
+    gap:15px;
 }
 
-.objective h3 {
-    margin: 0;
+
+
+#btn-perfil{
+    text-decoration-line: none;
+    cursor:pointer;
+    
+
+    background:#1d1d1d;
+
+    border:2px solid #7d3cff37;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    box-shadow:0 0 25px rgba(125,60,255,.5);
     font-size: 14px;
-    color: #60a5fa;
+    
+}
+#btn-perfil:hover, #btn-perfil i:hover{
+    border:2px solid #7d3cff;
+    color: #8800ff;
+    font-size: 18px;
+}
+
+
+/*=========================
+        MENU PERFIL
+=========================*/
+
+
+#menu-perfil{
+
+    position:absolute;
+
+    top:70px;
+
+    right:20px;
+
+    width:250px;
+
+    background:#1d1d1d;
+
+    border:2px solid #7d3cff;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    box-shadow:0 0 25px rgba(125,60,255,.5);
+
+    display:none;
+
+    z-index:9999;
+}
+
+
+
+#menu-perfil.ativo{
+
+    display:block;
+}
+
+
+
+/*=========================
+        INFORMAÇÕES
+=========================*/
+
+
+.area-informacao{
+
+    width:100%;
+
+    height:50%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    border-radius:20px;
+}
+
+
+
+.informacao-inferior{
+
+    height:100%;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    flex-direction:row;
+}
+
+
+
+.area-infor-esquerda,
+.area-infor-direitar{
+
+    height:100%;
+
+    width:50%;
+
+    display:flex;
+
+    justify-content:flex-start;
+
+    align-items:center;
+
+    flex-direction:column;
+}
+
+
+
+.campo-infor{
+
+    height:40%;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:flex-start;
+
+    align-items:center;
+}
+
+
+
+.ico-infor{
+
+    width:25%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:20px;
+}
+
+
+
+.ico-infor i{
+
+    font-size:30px;
+
+    background:linear-gradient(
+        to right,
+        #fff6d5,
+        #f3d46b,
+        #c89b2c
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.informacao{
+
+    width:75%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    border-radius:20px;
+
+    padding:3px 8px;
+}
+
+
+
+.informacao h4{
+
+    font-size:14px;
+}
+
+
+
+.informacao-inferior h4,
+.cont-direita-inferior h4{
+
+    font-size:14px;
+
+    color:#d2e8ff;
+
+    text-shadow:
+
+        0 0 4px rgba(255,255,255,.25),
+
+        0 0 10px rgba(170,130,255,.25);
+}
+
+/*=========================
+            STATUS
+=========================*/
+
+
+.area-status{
+
+    height:100%;
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+
+
+.campo-level-xp,
+.campo-mana-aura{
+
+    width:90%;
+
+    height:30%;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    border-radius:20px;
+}
+
+
+
+/*=========================
+            XP / LEVEL
+=========================*/
+
+
+.campo-level-xp{
+
+    justify-content:flex-start;
+
+    padding:10px;
+}
+
+
+.campo-level-xp .level{
+
+    height:50%;
+
+    width:25%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    align-items:center;
+}
+
+.campo-level-xp .level h3{
+    font-size: 40px;
+}
+
+.ico-level{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+
+
+.xp-cont,
+.energia-cont{
+
+    height:100%;
+
+    width:75%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+
+
+.discricao-xp{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-direction:row;
+}
+
+
+
+.campo-level-xp i{
+
+    font-size:22px;
+
+    background:linear-gradient(
+        135deg,
+        #fff5a3,
+        #ffcc33,
+        #ff9800
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+}
+
+
+
+/*=========================
+        MANA / AURA
+=========================*/
+
+
+.campo-aura,
+.campo-mana{
+
+    width:50%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    position:relative;
+
+    z-index:1;
+}
+
+
+
+.campo-mana-aura{
+
+    width:90%;
+
+    gap:15px;
+
+    border-radius:20px;
+}
+
+
+
+.campo-mana .ico-infor,
+.campo-aura .ico-infor{
+
+    width:50%;
+}
+
+
+
+.campo-direita .ico-infor,
+.campo-esquerdar .ico-infor{
+
+    height:100%;
+
+    width:40%;
+
+    padding:10px;
+}
+
+
+
+.energia-cont{
+
+    width:50%;
+}
+
+
+
+/*=========================
+            AURA
+=========================*/
+
+
+.campo-aura .ico-infor i{
+
+    font-size:30px;
+
+    background:linear-gradient(
+        135deg,
+        #7be8ff,
+        #37b8ff,
+        #005eff
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+}
+
+
+
+.campo-aura h3{
+
+    font-size:16px;
+
+    background:linear-gradient(
+        to right,
+        #d5dfff,
+        #6b7bf3,
+        #1100ff
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.campo-aura .barra-preenchimento{
+
+    background:linear-gradient(
+        135deg,
+        #0b2353 0%,
+        #0b2c5d 18%,
+        #12396d 38%,
+        #1b5fb8 58%,
+        #41a5ff 82%,
+        #9be8ff 100%
+    );
+}
+
+
+
+/*=========================
+            MANA
+=========================*/
+
+
+.campo-mana .ico-infor i{
+
+    font-size:30px;
+
+    background:linear-gradient(
+        135deg,
+        #d8a8ff,
+        #a855f7,
+        #6d28d9
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+}
+
+
+
+.campo-mana h3{
+
+    font-size:16px;
+
+    background:linear-gradient(
+        to right,
+        #edd5ff,
+        #9422ff,
+        #7700ff
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.campo-mana .barra-preenchimento{
+
+    background:linear-gradient(
+        145deg,
+        #2c0b4f,
+        #310758,
+        #52108c,
+        #6b2bd3,
+        #9b63ff,
+        #d7bfff
+    );
+}
+
+
+
+/*=========================
+            BARRAS
+=========================*/
+
+
+.barra{
+
+    width:100%;
+
+    height:12px;
+
+    background:#170633;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+
+
+.barra-preenchimento{
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #00ffcc,
+        #0066ff
+    );
+
+    transition:width 0.6s ease;
+}
+
+
+
+.energia-box{
+
+    height:45px;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+}
+
+
+
+.energia-cont .energia-box{
+
+    height:60px;
+}
+
+
+
+.campo-level-xp .barra-preenchimento{
+
+    background:linear-gradient(
+        135deg,
+        #53480b 0%,
+        #5d590b 18%,
+        #6d6d12 38%,
+        #b3b81b 58%,
+        #fcff41 82%,
+        #fdff9b 100%
+    );
+}
+
+/*=========================
+        ATRIBUTOS
+=========================*/
+
+
+.atributos ul{
+
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+/*=========================
+        ATRIBUTOS
+=========================*/
+
+.atributos{
+
+    width:45%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:flex-start;
+    align-items:center;
+
+    gap:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+}
+
+.lista-atributos{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:space-around;
+
+    gap:15px;
+}
+
+.atributo{
+
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.atributo-info{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+}
+
+.atributo-info h4{
+
+    flex:1;
+
+    margin-left:12px;
+
+    font-size:14px;
+}
+
+.ico-atributo{
+
+    width:28px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+}
+
+.ico-atributo i{
+
+    font-size:20px;
+}
+
+.contador-atribut{
+
+    width:45px;
+
+    text-align:right;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.atributo .barra{
+
+    width:100%;
+    height:10px;
+
+    background:#170633;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.atributo .barra-preenchimento{
+
+    height:100%;
+
+    transition:.5s;
+}
+
+.campo-atributo{
+
+    width:100%;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:0 15px;
+
+    border-radius:12px;
+}
+
+
+
+.ico-atributo i{
+
+    font-size:18px;
+}
+
+
+
+.campo-atributo i{
+
+    font-size:20px;
+}
+
+
+
+.assunto-atributo{
+
+    width:120px;
+}
+
+
+
+.contador-atribut{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    flex-direction:column;
+
+    width:40px;
+
+    text-align:right;
+}
+
+
+
+/*=========================
+        CORES ATRIBUTOS
+=========================*/
+
+
+.inteligencia i{
+
+    background:linear-gradient(
+        to right,
+        #d5ddff,
+        #6b88f3,
+        #2c36c8
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.sabedoria i{
+
+    background:linear-gradient(
+        to right,
+        #edd5ff,
+        #a86bf3,
+        #842cc8
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.forca i{
+
+    background:linear-gradient(
+        to right,
+        #ffd5d5,
+        #f36b6b,
+        #c82c2c
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+.destreza i{
+
+    background:linear-gradient(
+        to right,
+        #d5ffd5,
+        #6bf376,
+        #2cc83e
+    );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    color:transparent;
+}
+
+
+
+/*=========================
+        BARRAS ATRIBUTOS
+=========================*/
+
+
+.inteligencia .barra-preenchimento{
+
+    background:linear-gradient(
+        90deg,
+        #200486,
+        #3810ff,
+        #00f7ff,
+        #3810ff,
+        #200486
+    );
+}
+
+
+
+.sabedoria .barra-preenchimento{
+
+    background:linear-gradient(
+        90deg,
+        #3f0892,
+        #9310ff,
+        #ff00f7,
+        #9310ff,
+        #3f0892
+    );
+}
+
+
+
+.forca .barra-preenchimento{
+
+    background:linear-gradient(
+        90deg,
+        #92083d,
+        #ff1010,
+        #ffae00,
+        #ff1010,
+        #92083d
+    );
+}
+
+
+
+.destreza .barra-preenchimento{
+
+    background:linear-gradient(
+        90deg,
+        #066414,
+        #38ff10,
+        #8ffff4,
+        #38ff10,
+        #066414
+    );
+}
+
+
+
+/*=========================
+        JORNADA
+=========================*/
+
+
+.jornada,
+.atributos{
+
+    width:45%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    padding:20px;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-radius:20px;
+}
+
+
+
+.jornada{
+
+    justify-content:flex-start;
+
+    height:80%;
+
+    margin-bottom:90px;
+}
+
+
+
+.campo-jornada{
+
+    width:100%;
+
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    border-radius:12px;
+}
+
+
+
+.ico-jornada{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+}
+
+
+
+/*=========================
+        AJUSTES GERAIS
+=========================*/
+
+
+h4{
+
+    font-size:12px;
+}
+@media (max-width: 768px) {
+    .cont-esquerda {
+        display: none;
+    }
+}/*=========================================================
+    CELULAR PEQUENO (até 480px)
+=========================================================*/
+
+@media screen and (max-width:480px){
+
+    .cont-esquerda{
+        display:none;
+    }
+
+    .cont-geral{
+        flex-direction:column;
+        height:auto;
+        min-height:100vh;
+        overflow-y:auto;
+        padding:12px;
+        gap:20px;
+    }
+
+    .cont-esquerda,
+    .cont-direita{
+        width:100%;
+        height:auto;
+        padding:0;
+    }
+
+    .perfil_corpo{
+        height:280px;
+    }
+
+    .perfil_corpo img{
+        max-height:100%;
+    }
+
+    .cont-direita-superior,
+    .cont-direita-inferior{
+        flex-direction:column;
+        height:auto;
+        gap:20px;
+    }
+
+    .superior-esquerda,
+    .superior-direitar,
+    .atributos,
+    .jornada{
+        width:100%;
+        height:auto;
+    }
+
+    .area-user{
+        gap:15px;
+    }
+
+    .perfil_mini{
+        width:40%;
+        height:140px;
+    }
+
+    .campo-rank-classe{
+        width:60%;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    /* ---------- FONTES ---------- */
+
+    h2,
+    .campo-rank-classe h2{
+        font-size:20px;
+    }
+
+    h3,
+    .h3{
+        font-size:15px;
+    }
+
+    h4{
+        font-size:13px;
+    }
+
+    span,
+    p,
+    .informacao,
+    .contador-atribut,
+    .resultado{
+        font-size:12px;
+    }
+
+    .campo-rank-classe span{
+        font-size:12px;
+    }
+
+    #btn-perfil{
+        padding:10px 14px;
+        font-size:12px;
+    }
+
+    #btn-perfil p,
+    #btn-perfil i{
+        font-size:12px;
+    }
+
+    /* ---------- ÍCONES ---------- */
+
+    .ico-infor i{
+        font-size:20px;
+    }
+
+    .ico-atributo i{
+        font-size:18px;
+    }
+
+    .rank i,
+    .classe i{
+        font-size:18px;
+    }
+
+    .ico-level i{
+        font-size:24px;
+    }
+
+    .campo-level-xp .level h3{
+        font-size:28px;
+    }
+
+    /* ---------- INFORMAÇÕES ---------- */
+
+    .area-informacao{
+        height:auto;
+        gap:20px;
+    }
+
+    .informacao-inferior{
+        gap:15px;
+    }
+
+    .campo-infor{
+        height:auto;
+        padding:8px 0;
+    }
+
+    /* ---------- STATUS ---------- */
+
+    .campo-level-xp,
+    .campo-mana-aura{
+        width:100%;
+        height:auto;
+        padding:15px;
+    }
+
+    .campo-level-xp{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .campo-mana-aura{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .campo-level-xp .level,
+    .xp-cont,
+    .energia-cont,
+    .campo-mana,
+    .campo-aura{
+        width:100%;
+    }
+
+    /* ---------- JORNADA ---------- */
+
+    .jornada{
+        margin-bottom:0;
+    }
+
+    .campo-jornada{
+        height:auto;
+        padding:10px 0;
+        gap:8px;
+    }
+
+}
+
+
+/*=========================================================
+    CELULAR MÉDIO (481px - 768px)
+=========================================================*/
+
+@media screen and (min-width:481px) and (max-width:768px){
+
+    .cont-esquerda{
+        display:none;
+    }
+
+    .cont-geral{
+        flex-direction:column;
+        height:auto;
+        min-height:100vh;
+        overflow-y:auto;
+        padding:20px;
+        gap:20px;
+    }
+
+    .cont-esquerda,
+    .cont-direita{
+        width:100%;
+        height:auto;
+    }
+
+    .perfil_corpo{
+        height:350px;
+    }
+
+    .cont-direita-superior,
+    .cont-direita-inferior{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .superior-esquerda,
+    .superior-direitar,
+    .atributos,
+    .jornada{
+        width:100%;
+        height:auto;
+    }
+
+    /* ---------- FONTES ---------- */
+
+    h2{
+        font-size:24px;
+    }
+
+    h3,
+    .h3{
+        font-size:17px;
+    }
+
+    h4{
+        font-size:14px;
+    }
+
+    span,
+    p,
+    .informacao,
+    .contador-atribut,
+    .resultado{
+        font-size:13px;
+    }
+
+    .campo-rank-classe span{
+        font-size:13px;
+    }
+
+    #btn-perfil{
+        font-size:13px;
+    }
+
+    .ico-infor i{
+        font-size:24px;
+    }
+
+    .ico-atributo i{
+        font-size:20px;
+    }
+
+    .rank i,
+    .classe i{
+        font-size:20px;
+    }
+
+    .campo-level-xp .level h3{
+        font-size:34px;
+    }
+
+    .campo-level-xp,
+    .campo-mana-aura{
+        width:100%;
+        height:auto;
+    }
+
+    .campo-mana,
+    .campo-aura{
+        width:48%;
+    }
+
+    .jornada{
+        margin-bottom:0;
+    }
+
+}
+
+
+/*=========================================================
+    TABLET (769px - 992px)
+=========================================================*/
+
+@media screen and (min-width:769px) and (max-width:992px){
+
+    .cont-esquerda{
+        display:none;
+    }
+
+    .cont-geral{
+        flex-direction:column;
+        min-height:100vh;
+        gap:25px;
+    }
+
+    .cont-esquerda,
+    .cont-direita{
+        width:100%;
+        height:auto;
+    }
+
+    .perfil_corpo{
+        height:420px;
+    }
+
+    .cont-direita-superior,
+    .cont-direita-inferior{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .superior-esquerda,
+    .superior-direitar,
+    .atributos,
+    .jornada{
+        width:100%;
+    }
+
+    /* ---------- FONTES ---------- */
+
+    h2{
+        font-size:28px;
+    }
+
+    h3,
+    .h3{
+        font-size:19px;
+    }
+
+    h4{
+        font-size:15px;
+    }
+
+    span,
+    p,
+    .informacao,
+    .contador-atribut,
+    .resultado{
+        font-size:14px;
+    }
+
+    .ico-infor i{
+        font-size:26px;
+    }
+
+    .ico-atributo i{
+        font-size:22px;
+    }
+
+    .rank i,
+    .classe i{
+        font-size:22px;
+    }
+
+    .campo-level-xp .level h3{
+        font-size:38px;
+    }
+
+    .campo-level-xp,
+    .campo-mana-aura{
+        width:100%;
+        height: 50%;
+        padding: 20px;
+    }
+
+    .jornada{
+        margin-bottom:0;
+    }
+
 }

@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-qk$-_3$isnyd5onw@3#p^j7%9)(r#4ddmz(p*j!v$&9wayg*u4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "192.168.0.249",
+    "localhost",
+    "127.0.0.1"
+]
 
 
 # Application definition
@@ -67,6 +71,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'usuario_realms.context_processors.player_context',
+                'biblioteca_realms.context_processors.biblioteca_context',
+                'list_realms.context_processors.list_block_current',
+                'list_realms.context_processors.list_todo_progress',
+                'crono_realms.context_processors.realm_context'
             ],
         },
     },
@@ -126,6 +135,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'templates/static')]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 LOGIN_URL = "login"
 #fala pro Django:

@@ -17,6 +17,8 @@ Including another URLconf
 
 """path('caminho no navegador/',include('app-da_pagina.urls'))
 esse é o primeiro, primeiro vem no projeto --> depois vai no app e depois -->nas views do app"""
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
 
@@ -28,3 +30,8 @@ urlpatterns = [
     path('',include('list_realms.urls')),
     path('',include('cronograma_realms.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )

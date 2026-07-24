@@ -1,49 +1,335 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="profile-card">
+{% extends 'crono_realms/menu.html' %}
+{% load static %}
+{% block title %}Perfil{% endblock %}
 
-    <div class="profile-header">
-        <div class="avatar">
-            <img src="{{ user.avatar.url }}" alt="avatar">
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="cont-geral">
+        <div class="cont-esquerda">
+            
+            <div class="inferior">
+                <div class="perfil_corpo" >
+                        {% if profile.avatar and profile.avatar.imagem_corpo %}
+                            <img src="{{ profile.avatar.imagem_corpo.url }}" alt="Avatar">
+                        {% elif default_avatar and default_avatar.imagem_corpo %}
+                            <img src="{{ default_avatar.imagem_corpo.url }}" alt="Avatar Padrão" height="100px" width="100px">
+                        {% else %}
+                            
+                            <div class="avatar-placeholder">Sem avatar</div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="cont-direita">
+            <div class="cont-direita-superior">
+                <div class="superior-esquerda">
+                    <div class="area-user">
+                        <div class="perfil_mini">
+                            {% if profile.avatar and profile.avatar.imagem_mini %}
+                                    <img src="{{ profile.avatar.imagem_mini.url }}" alt="Mini Avatar">
+                                {% elif default_avatar and default_avatar.imagem_mini %}
+                                    <img src="{{ default_avatar.imagem_mini.url }}" alt="Mini Padrão">
+                                {% endif %} 
+                                
+                                
+                        </div>
+                        <div class="campo-rank-classe">
+                            <h2 class="cintilante">
+                                {{ profile.user }}
+                            </h2>
+                            <div class="rank">
+                                <div class="ico-campo">
+                                    <i class="fa-solid fa-medal"></i>
+                                </div>
+                                <div class="discricao">
+                                    <h3 class="h3">Rank</h3>
+                                    <span>{{ profile.rank }}</span>
+                                </div>
+                            </div>
+                            <div class="classe">
+                                <div class="ico-campo">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div class="discricao">
+                                    <h3 class="h3">Classe</h3>
+                                    <span>{{ profile.classe }}</span>
+                                </div>
+                            </div>
+                            <a href="{% url 'avatar' %}" id="btn-perfil">
+                                <i class="bi bi-person"></i>
+                                <p>Escolher perfil</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="area-informacao">
+                        <div class="separador2">
+                            <span class="linha2"></span>
+                            <span class="estrela2"></span>
+                            <h3 class="text-dourado">Informações Pessoais</h3>
+                            <span class="estrela2"></span>
+                            <span class="linha2"></span>
+                        </div>
+                        <div class="informacao-inferior">
+                            <div class="area-infor-esquerda">
+                                <div class="campo-infor">
+                                    <span class="ico-infor">
+                                        <i class="bi bi-bullseye"></i>
+                                    </span>
+                                    <div class="informacao">
+                                        <h4>Objetivo</h4>
+                                        {{ fixaUsuario.objetivo|default:"Não definido" }}
+                                    </div>
+                                </div>
+                                <div class="campo-infor">
+                                    <span class="ico-infor">
+                                        <i class="bi bi-book-half "></i>
+                                    </span>
+                                    <div class="informacao">
+                                        <h4>Curso</h4>
+                                        {{ fixaUsuario.curso|default:"Não definido" }}
+                                    </div>
+                                </div>
+                                <div class="campo-infor">
+                                    <span class="ico-infor">
+                                        <i class="bi bi-mortarboard-fill"></i>
+                                    </span>
+                                    <div class="informacao">
+                                        <h4>Nível escolar</h4>
+                                        {{ fixaUsuario.nivel_escolar|default:"Não definido" }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="area-infor-direitar">
+                                <div class="campo-infor">
+                                    <span class="ico-infor">
+                                        <i class="bi bi-clock-fill"></i>
+                                    </span>
+                                    <div class="informacao">
+                                        <h4>Turno escolar</h4>
+                                        {{ fixaUsuario.turno_escolar|default:"Não definido" }}
+                                    </div>
+                                </div>
+                                <div class="campo-infor">
+                                    <span class="ico-infor">
+                                        <i class="bi bi-card-checklist"></i>
+                                    </span>
+                                    <div class="informacao">
+                                        <h4>Tipo de Vestibular</h4>
+                                        {{ fixaUsuario.tipo_vestibular|default:"Não definido" }}</p>
+                                    </div>
+                                </div>
+                                <div class="campo-infor">
+                                    <span class="ico-infor">
+                                        <i class="bi bi-bank"></i>
+                                    </span>
+                                    <div class="informacao">
+                                        <h4>Tipo de Universidade</h4>
+                                        {{ fixaUsuario.tipo_universidade|default:"Não definido" }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="superior-direitar">
+                    <div class="area-status">
+                        
+                        <div class="campo-level-xp conteiner_dourado">
+                            <div class="level">
+                                <span class="ico-level">
+                                    <i class="fa-solid fa-crown"></i>
+                                </span>
+                                <h3 class="h3">
+                                    {{ profile.level }}
+                                </h3>
+                                
+                            </div>
+                            <div class="xp-cont">
+                                <div class="energia-box">
+                                    <div class="discricao-xp">
+                                        <i class="fa-solid fa-star"><h3 class="h3">Xp</h3></i>
+                                        
+                                        <h3 class="h3">{{ xp_current }} / {{ xp_max }}</h3>
+                                    </div>
+                                    <div class="barra">
+                                        <div class="barra-preenchimento"
+                                            data-progresso="{{ xp_current }}"
+                                            data-max="{{ xp_max }}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="campo-mana-aura">
+                            <div class="campo-mana conteiner_roxo">
+                                <span class="ico-infor">
+                                    <i class="fa-solid fa-hat-wizard"></i>
+                                </span>
+                                <div class="energia-cont">
+                                    
+                                    <div class="energia-box">
+                                        <h3>Mana</h3>
+                                        <h3>{{ mana_current }} / {{ mana_max }}</h3>
+                                        <div class="barra">
+                                            <div class="barra-preenchimento"
+                                                data-progresso="{{ mana_current }}"
+                                                data-max="{{ mana_max }}"></div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="campo-aura conteiner_azul">
+                                <span class="ico-infor">
+                                    <i class="fa-solid fa-fire-flame-curved"></i>
+                                </span>
+                                <div class="energia-cont">
+                                    <!--aqui nao esta atualizando , ATENÇÃO!!!!!-->
+                                    <div class="energia-box">
+                                        <h3 class="h3">Aura</h3>
+                                        <h3>{{ aura_current }} / {{ aura_max }}</h3>
+                                        <div class="barra">
+                                            <div class="barra-preenchimento"
+                                                data-progresso="{{ aura_current }}"
+                                                data-max="{{ aura_max }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont-direita-inferior">
+               <div class="atributos conteiner_vermelho">
+
+                <h3 class="text-dourado">Atributos</h3>
+
+                <div class="lista-atributos">
+
+                    <div class="atributo inteligencia">
+                        <div class="atributo-info">
+                            <span class="ico-atributo">
+                                <i class="fa-solid fa-brain"></i>
+                            </span>
+
+                            <h4>Inteligência</h4>
+
+                            <span class="contador-atribut">
+                                {{ attributes.xp_inteligencia }}
+                            </span>
+                        </div>
+
+                        <div class="barra">
+                            <div class="barra-preenchimento"
+                                data-progresso="{{ attributes.xp_inteligencia }}"
+                                data-max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="atributo sabedoria">
+                        <div class="atributo-info">
+                            <span class="ico-atributo">
+                                <i class="fa-solid fa-book-open"></i>
+                            </span>
+
+                            <h4>Sabedoria</h4>
+
+                            <span class="contador-atribut">
+                                {{ attributes.xp_sabedoria }}
+                            </span>
+                        </div>
+
+                        <div class="barra">
+                            <div class="barra-preenchimento"
+                                data-progresso="{{ attributes.xp_sabedoria }}"
+                                data-max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="atributo forca">
+                        <div class="atributo-info">
+                            <span class="ico-atributo">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </span>
+
+                            <h4>Força</h4>
+
+                            <span class="contador-atribut">
+                                {{ attributes.xp_forca }}
+                            </span>
+                        </div>
+
+                        <div class="barra">
+                            <div class="barra-preenchimento"
+                                data-progresso="{{ attributes.xp_forca }}"
+                                data-max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="atributo destreza">
+                        <div class="atributo-info">
+                            <span class="ico-atributo">
+                                <i class="fa-solid fa-hand"></i>
+                            </span>
+
+                            <h4>Destreza</h4>
+
+                            <span class="contador-atribut">
+                                {{ attributes.xp_destreza }}
+                            </span>
+                        </div>
+
+                        <div class="barra">
+                            <div class="barra-preenchimento"
+                                data-progresso="{{ attributes.xp_destreza }}"
+                                data-max="100">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+                <div class="jornada">
+                    <h3 class="text-dourado">Jornada</h3>
+                    <ul>
+                        <li class="campo-jornada">
+                            <span class="ico-infor"><i class="bi bi-clock-history"></i></span>
+                            <h4>Tempo total de estudos</h4>
+                            <span class="resultado">////</span>
+                        </li>
+                        <li class="campo-jornada">
+                            <span class="ico-infor"><i class="bi bi-award"></i></span>
+                            <h4>Nota Escolar</h4>
+                            <span class="resultado">////</span>
+                        </li>
+                        <li class="campo-jornada">
+                            <span class="ico-infor"><i class="bi bi-journal-x"></i></span>
+                            <h4>Materia em dificuldade</h4>
+                            <span class="resultado">////</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
-        <div class="profile-info">
-            <h2>{{ user.username }}</h2>
-            <p class="classe">{{ user.classe_personagem }}</p>
-            <p class="genero">{{ user.genero_usuario }}</p>
-        </div>
     </div>
+    
+{% endblock %}
 
-    <div class="stats">
+{% block js %}
+<script src="{% static 'js/perfil.js' %}"></script>
+{% endblock %}
 
-        <div class="stat">
-            <span>Nível</span>
-            <strong>{{ user.level }}</strong>
-        </div>
-
-        <div class="stat">
-            <span>XP</span>
-            <strong>{{ user.xp }}</strong>
-        </div>
-
-        <div class="stat">
-            <span>Horas de estudo</span>
-            <strong>{{ user.horas_estudo }}h</strong>
-        </div>
-
-    </div>
-
-    <div class="objective">
-        <h3>Objetivo</h3>
-        <p>{{ user.objetivo }}</p>
-    </div>
-
-</div>
-</body>
-</html>
+<!--
+    
+-->

@@ -1,0 +1,792 @@
+
+
+<h1>
+    Dashboard
+</h1>
+
+
+
+<!-- PERFIL DO JOGADOR -->
+
+<section>
+
+
+    <h2>
+        Perfil
+    </h2>
+
+
+    {% if user_realm.avatar %}
+
+        <img src="{{ user_realm.avatar.url }}">
+
+    {% endif %}
+
+
+
+    <h3>
+        {{ request.user.username }}
+    </h3>
+
+
+    <p>
+        Nível:
+        {{ user_realm.level }}
+    </p>
+
+
+    <p>
+        XP:
+        {{ user_realm.xp }}
+    </p>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- STATUS -->
+
+<section>
+
+
+    <h2>
+        Status do Personagem
+    </h2>
+
+
+    <p>
+        🔵 Mana:
+        {{ user_realm.mana }}%
+    </p>
+
+
+
+    <p>
+        🔥 Aura:
+        {{ user_realm.aura }}%
+    </p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- BIBLIOTECA -->
+
+<section>
+
+
+    <h2>
+        📚 Biblioteca Arcana
+    </h2>
+
+
+
+    {% for item in biblioteca_progress %}
+
+
+        <article>
+
+
+            <h3>
+                {{ item.materia.nome }}
+            </h3>
+
+
+
+            <p>
+                Progresso:
+                {{ item.progress }}%
+            </p>
+
+
+
+        </article>
+
+
+
+    {% empty %}
+
+
+        <p>
+            Nenhuma matéria cadastrada.
+        </p>
+
+
+    {% endfor %}
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- MISSÕES DO DIA -->
+
+
+<section>
+
+
+    <h2>
+        🏰 Missões de Hoje
+    </h2>
+
+
+
+    {% for tarefa in tarefas_do_dia %}
+
+
+
+        <article>
+
+
+            {% if tarefa.is_done %}
+
+                <p>
+                    ✅ {{ tarefa.title }}
+                </p>
+
+
+            {% else %}
+
+
+                <p>
+                    ⬜ {{ tarefa.title }}
+                </p>
+
+
+            {% endif %}
+
+
+
+
+            {% if tarefa.due_time %}
+
+                <small>
+                    Horário:
+                    {{ tarefa.due_time }}
+                </small>
+
+            {% endif %}
+
+
+
+        </article>
+
+
+
+    {% empty %}
+
+
+        <p>
+            Nenhuma missão para hoje.
+        </p>
+
+
+    {% endfor %}
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- PRODUTIVIDADE -->
+
+
+<section>
+
+
+    <h2>
+        📜 Progresso Diário
+    </h2>
+
+
+
+    <p>
+        Progresso:
+        {{ todo_progresso }}%
+    </p>
+
+
+
+    <p>
+        Total de tarefas:
+        {{ todo_total }}
+    </p>
+
+
+
+    <p>
+        Concluídas:
+        {{ todo_concluidas }}
+    </p>
+
+
+
+    <p>
+        Pendentes:
+        {{ todo_pendentes }}
+    </p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <header class="header-home">
+
+        <span class="ico-home"></span>
+
+        <h1>
+            home
+        </h1>
+
+    </header>
+
+
+
+    <!-- ==========================
+            PARTE SUPERIOR
+    =========================== -->
+
+    <section class="topo">
+
+
+
+        <!-- PERFIL -->
+
+        <div class="perfil-geral">
+
+            <span class="ico-perfil">
+                <i class="bi bi-person-circle">
+                    Perfil
+                </i>
+            </span>
+
+
+
+            <div class="perfil">
+
+
+                <div class="img-perfil">
+                    <!--
+                    {% if profile.avatar and profile.avatar.imagem_mini %}
+
+                        <img src="{{ profile.avatar.imagem_mini.url }}"
+                        alt="Mini Avatar">
+
+
+                    {% elif default_avatar and default_avatar.imagem_mini %}
+
+                        <img src="{{ default_avatar.imagem_mini.url }}"
+                        alt="Avatar Padrão">
+
+                    {% endif %}
+-->
+
+                </div>
+
+
+
+                <div class="discription">
+
+
+                    <h2>
+                        {{ profile.user }}
+                    </h2>
+
+
+
+                    <div class="level">
+
+                        <h3>
+                            {{ profile.level }}
+                        </h3>
+
+
+                        <span class="ico-level">
+                            ico-level
+                        </span>
+
+
+                    </div>
+
+
+
+
+                    <div class="xp-cont">
+
+                        <div class="energia-box">
+
+
+                            <div class="discricao-xp">
+
+                                <h3>
+                                    XP
+                                </h3>
+
+
+                                <h3>
+                                    {{ xp_current }} / {{ xp_max }}
+                                </h3>
+
+
+                            </div>
+
+
+
+                            <div class="barra">
+
+                                <div class="barra-preenchimento"
+                                data-progresso="{{ xp_current }}"
+                                data-max="{{ xp_max }}">
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+
+            <span class="ico-perfil">
+
+                <i class="bi bi-fire">
+                    Status do Personagem
+                </i>
+
+            </span>
+
+
+
+
+            <div class="campo-mana conteiner_roxo">
+
+
+                <span class="ico-infor">
+
+
+                    <div class="circulo1">
+
+                        <span class="circulo2">
+
+                            <i class="bi bi-fire"></i>
+
+                        </span>
+
+
+                    </div>
+
+
+                </span>
+
+
+
+
+                <div class="energia-cont">
+
+
+                    <div class="energia-box">
+
+
+                        <h3>
+                            Mana
+                        </h3>
+
+
+                        <h3>
+                            {{ mana_current }} / {{ mana_max }}
+                        </h3>
+
+
+
+                        <div class="barra">
+
+                            <div class="barra-preenchimento"
+                            data-progresso="{{ mana_current }}"
+                            data-max="{{ mana_max }}">
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div class="campo-aura conteiner_azul">
+
+
+                <span class="ico-infor">
+
+
+                    <div class="circulo1">
+
+                        <span class="circulo2">
+
+                            <i class="bi bi-fire"></i>
+
+                        </span>
+
+
+                    </div>
+
+
+                </span>
+
+
+
+                <div class="energia-cont">
+
+
+                    <div class="energia-box">
+
+
+                        <h3>
+                            Aura
+                        </h3>
+
+
+                        <h3>
+                            {{ aura_current }} / {{ aura_max }}
+                        </h3>
+
+
+
+                        <div class="barra">
+
+                            <div class="barra-preenchimento"
+                            data-progresso="{{ aura_current }}"
+                            data-max="{{ aura_max }}">
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+        <!-- BIBLIOTECA -->
+
+
+        <div class="biblioteca">
+
+
+            <h2>
+                📚 Biblioteca Arcana
+            </h2>
+
+
+
+            {% for item in biblioteca_progress %}
+
+
+                <article class="materia-card">
+
+
+                    <h3>
+                        {{ item.materia.nome }}
+                    </h3>
+
+
+
+                    <p>
+                        ✨ Progresso:
+                        <strong>
+                            {{ item.progress }}%
+                        </strong>
+                    </p>
+
+
+
+                    <p>
+                        📖
+                        {{ item.completed }}/{{ item.total_contents }}
+                        conteúdos concluídos
+                    </p>
+
+
+
+                </article>
+
+
+
+            {% empty %}
+
+
+                <p class="biblioteca-vazia">
+
+                    Nenhuma matéria cadastrada.
+
+                </p>
+
+
+            {% endfor %}
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <!-- ==========================
+            PARTE INFERIOR
+    =========================== -->
+
+
+    <section class="inferior">
+
+
+
+        <!-- MISSÕES -->
+
+        <div class="missoes">
+
+
+            <h2>
+                🏰 Missões de Hoje
+            </h2>
+
+
+
+            {% for tarefa in tarefas_do_dia %}
+
+
+
+                <article class="missao-card">
+
+
+
+                    {% if tarefa.is_done %}
+
+
+                        <p>
+                            ✅ {{ tarefa.title }}
+                        </p>
+
+
+
+                    {% else %}
+
+
+
+                        <p>
+                            ⬜ {{ tarefa.title }}
+                        </p>
+
+
+
+                    {% endif %}
+
+
+
+
+
+                    {% if tarefa.due_time %}
+
+
+                        <small>
+
+                            🕒 Horário:
+                            {{ tarefa.due_time }}
+
+                        </small>
+
+
+                    {% endif %}
+
+
+
+                </article>
+
+
+
+            {% empty %}
+
+
+                <p>
+                    Nenhuma missão para hoje.
+                </p>
+
+
+
+            {% endfor %}
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- PROGRESSO -->
+
+
+        <div class="progresso">
+
+
+            <section class="progresso-diario">
+
+
+                <h2>
+                    📜 Progresso Diário
+                </h2>
+
+
+                <div class="grafico-progresso">
+
+                    <canvas id="graficoProgresso"></canvas>
+
+
+                    <div class="valor-progresso">
+
+                        <h1>{{ todo_progresso }}%</h1>
+
+                        <span>
+                            Progresso Geral
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="estatisticas">
+
+
+                    <p>
+                        📋 Total de tarefas:
+                        <strong>
+                            {{ todo_total }}
+                        </strong>
+                    </p>
+
+
+                    <p>
+                        ✅ Concluídas:
+                        <strong>
+                            {{ todo_concluidas }}
+                        </strong>
+                    </p>
+
+
+                    <p>
+                        ⏳ Pendentes:
+                        <strong>
+                            {{ todo_pendentes }}
+                        </strong>
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+
+        </div>
+
+
+
+    </section>

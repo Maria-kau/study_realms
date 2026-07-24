@@ -1,4 +1,18 @@
 
+setTimeout(() => {
+    const messages = document.querySelector(".messages");
+
+    if (messages) {
+        messages.style.transition = "0.6s";
+        messages.style.transform = "translateY(-20px)";
+        messages.style.opacity = "0";
+
+        setTimeout(() => {
+            messages.remove();
+        }, 600);
+    }
+}, 8000);
+
 function proximaEtapa(){
 
     document
@@ -82,4 +96,3 @@ for(let i = 0; i < 100; i++) {
 
     estrelas.appendChild(estrela);
 }
-

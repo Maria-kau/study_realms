@@ -1,0 +1,551 @@
+{% extends 'crono_realms/menu.html' %}
+{% load static %}
+
+{% block title %}
+To-List - RealMify
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="{% static 'css/to-list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="conteiner-geral">
+    
+    <header class="nomeclatura">
+        <span class="ico-header">
+            <i class="bi bi-journal-check cintilante"></i>
+        </span>
+        <span class="text">
+            <h1 class="cintilante">Minhas Missões</h1>
+            <p>Organize suas tarefas e conquiste seus objetivos!</p>
+        </span>
+    </header>
+
+    <div class="inferior">
+        
+        <div class="esquerda">
+            
+            <div class="cont-criar">
+                <span class="titulo-coluna">
+                    <h2 class="text-dourado">Criar Nova Lista</h2>
+                </span>
+                
+                <div class="card-list">
+                    <form method="POST" action="{% url 'create_list' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <input type="text" name="title" placeholder="Nome da lista" required>
+                        
+                        <div class="cores-lista">
+                            <h2>Cor da lista:</h2>
+                            <label>
+                                <input type="radio" name="color" value="#00d0ff" checked>
+                                <span class="azul"></span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="color" value="#792cff">
+                                <span class="roxo"></span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="color" value="#00ff99">
+                                <span class="verde"></span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="color" value="#ffcc00">
+                                <span class="amarelo"></span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="color" value="#FF1744">
+                                <span class="vermelho"></span>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="color" value="#ff40f5">
+                                <span class="rosa"></span>
+                            </label>
+                        </div>
+
+                        <button type="submit">Criar</button>
+                    </form>
+                </div>
+            </div>
+            
+            <span class="titulo-coluna">
+                <h2 class="text-dourado">Minhas Listas</h2>
+            </span>
+
+            <div class="cont-list">
+
+                {% for lista in lists %}
+
+                <div class="lista-wrapper">
+
+                    <a href="{% url 'to_list' %}?list_id={{ lista.id }}" class="link-lista">
+
+                        <div 
+                        class="lista-item-exibida {% if lista.id == selected_list.id %}ativa{% endif %}"
+                        style="--cor-lista: {{ lista.color }}">
+
+                            <h2>{{ lista.title }}</h2>
+
+                        </div>
+
+                    </a>
+
+
+                    <form
+                        method="POST"
+                        action="{% url 'delete_list' lista.id %}"
+                        onsubmit="return confirm('Deseja excluir esta lista?');">
+
+                        {% csrf_token %}
+
+                        <button 
+                            type="submit"
+                            class="btn-delete-lista">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                {% empty %}
+
+                    <p class="aviso-vazio">
+                        Nenhuma lista criada ainda. Crie uma acima! 🚀
+                    </p>
+
+                {% endfor %}
+
+            </div>
+            
+        </div>
+
+        <div class="direita">
+
+            {% if selected_list %}
+
+                <!-- ============================= -->
+                <!-- CABEÇALHO -->
+                <!-- ============================= -->
+
+                <div class="cabecalho-lista">
+                    <div class="cabecalho">
+                        <span class="ico-cabecalho">
+                            <i class="bi bi-card-checklist"></i>
+                        </span>
+                        <div class="titulo">
+
+                            <h2>Missões de: {{ selected_list.title }}</h2>
+
+                            <p>
+                                Criada em
+                                {{ selected_list.created_at|date:"d/m/Y H:i" }}
+                            </p>
+
+                        </div>
+                    </div>
+                    
+
+                    <form method="POST"
+                        action="{% url 'add_item' selected_list.id %}"
+                        class="form-add">
+
+                        {% csrf_token %}
+
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="Título da missão"
+                            required>
+
+                        
+
+                        <div class="linha-form">
+
+                            <select name="category">
+
+                                <option value="study">📚 Estudo</option>
+                                <option value="work">💼 Trabalho</option>
+                                <option value="personal">🎯 Pessoal</option>
+                                <option value="routine">🔄 Rotina</option>
+                                <option value="project">🚀 Projeto</option>
+                                <option value="others">📌 Outros</option>
+
+                            </select>
+
+                            <select name="priority">
+
+                                <option value="low">🟢 Baixa</option>
+                                <option value="medium" selected>🟡 Média</option>
+                                <option value="high">🔴 Alta</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="linha-form">
+
+                            <div>
+
+                                <label>📅 Data da missão</label>
+
+                                <input
+                                    type="date"
+                                    name="task_date">
+
+                            </div>
+
+                            <div>
+
+                                <label>⏳ Prazo</label>
+
+                                <input
+                                    type="date"
+                                    name="due_date">
+
+                            </div>
+
+                            <div>
+
+                                <label>🕒 Horário</label>
+
+                                <input
+                                    type="time"
+                                    name="due_time">
+
+                            </div>
+
+                            <div class="cores-lista">
+                                <label>
+                                    <input type="radio" name="color" value="#00d0ff" checked>
+                                    <span class="azul"></span>
+                                </label>
+
+                                <label>
+                                    <input type="radio" name="color" value="#792cff">
+                                    <span class="roxo"></span>
+                                </label>
+
+                                <label>
+                                    <input type="radio" name="color" value="#00ff99">
+                                    <span class="verde"></span>
+                                </label>
+
+                                <label>
+                                    <input type="radio" name="color" value="#ffcc00">
+                                    <span class="amarelo"></span>
+                                </label>
+
+                                <label>
+                                    <input type="radio" name="color" value="#FF1744">
+                                    <span class="vermelho"></span>
+                                </label>
+
+                                <label>
+                                    <input type="radio" name="color" value="#ff40f5">
+                                    <span class="rosa"></span>
+                                </label>
+                                
+                                
+                            </div>
+
+                        </div>
+
+                        <button>
+
+                            <i class="bi bi-plus-circle"></i>
+
+                            Adicionar Missão
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+
+
+
+                <!-- ============================= -->
+                <!-- LISTA DE MISSÕES -->
+                <!-- ============================= -->
+
+                <div class="lista-missoes">
+
+                {% for tarefa in items %}
+
+                    <div class="card-missao {% if tarefa.is_done %}concluida{% endif %}"
+                    style="--cor-item: {{ tarefa.color }}">
+
+                        <div class="topo-card">
+
+                            <form
+                                method="POST"
+                                action="{% url 'toggle_item' tarefa.id %}">
+
+                                {% csrf_token %}
+
+                                <input
+                                    type="checkbox"
+                                    onchange="this.form.submit()"
+                                    {% if tarefa.is_done %}checked{% endif %}>
+
+                            </form>
+
+
+                            <div>
+
+                                <h2>
+
+                                    {{ tarefa.title }}
+
+                                </h2>
+
+                                {% if tarefa.description %}
+
+                                <p>
+
+                                    {{ tarefa.description }}
+
+                                </p>
+
+                                {% endif %}
+
+                            </div>
+
+                            <form
+                                method="POST"
+                                action="{% url 'delete_item' tarefa.id %}">
+
+                                {% csrf_token %}
+
+                                <button>
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+
+
+
+                        <div class="lista-inferior">
+                            <div class="rodape-card">
+
+                                <small>
+
+                                    Criada em
+
+                                    {{ tarefa.created_at|date:"d/m/Y H:i" }}
+
+                                </small>
+
+                                {% if tarefa.completed_at %}
+
+                                <small>
+
+                                    Finalizada em
+
+                                    {{ tarefa.completed_at|date:"d/m/Y H:i" }}
+
+                                </small>
+
+                                {% endif %}
+
+                                {% if tarefa.is_done %}
+
+                                    <span class="status ok">
+
+                                        ✔ Concluída
+
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="status pendente">
+
+                                        ⏳ Em andamento
+
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+                            <div class="informacoes">
+
+                                <span>
+
+                                    📚 Categoria:
+                                    <strong>
+                                        {{ tarefa.get_category_display }}
+                                    </strong>
+
+                                </span>
+
+                                <span>
+
+                                    🚩 Prioridade:
+                                    <strong>
+                                        {{ tarefa.get_priority_display }}
+                                    </strong>
+
+                                </span>
+
+                                <span>
+
+                                    ✨ Recompensa:
+                                    <strong>
+                                        {{ tarefa.xp_reward }} XP
+                                    </strong>
+
+                                </span>
+
+                                <span>
+
+                                    📅 Missão:
+                                    <strong>
+                                        {{ tarefa.task_date|date:"d/m/Y" }}
+                                    </strong>
+
+                                </span>
+
+                                {% if tarefa.due_date %}
+
+                                <span>
+
+                                    ⏳ Prazo:
+                                    <strong>
+                                        {{ tarefa.due_date|date:"d/m/Y" }}
+                                    </strong>
+
+                                </span>
+
+                                {% endif %}
+
+                                {% if tarefa.due_time %}
+
+                                <span>
+
+                                    🕒 Horário:
+                                    <strong>
+                                        {{ tarefa.due_time|time:"H:i" }}
+                                    </strong>
+
+                                </span>
+
+                                {% endif %}
+
+                                <span>
+
+                                    🆔 Ordem:
+                                    {{ tarefa.order }}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    
+
+                {% empty %}
+
+                    <div class="nenhuma-missao">
+
+                        <i class="bi bi-stars"></i>
+
+                        <h2>
+
+                            Nenhuma missão cadastrada
+
+                        </h2>
+
+                        <p>
+
+                            Crie sua primeira missão acima.
+
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+                </div>
+
+            {% else %}
+
+            <div class="estado-inicial">
+
+                <i class="bi bi-card-checklist"></i>
+
+                <h2>
+
+                    Escolha uma lista
+
+                </h2>
+
+                <p>
+
+                    Selecione uma lista na coluna da esquerda para visualizar e gerenciar suas missões.
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+<!--
+<form
+                    method="POST"
+                    action="{% url 'create_list' %}"
+                    enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Nome da lista"
+                        required>
+
+                    <label>Imagem da Lista</label>
+
+                    <input
+                        type="file"
+                        name="imagem"
+                        accept="image/*">
+
+                    <button type="submit">
+                        Criar
+                    </button>
+
+                </form>-->

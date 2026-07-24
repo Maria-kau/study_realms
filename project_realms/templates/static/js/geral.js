@@ -4,3 +4,4 @@ function abrirMenu(){
         .getElementById("menu")
         .classList.toggle("ativo");
 }
+

@@ -1,228 +1,88 @@
-<div class="fundo">
-    
-        <div class="parte-cima">
-            <div class="imagem_de_fundo">
-                <div class="zona-area">
-                    <div class="ico-navegação">
+<div class="estrelas"></div>
+    <div class="brilhos"></div>
 
-                    </div>
-                    <div class="zona-ico">
+    <!-- MAPA ISOMÉTRICO -->
+    <div id="mapa">
+        {% for building in construcoes %}
+        <div class="building"
+             data-tipo="{{building.tile.tipo}}"
+             data-x="{{building.x}}"
+             data-y="{{building.y}}"
+             data-img="{{building.tile.imagem.url}}">
+        </div>
+        {% endfor %}
+    </div>
 
-                    </div>
-                    <div class="texto">
-                        <h1>cronograma</h1>
-                        <p>organazar seus estudos e conquiste seus objetivos</p>
-                    </div>
-                </div>
-                <div class="zona-semana">
-                    <div class="conjunto-semana">
-                        <div class="pass conteiner">
+    <!-- TIMER PRINCIPAL -->
+    <div class="time-geral">
+        <div class="timer-container">
+            <h2>Temporizador de Estudo</h2>
 
-                        </div>
-                        <div class="data conteiner">
-
-                        </div>
-                        <div class="pass conteiner">
-
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="zona-dia">
-                    <div class="dia"></div>
-                </div>
+            <!-- Exibição de rendimento estimado -->
+            <div class="recompensa-preview" style="text-align: center; margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; font-size: 14px;">
+                <p>🌲 Rendimento: <strong>30 min = 1 Árvore</strong></p>
+                <p>Estudo atual renderá: <strong id="estimativa-atual">1 Árvore(s)</strong></p>
             </div>
-            <div class="calendario">
-                <div class="dom">
-                    <div class="nomeclatura">
-                        <h2>Dom</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
 
-                        </div>
-                        <div class="bloco conteiner2">
+            <div class="form-row">
+                <label>Tipo de atividade</label>
+                <select id="tipo-select">
+                    {% for key, label in tipos %}
+                    <option value="{{key}}">{{label}}</option>
+                    {% endfor %}
+                </select>
+            </div>
 
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
-                </div>
-                <div class="seg">
-                    <div class="nomeclatura">
-                        <h2>Seg</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
+            <div class="form-row">
+                <label>Duração (min)</label>
+                <input id="duracao-input" type="number" min="1" value="30">
+            </div>
 
-                        </div>
-                        <div class="bloco conteiner2">
+            <!-- Elemento de áudio para a melodia (adicione sua melodia na pasta de áudios) -->
+            <audio id="musica-estudo" loop>
+                <source src="{% static 'audio/lofi.mp3' %}" type="audio/mpeg">
+            </audio>
 
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
-                </div>
-                <div class="ter">
-                    <div class="nomeclatura">
-                        <h2>Ter</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
+            <div class="form-row" style="display: flex; gap: 10px;">
+                <button id="start-btn">Iniciar</button>
+                <button id="pause-btn" style="background: linear-gradient(135deg, #6b7280, #4b5563); color: white; display: none;">Pausar</button>
+                <!-- NOVO: BOTÃO DESISTIR -->
+                <button id="cancel-btn" style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; display: none;">Desistir</button>
+            </div>
 
-                        </div>
-                        <div class="bloco conteiner2">
+            <div id="countdown">00:00</div>
 
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
-                </div>
-                <div class="qua">
-                    <div class="nomeclatura">
-                        <h2>Qua</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
+            <!-- Formulário invisível de envio para o Django -->
+            <form id="complete-form" method="post" action="{% url 'complete_study' %}">
+                {% csrf_token %}
+                <input type="hidden" name="tipo" id="form-tipo">
+                <input type="hidden" name="duracao" id="form-duracao">
+                <input type="hidden" name="concluida" id="form-concluida" value="nao">
+            </form>
 
-                        </div>
-                        <div class="bloco conteiner2">
-
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
-                </div>
-                <div class="qui">
-                    <div class="nomeclatura">
-                        <h2>Qui</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
-
-                        </div>
-                        <div class="bloco conteiner2">
-
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
-                </div>
-                <div class="sex">
-                    <div class="nomeclatura">
-                        <h2>Sex</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
-
-                        </div>
-                        <div class="bloco conteiner2">
-
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
-                </div>
-                <div class="sab">
-                    <div class="nomeclatura">
-                        <h2>Sab</h2>
-                    </div>
-                    <div class="conjunto">
-                        <div class="bloco conteiner2">
-
-                        </div>
-                        <div class="bloco conteiner2">
-
-                        </div>
-                    </div>
-                    <div class="adicao">
-                        
-                    </div>
+            <!-- Modal de Confirmação Final -->
+            <div id="confirm-modal">
+                <div class="modal-box">
+                    <p>Você concluiu a atividade?</p>
+                    <button id="confirm-yes">Sim</button>
+                    <button id="confirm-no">Não</button>
                 </div>
             </div>
         </div>
-        <div class="parte-baixo">
-            <div class="acumulado">
-                <div class="progresso">
-                    <h2>progresso</h2>
-                </div>
-                <div class="meta">
-                    <h2>meta</h2>
-                </div>
-            </div>
-            <div class="to-list">
-                <div class="list-geral">
-                    <div class="titulo">
-                        <h2>Meta</h2>
-                    </div>
-                    <form>
-                        <div class="item-lista">
-                            <input type="checkbox" id="item3">
-                            <label for="item1">liste</label>
-                        </div>
-                        <div class="item-lista">
-                            <input type="checkbox" id="item3">
-                            <label for="item2">liste</label>
-                        </div>
-                        <div class="item-lista">
-                            <input type="checkbox" id="item3">
-                            <label for="item3">liste</label>
-                        </div>
-                        <div class="item-lista">
-                            <input type="checkbox" id="item3">
-                            <label for="item4">liste</label>
-                        </div>
-                    </form>
-
-                </div>
-                <div class="sequencia">
-                    <div class="texto-2">
-                        <h2>tempo de estudo</h2>
-                    </div>
-                    <div class="ico-list">
-                        <p>icone</p>
-                    </div>
-                    <div class="contagem">
-                        <p>contagem</p>
-                    </div>
-                    <div class="msg">
-                        <p>mensagem</p>
-                    </div>
-                </div>
-                <div class="xp">
-                    <div class="texto-2">
-                        <h2>tempo de estudo</h2>
-                    </div>
-                    <div class="ico-list">
-                        <p>icone</p>
-                    </div>
-                    <div class="contagem">
-                        <p>contagem</p>
-                    </div>
-                    <div class="msg">
-                        <p>mensagem</p>
-                    </div>
-                </div>
-                <div class="tempo-estudo">
-                    <div class="texto-2">
-                        <h2>tempo de estudo</h2>
-                    </div>
-                    <div class="ico-list">
-                        <p>icone</p>
-                    </div>
-                    <div class="contagem">
-                        <p>contagem</p>
-                    </div>
-                    <div class="msg">
-                        <p>mensagem</p>
-                    </div>
-                </div>
-            </div>
+        <div class="contrucao">
+            <ul>
+                <li>
+                    <img src="{% static 'img/icones/ico.arvore1.png' %}" alt="icone do acumulado de arvore">
+                </li>
+                <li>
+                    <img src="{% static 'img/icones/ico-casas1.png' %}" alt="icone do acumulado de casa">
+                </li>
+                <li>
+                    <img src="{% static 'img/icones/ico.especial1.png' %}" alt="icone do acumulado de especial">
+                </li>
+                <li>
+                    <img src="{% static 'img/icones/ico.castelo1.png' %}" alt="icone do acumulado de castelo">
+                </li>
+            </ul>
         </div>
     </div>

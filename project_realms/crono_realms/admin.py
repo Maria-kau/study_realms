@@ -1,3 +1,13 @@
 from django.contrib import admin
+from .models import (
+    StudySession,
+    Tile,
+    Realm,
+    RealmBuilding,
 
-# Register your models here.
+)
+
+admin.site.register(StudySession)
+admin.site.register(Tile)
+admin.site.register(Realm)
+admin.site.register(RealmBuilding)

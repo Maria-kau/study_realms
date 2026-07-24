@@ -1,9 +1,8 @@
-let btnMenu = document.getElementById('btn-menu')
+const btnMenu = document.getElementById("btn-menu");
+const menuLateral = document.getElementById("menu");
 
-let menu = document.getElementById('menu')
-
-btnMenu.addEventListener('click', ()=>{
-
-    menu.classList.toggle('abrir-menu')
-
-})
+if (btnMenu && menuLateral) {
+    btnMenu.addEventListener("click", () => {
+        menuLateral.classList.toggle("abrir-menu");
+    });
+}

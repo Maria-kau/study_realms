@@ -1,0 +1,82 @@
+{% extends 'crono_realms/menu.html' %}
+{% load static %}
+{% load duration %}
+
+{% block title %}Conteúdos{% endblock %}
+
+{% block extra_head %}
+
+<link rel="stylesheet" href="{% static 'css/biblioteca/componentes.css' %}">
+<link rel="stylesheet" href="{% static 'css/biblioteca/conteudo.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="separador3">
+    <span class="linha3"></span>
+    <span class="estrela3"></span>
+    <h2 class="letra-roxa">
+        {{ modulo.nome }}
+    </h2>
+    <span class="estrela3"></span>
+    <span class="linha3"></span>
+</div>
+
+<section class="bloco">
+    <div class="grid-conteudos">
+
+        {% for item in conteudos %}
+            <div class="card-conteudo-geral">
+                
+                <a class="card-link" href="{% if item.conteudo.video_url %}{{ item.conteudo.video_url }}{% else %}{{ item.conteudo.resumo_url }}{% endif %}" target="_blank">
+                    <div class="card-conteudo">
+
+                        {% if item.conteudo.thumbnail %}
+                            <img
+                                class="card-img"
+                                src="{{ item.conteudo.thumbnail.url }}"
+                                alt="{{ item.conteudo.titulo }}">
+                        {% endif %}
+
+                        <h3>{{ item.conteudo.titulo }}</h3>
+
+                        <p>
+                            <strong>Matéria:</strong> {{ item.conteudo.materia.nome }}
+                        </p>
+
+                        <p>
+                            <strong>Dificuldade:</strong> {{ item.conteudo.dificuldade }}
+                        </p>
+
+                        <p>
+                            <strong>Duração:</strong> {{ item.conteudo.duracao|duration }}
+                        </p>
+
+                    </div>
+                </a>
+
+                <button
+                    class="btn-validacao {% if item.progress.concluido %}concluido{% endif %}"
+                    data-url="{% url 'complete_content' item.conteudo.id %}">
+                    {% if item.progress.concluido %}
+                        Concluído ✓
+                    {% else %}
+                        Marcar como concluído
+                    {% endif %}
+                </button>
+
+                <span class="status-conclusao"></span>
+
+            </div>
+        {% empty %}
+            <p>Nenhum conteúdo encontrado.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/biblioteca.js' %}"></script>
+{% endblock %}

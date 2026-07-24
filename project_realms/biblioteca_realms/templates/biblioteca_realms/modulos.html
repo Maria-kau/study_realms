@@ -1,0 +1,69 @@
+{% extends 'crono_realms/menu.html' %}
+{% load static %}
+
+{% block title %}Módulos{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/biblioteca/componentes.css' %}">
+<link rel="stylesheet" href="{% static 'css/biblioteca/modulo.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="separador3">
+    <span class="linha3"></span>
+    <span class="estrela3"></span>
+    <h2 class="letra-roxa ">
+        {{ materia.nome }}
+    </h2>
+    <span class="estrela3"></span>
+    <span class="linha3"></span>
+</div>
+
+<section class="bloco">
+    <div class="grid-modulos">
+
+        {% for item in modulos %}
+            <a href="{% url 'module_contents' item.modulo.id %}" class="link-modulo">
+                <div class="card-modulo">
+
+                    {% if item.modulo.imagem %}
+                        <img
+                            class="card-img"
+                            src="{{ item.modulo.imagem.url }}"
+                            alt="{{ item.modulo.nome }}">
+                    {% endif %}
+
+                    <h3>{{ item.modulo.nome }}</h3>
+
+                    <div class="progresso-modulo">
+                        <div class="barra">
+                            <div
+                                class="barra-preenchimento"
+                                data-progresso="{{ item.progress.percentage|floatformat:0 }}">
+                            </div>
+                        </div>
+
+                        <span class="porcentagem">
+                            {{ item.progress.percentage|floatformat:0 }}%
+                        </span>
+                    </div>
+
+                    <span class="contador-conteudo">
+                        {{ item.progress.completed }} / {{ item.progress.total_contents }} conteúdos concluídos
+                    </span>
+
+                </div>
+            </a>
+        {% empty %}
+            <p>Nenhum módulo encontrado.</p>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/biblioteca.js' %}"></script>
+{% endblock %}

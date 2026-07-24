@@ -1,0 +1,1322 @@
+/*=========================================
+=            CONTAINER GERAL
+=========================================*/
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100dvh;
+    width: 100vw;
+    overflow-x: hidden; /* Correção de 'none' para 'hidden' */
+    /* Removido position: fixed e touch-action: none para liberar o scroll no mobile */
+}
+
+.conteiner-geral{
+
+    width: 100%;
+
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+}
+
+.nomeclatura{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    gap: 30px;
+    margin-left: 40px;
+}
+.ico-header i ,.cabecalho-lista .ico-cabecalho i{
+    font-size: 50px;
+}
+.text h1{
+    font-size: 30px;
+    font-family:'Cinzel Decorative';
+}
+.inferior{
+    height: 80vh;
+    width: 90%;
+    padding: 10px 30px;
+    
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: row;
+}
+.inferior .esquerda{
+    height: 100%;
+    width: 30%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.cont-criar,.cont-list,.inferior .direita{
+    height: 35%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 30px;
+     /* vidro azul */
+    background: rgba(15, 35, 90, 0.45);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border:1px solid rgba(0, 208, 255, 0.25);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,80,0.5),
+        0 0 20px rgba(0,208,255,0.15);
+}
+.cont-criar::before,.cont-list::before,.inferior .direita::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,208,255,0.18),
+        transparent 40%,
+        rgba(70,70,255,0.15)
+    );
+
+    border-radius:30px;
+
+    pointer-events:none;
+}
+.card-list{
+    width: 100%;
+    height: 100%;
+    display: contents;
+    justify-content: center;
+    align-items: center;
+}
+.esquerda .titulo-coluna .text-dourado{
+    margin-top: 10px;
+    letter-spacing: 1px;
+    font-size:20px;
+    font-family:'Cinzel Decorative';
+}
+.card-list form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    padding: 20px;
+}
+.card-list form button{
+    height: 30px;
+    width: 40%;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    background: 
+    rgba(29, 29, 88, 0.691);
+    color: rgb(0, 208, 255);
+    border:
+    1px solid rgba(64, 62, 103, 0.688);
+    box-shadow:
+    0 0 15px rgba(121, 44, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+}
+.card-list form button:hover{
+    border: 1px solid rgb(0, 208, 255);
+    box-shadow:
+        0 0 10px rgba(0, 208, 255, 0.6),
+        0 0 20px rgba(121, 44, 255, 0.5);
+}
+.card-list form input{
+    height: 40px;
+    width: 80%;
+    padding-left:20px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    background: 
+    rgb(29, 29, 88);
+    color: rgb(0, 208, 255);
+    border:
+    1px solid rgba(64, 62, 103, 0.688);
+}
+.card-list form input::placeholder{
+    
+    color: rgb(128, 96, 255);
+}
+.card-list form input:focus{
+    outline: none;
+    border: 1px solid rgb(0, 208, 255);
+    box-shadow:
+        0 0 10px rgba(0, 208, 255, 0.6),
+        0 0 20px rgba(121, 44, 255, 0.5);
+}
+.cores-lista{
+    display:flex;
+    gap:10px;
+}
+
+
+.cores-lista input{
+    display:none;
+}
+
+
+.cores-lista span{
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    display:block;
+    cursor:pointer;
+}
+
+
+.azul{
+    background:#00d0ff;
+}
+
+.roxo{
+    background:#792cff;
+}
+
+.verde{
+    background:#00ff99;
+}
+
+.amarelo{
+    background:#ffcc00;
+}
+.vermelho{
+    background:#FF1744;
+}
+.rosa{
+    background:#ff40f5;
+    
+}
+
+.cores-lista input:checked + span{
+    transform:scale(1.2);
+    box-shadow:0 0 15px currentColor;
+}
+.cont-list{
+    height:60%;
+    width:100%;
+
+    overflow-y:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:20px;
+
+    border-radius:30px;
+
+    box-sizing:border-box;
+}
+/* ==============================
+   SCROLLBAR MÁGICA - REALMIFY
+============================== */
+
+.cont-list::-webkit-scrollbar,.lista-missoes::-webkit-scrollbar{
+    width:10px;
+}
+
+
+/* Fundo da barra */
+.cont-list::-webkit-scrollbar-track,.lista-missoes::-webkit-scrollbar-track{
+
+    background:rgba(15,35,90,0.35);
+
+    border-radius:20px;
+
+    margin:15px 0;
+
+}
+
+
+/* Parte que se move */
+.cont-list::-webkit-scrollbar-thumb,.lista-missoes::-webkit-scrollbar-thumb{
+
+    background:
+    linear-gradient(
+        180deg,
+        #00d0ff,
+        #792cff
+    );
+
+    border-radius:20px;
+
+    border:2px solid rgba(15,35,90,0.5);
+
+    box-shadow:
+        0 0 10px #00d0ff,
+        0 0 20px #792cff;
+
+}
+
+
+/* Quando passa o mouse */
+.cont-list::-webkit-scrollbar-thumb:hover,.lista-missoes::-webkit-scrollbar-thumb:hover{
+
+    background:
+    linear-gradient(
+        180deg,
+        #00ffff,
+        #9b59ff
+    );
+
+    box-shadow:
+        0 0 15px #00d0ff,
+        0 0 30px #792cff;
+
+}
+/* link que envolve cada lista */
+.link-lista{
+
+    width:90%;
+
+    text-decoration:none;
+
+    flex-shrink:0;
+
+}
+
+/*=========================================
+=          WRAPPER DAS LISTAS
+=========================================*/
+
+.lista-wrapper{
+
+    width:100%;
+
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+}
+
+
+/* link ocupa o espaço maior */
+
+.lista-wrapper .link-lista{
+
+    flex:1;
+
+    text-decoration:none;
+
+}
+
+
+
+/*=========================================
+=          BOTÃO EXCLUIR LISTA
+=========================================*/
+
+.btn-delete-lista{
+
+    width:38px;
+
+    height:38px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    border-radius:50%;
+
+
+    border:1px solid rgba(255,23,68,.4);
+
+
+    background:rgba(255,23,68,.15);
+
+
+    color:#ff1744;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+.btn-delete-lista i{
+
+    font-size:18px;
+
+}
+
+
+
+/* efeito mágico */
+
+.btn-delete-lista:hover{
+
+    transform:scale(1.15) rotate(5deg);
+
+
+    background:#ff1744;
+
+
+    color:white;
+
+
+    box-shadow:
+
+        0 0 10px #ff1744,
+
+        0 0 25px rgba(255,23,68,.7);
+
+}
+.lista-item-exibida{
+
+    width:100%;
+
+    padding:15px;
+
+    background:rgba(15,35,90,0.45);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-left:5px solid var(--cor-lista);
+
+    border-radius:15px;
+
+    transition:0.3s;
+
+    display:flex;
+    align-items:center;
+
+}
+
+/* texto */
+.lista-item-exibida h2{
+
+    font-size:16px;
+
+    color:rgb(123,150,204);
+
+    margin:0;
+
+    letter-spacing:1px;
+
+    transition:0.3s;
+
+}
+
+
+/* efeito hover */
+.lista-item-exibida:hover{
+
+    transform:translateX(5px);
+
+    border-left:5px solid var(--cor-lista);
+
+    box-shadow:
+        0 0 15px var(--cor-lista),
+        0 0 25px var(--cor-lista);
+
+}
+
+
+.lista-item-exibida:hover h2{
+
+    color:var(--cor-lista);
+
+}
+
+/*=========================================
+=              ÁREA DIREITA
+=========================================*/
+
+.inferior .direita{
+
+    width:70%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    position:relative;
+
+    background:rgba(15,35,90,.45);
+
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+
+    border:1px solid rgba(0,208,255,.25);
+
+    border-radius:30px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,80,.5),
+        0 0 20px rgba(0,208,255,.15);
+
+    overflow:hidden;
+}
+
+
+.inferior .direita::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,208,255,.15),
+        transparent 40%,
+        rgba(70,70,255,.15)
+    );
+
+    pointer-events:none;
+
+}
+
+
+/* conteúdo acima do efeito */
+
+.cabecalho-lista,
+.lista-missoes{
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+
+
+/*=========================================
+=            CABEÇALHO DA LISTA
+=========================================*/
+
+
+.cabecalho-lista{
+
+    width:100%;
+
+    height:40%;
+
+    min-height:260px;
+
+    display:flex;
+
+    flex-direction:row;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+    padding:30px;
+
+    box-sizing:border-box;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.08);
+
+}
+
+
+/* título */
+
+
+
+.cabecalho-lista h1{
+
+    font-family:"Cinzel Decorative";
+
+    font-size:30px;
+
+    color:white;
+
+    margin:0 0 10px;
+
+}
+
+
+.cabecalho-lista p{
+
+    color:#8fb0ff;
+
+}
+
+
+
+/*=========================================
+=               FORMULÁRIO
+=========================================*/
+
+
+.form-add{
+
+    width:70%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+.form-add input,
+.form-add select{
+
+    width:100%;
+
+    padding:12px 16px;
+
+    box-sizing:border-box;
+
+    border-radius:15px;
+
+    background:rgba(20,30,80,.7);
+
+    color:#d9ecff;
+
+    border:
+
+    1px solid rgba(0,208,255,.15);
+
+}
+
+
+.form-add input:focus,
+.form-add select:focus{
+
+    outline:none;
+
+    border-color:#00d0ff;
+
+    box-shadow:
+
+    0 0 15px rgba(0,208,255,.3);
+
+}
+
+
+
+.linha-form{
+
+    width:100%;
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.linha-form .cores-lista{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:10px;
+}
+
+
+.linha-form > div{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+
+.linha-form label{
+
+    color:#93b8ff;
+
+    font-size:13px;
+
+}
+
+
+
+.form-add button{
+
+    align-self:flex-end;
+
+    padding:12px 28px;
+
+    border:none;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #00d0ff,
+        #792cff
+    );
+
+    color:white;
+
+    transition:.3s;
+
+}
+
+
+
+.form-add button:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+    0 0 15px #00d0ff,
+
+    0 0 30px #792cff;
+
+}
+
+
+
+/*=========================================
+=          ÁREA DAS MISSÕES
+=========================================*/
+
+
+.lista-missoes{
+
+    flex:1;
+
+    width:100%;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+    background-color: #16023770;
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-content:flex-start;
+
+    gap:20px;
+
+
+    overflow-y:auto;
+
+}
+
+
+
+/*=========================================
+=            CARD DA MISSÃO
+=========================================*/
+
+
+.card-missao{
+
+    
+    border-top:5px solid var(--cor-item);
+    flex:0 0 40%;
+
+    width:40%;
+
+    min-width:40%;
+
+    min-height:300px;
+
+    height:300px;
+
+
+    padding:20px;
+
+    box-sizing:border-box;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    rgba(18,35,90,.45);
+
+
+    backdrop-filter:blur(12px);
+
+
+    transition:.35s;
+
+}
+
+
+
+.card-missao:hover{
+
+
+    transform:translateY(-6px);
+
+
+    border-color:var(--cor-item);
+
+
+    box-shadow:
+
+    0 0 15px var(--cor-item),
+
+    0 0 30px var(--cor-item);
+
+}
+
+
+
+/*=========================================
+=            TOPO DO CARD
+=========================================*/
+
+
+.topo-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+
+
+.topo-card h2{
+
+    color:var(--cor-item);
+
+    font-size:20px;
+
+    margin:0 0 6px;
+
+}
+
+
+.topo-card p{
+
+    color:#a8b8f8;
+
+    font-size:14px;
+
+}
+
+
+
+/* botão excluir */
+
+.topo-card button{
+
+    background:none;
+
+    border:none;
+
+    color:#ff5d7c;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+
+
+.topo-card button:hover{
+
+    color:#ff1744;
+
+    transform:scale(1.1);
+
+}
+
+
+
+/*=========================================
+=            INFORMAÇÕES
+=========================================*/
+
+
+.informacoes{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+
+.informacoes span{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#d7dfff;
+
+    font-size:14px;
+
+}
+
+
+.informacoes strong{
+
+    color:#00d0ff;
+
+}
+
+
+
+/*=========================================
+=            RODAPÉ
+=========================================*/
+
+
+.rodape-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+
+.rodape-card small{
+
+    color:#8ea5e7;
+
+}
+
+
+
+.status{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+
+.ok{
+
+    background:#00ff99;
+
+    color:#00351d;
+
+}
+
+
+
+.pendente{
+
+    background:#ffd54d;
+
+    color:#4d3900;
+
+}
+
+
+
+/*=========================================
+=            ESTADO INICIAL
+=========================================*/
+
+
+.estado-inicial{
+
+    width:100%;
+
+    height:100%;
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    text-align:center;
+
+    gap:20px;
+
+}
+
+
+.estado-inicial i{
+
+    font-size:90px;
+
+    color:#00d0ff;
+
+}
+
+
+.estado-inicial h2{
+
+    font-family:'Cinzel Decorative';
+
+    color:white;
+
+    font-size:32px;
+
+}
+
+
+.estado-inicial p{
+
+    max-width:500px;
+
+    color:#9db6ff;
+
+    line-height:1.7;
+
+}
+
+/* =====================================================
+        RESPONSIVIDADE - CELULARES (PEQUENO, MÉDIO, GRANDE)
+===================================================== */
+
+/* Celular Pequeno (Até 480px) */
+@media (max-width: 360px) {
+    .nomeclatura {
+        margin-left: 0;
+        padding: 10px 15px;
+        gap: 15px;
+    }
+    
+    .text h1 {
+        font-size: 20px;
+    }
+
+    .ico-header i, .cabecalho-lista .ico-cabecalho i {
+        font-size: 35px;
+    }
+
+    .inferior {
+        flex-direction: column;
+        overflow-y: auto !important;
+        height: auto;
+        width: 90%;
+        padding: 10px 15px;
+    }
+
+    .inferior .esquerda,
+    .inferior .direita {
+        width: 100%;
+        height: auto;
+        min-height: 350px;
+    }
+
+    .cabecalho-lista {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .form-add {
+        width: 100%;
+    }
+
+    .card-missao {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+/* Celular Médio (481px a 600px) */
+@media (min-width:361px) and (max-width:480px) {
+    .nomeclatura {
+        margin-left: 10px;
+        padding: 10px 20px;
+    }
+
+    .text h1 {
+        font-size: 24px;
+    }
+
+    .inferior {
+        flex-direction: column;
+        
+        height: 100%;
+        width: 90%;
+        padding: 10px 15px;
+    }
+
+    .inferior .esquerda,
+    .inferior .direita {
+        width: 100%;
+        height: auto;
+        min-height: 400px;overflow-y: auto !important;
+    }
+
+    .cabecalho-lista {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .form-add {
+        width: 100%;
+    }
+
+    .card-missao {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+/* Celular Grande / Tablet Compacto (601px a 768px) */
+@media (min-width: 481px) and (max-width: 768px)  {
+    .nomeclatura {
+        margin-left: 20px;
+    }
+
+    .text h1 {
+        font-size: 26px;
+    }
+
+    .inferior {
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+        padding: 10px 20px;
+    }
+
+    .inferior .esquerda,
+    .inferior .direita {
+        width: 100%;
+        height: auto;
+        min-height: 450px;
+    }
+
+    .cabecalho-lista {
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 20px;
+    }
+
+    .form-add {
+        width: 100%;
+    }
+
+    .card-missao {
+        flex: 0 0 48%;
+        width: 48%;
+        min-width: 48%;
+    }
+}
+
+/* =====================================================
+        RESPONSIVIDADE - TABLETS (PEQUENO, MÉDIO, GRANDE)
+        769px - 1200px
+===================================================== */
+
+/* Tablet Pequeno (769px a 900px) */
+@media (min-width: 769px) and (max-width: 900px) {
+    .nomeclatura {
+        margin-left: 25px;
+        padding: 10px 20px;
+    }
+
+    .inferior {
+        flex-direction: row;
+        height: 75vh;
+        
+        width: 95%;
+        padding: 10px 15px;
+    }
+
+    .inferior .esquerda {
+        width: 35%;
+        height: 100%;
+        overflow-y: auto !important;
+    }
+
+    .inferior .direita {
+        width: 65%;
+        height: 100%;
+        overflow-y: auto !important;
+    }
+
+    .cabecalho-lista {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .form-add {
+        width: 100%;
+    }
+
+    .card-missao {
+        flex: 0 0 48%;
+        width: 48%;
+        min-width: 48%;
+    }
+}
+
+/* Tablet Médio (901px a 1024px) */
+@media (min-width: 901px) and (max-width: 1024px) {
+    .nomeclatura {
+        margin-left: 30px;
+    }
+
+    .inferior {
+        flex-direction: row;
+        height: 80vh;
+        width: 92%;
+        padding: 10px 20px;
+    }
+
+    .inferior .esquerda {
+        width: 32%;
+        height: 100%;
+        overflow-y: auto !important;
+    }
+
+    .inferior .direita {
+        width: 68%;
+        height: 100%;
+        
+        overflow-y: auto !important;
+    }
+
+    .cabecalho-lista {
+        flex-direction: row;
+        height: auto;
+        padding: 25px;
+    }
+
+    .form-add {
+        width: 65%;
+    }
+
+    .card-missao {
+        flex: 0 0 48%;
+        width: 48%;
+        min-width: 48%;
+    }
+}
+
+/* Tablet Grande (1025px a 1200px) */
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .nomeclatura {
+        margin-left: 35px;
+    }
+
+    .inferior {
+        flex-direction: row;
+        height: 80vh;
+        width: 90%;
+        padding: 10px 25px;
+    }
+
+    .inferior .esquerda {
+        width: 30%;
+        height: 100%;
+        overflow-y: auto !important;
+    }
+
+    .inferior .direita {
+        width: 70%;
+        height: 100%;
+        overflow-y: auto !important;
+    }
+
+    .cabecalho-lista {
+        flex-direction: row;
+        padding: 30px;
+    }
+
+    .form-add {
+        width: 70%;
+    }
+
+    .card-missao {
+        flex: 0 0 40%;
+        width: 40%;
+        min-width: 40%;
+    }
+}

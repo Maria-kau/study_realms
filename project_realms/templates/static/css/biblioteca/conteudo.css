@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* =========================
+   GRID DOS CONTEÚDOS
+========================= */
+
+.bloco {
+    padding: 30px 50px;
+    width: 100%;
+}
+
+.grid-conteudos {
+    padding: 0 20px;
+    margin-left: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+
+/* =========================
+   CARD GERAL
+========================= */
+
+.card-conteudo-geral {
+    width: 100%;
+    background:
+    linear-gradient(
+        145deg,
+        #181326,
+        #251444
+    );
+
+    border-radius: 20px;
+    padding: 18px;
+    border: 1px solid rgba(180,108,255,.35);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    transition: .3s;
+}
+
+.card-conteudo-geral:hover {
+    transform: translateY(-8px);
+    border-color: #b46cff;
+    box-shadow: 0 0 35px rgba(180,108,255,.5);
+}
+
+/* =========================
+   LINK DO CARD
+========================= */
+
+.card-link {
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+/* =========================
+   CONTEÚDO DO CARD
+========================= */
+
+.card-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* =========================
+   IMAGEM
+========================= */
+
+.card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid rgba(180,108,255,.4);
+}
+
+/* =========================
+   TÍTULO
+========================= */
+
+.card-conteudo h3 {
+    color: #dfc8ff;
+    font-size: 21px;
+    margin-top: 10px;
+}
+
+/* =========================
+   TEXTOS
+========================= */
+
+.card-conteudo p {
+    color: #ddd;
+    font-size: 14px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-conteudo strong {
+    color: #b46cff;
+}
+
+/* =========================
+   BOTÃO CONCLUIR
+========================= */
+
+.btn-validacao {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7126ff,
+        #c07cff
+    );
+
+    box-shadow: 0 0 15px rgba(180,108,255,.5);
+    transition: .3s;
+}
+
+.btn-validacao:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(180,108,255,.8);
+}
+
+/* =========================
+   BOTÃO QUANDO CONCLUÍDO
+========================= */
+
+.btn-validacao.concluido {
+    background:
+    linear-gradient(
+        135deg,
+        #008f4c,
+        #35d98a
+    );
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status-conclusao {
+    text-align: center;
+    color: #7dffb2;
+    font-weight: bold;
+    font-size: 14px;
+}
+.bloco{margin-left: 0;}
+
+/* ==========================================================
+   RESPONSIVIDADE - LAPTOPS E DESKTOPS
+========================================================== */
+
+/* Laptop Grande / Desktop (Acima de 1601px) */
+@media (min-width: 1601px) {
+    .bloco {
+        margin-left: 0;
+        padding: 30px 60px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 35px;
+        padding: 30px 60px;
+    }
+}
+
+/* Laptop Médio / Padrão (1367px a 1600px) */
+@media (min-width: 1367px) and (max-width: 1600px) {
+    .bloco {
+        margin-left: 0px;
+        padding: 20px 40px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding: 20px 40px;
+    }
+}
+
+/* Laptop Pequeno (1101px a 1366px) */
+@media (min-width: 1101px) and (max-width: 1366px) {
+    .bloco {
+        margin-left: 0px;
+        padding: 20px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        padding: 20px;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVIDADE - TABLETS E CELULARES
+========================================================== */
+
+/* Tablet (769px a 1100px) - 3 colunas */
+@media (min-width: 769px) and (max-width: 1100px) {
+    .bloco {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: repeat(3, 1fr);
+        margin-left: 0;
+        padding: 25px;
+        gap: 25px;
+    }
+}
+
+/* Celular Grande (481px a 768px) - 2 colunas */
+@media (min-width: 481px) and (max-width: 768px) {
+    .bloco {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 0;
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+/* Celular Médio (361px a 480px) - 1 coluna */
+@media (min-width: 361px) and (max-width: 480px) {
+    .bloco {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: 1fr;
+        margin-left: 0;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .card-conteudo-geral {
+        width: 100%;
+    }
+}
+
+/* Celular Pequeno (Até 360px) - 1 coluna compacta */
+@media (max-width: 360px) {
+    .bloco {
+        margin-left: 0;
+        padding: 5px;
+    }
+
+    .grid-conteudos {
+        grid-template-columns: 1fr;
+        margin-left: 0;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .card-conteudo-geral {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .card-img {
+        height: 150px;
+    }
+}

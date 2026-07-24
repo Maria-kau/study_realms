@@ -47,9 +47,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from django.contrib.auth.models import User
-from django.db import models
-
 
 class FixaUsuario(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -100,41 +97,69 @@ class FixaUsuario(models.Model):
     def __str__(self):
         return self.user.username
 
+def caminho_imagem_mini(instance, filename):
+    return f"avatars/{instance.genero}/{instance.nome}/{instance.classe}/mini/{filename}"
+
+
+def caminho_imagem_corpo(instance, filename):
+    return f"avatars/{instance.genero}/{instance.nome}/{instance.classe}/corpo/{filename}"
 class Avatar(models.Model):
+
     RARIDADE_CHOICES = [
         ('comum', 'Comum'),
         ('raro', 'Raro'),
         ('epico', 'Épico'),
         ('lendario', 'Lendário')
     ]
-    raridade = models.CharField(max_length=20,choices=RARIDADE_CHOICES,default='comum')
+
+    raridade = models.CharField(
+        max_length=20,
+        choices=RARIDADE_CHOICES,
+        default='comum'
+    )
+
     CLASSE_CHOICES = [
         ('iniciante', 'Iniciante'),
         ('mago', 'Mago'),
-        ('cavaleiro','Cavaleiro'),
-        ('cavaleiro_magico','Cavaleiro_Magico')
+        ('cavaleiro', 'Cavaleiro'),
+        ('cavaleiro_magico', 'Cavaleiro Mágico')
     ]
+
     classe = models.CharField(
         max_length=20,
         choices=CLASSE_CHOICES
     )
+
     GENERO_CHOICES = [
         ('feminino', 'Feminino'),
         ('masculino', 'Masculino'),
     ]
-    genero= models.CharField(
+
+    genero = models.CharField(
         max_length=20,
-        choices=GENERO_CHOICES
+        choices=GENERO_CHOICES,
     )
+
     nome = models.CharField(
         max_length=50
     )
-    imagem = models.ImageField(
-        upload_to='avatars/'
+
+    imagem_mini = models.ImageField(
+        upload_to=caminho_imagem_mini,
+        null=True,
+        blank=True,
     )
+
+    imagem_corpo = models.ImageField(
+        upload_to=caminho_imagem_corpo,
+        null=True,
+        blank=True
+    )
+
     level_minimo = models.IntegerField(
         default=1
     )
+
     def __str__(self):
 
         return self.nome
@@ -160,12 +185,20 @@ class Profile(models.Model):
     genero_personagem = models.CharField(max_length=20, choices=GENERO_PERSONAGEM_CHOICES)
 
     energia = models.CharField(max_length=20, choices=ENERGIA_CHOICES, default='nenhuma')
+    
+    mana_level = models.IntegerField(default=1)
+    mana_xp = models.IntegerField(default=1)
+
+    aura_level = models.IntegerField(default=1)
+    aura_xp = models.IntegerField(default=1)
 
     classe = models.CharField(max_length=20, choices=Avatar.CLASSE_CHOICES, default='iniciante')
 
     level = models.IntegerField(default=1)
 
-    xp = models.IntegerField(default=0)
+    xp = models.IntegerField(default=1)
+
+    rank = models.CharField(max_length=30, default="Iniciante")
 
     avatar = models.ForeignKey(
         'Avatar',
@@ -181,24 +214,19 @@ class Profile(models.Model):
 # =========================================================
 
 class Attributes(models.Model):
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE
-    )
-    inteligencia = models.IntegerField(
-        default=0
-    )
-    sabedoria = models.IntegerField(
-        default=0
-    )
-    forca = models.IntegerField(
-        default=0
-    )
-    destreza = models.IntegerField(
-        default=0
-    )
-    def __str__(self):
-        return self.user.username
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    inteligencia = models.IntegerField(default=1)
+    xp_inteligencia = models.IntegerField(default=1)
+
+    sabedoria = models.IntegerField(default=1)
+    xp_sabedoria = models.IntegerField(default=1)
+
+    forca = models.IntegerField(default=1)
+    xp_forca = models.IntegerField(default=1)
+
+    destreza = models.IntegerField(default=1)
+    xp_destreza = models.IntegerField(default=1)
 # =========================================================
 # PROGRESS
 # =========================================================
@@ -252,3 +280,4 @@ class Progress(models.Model):
     def __str__(self):
 
         return f"{self.user.username} - {self.materia}"
+    

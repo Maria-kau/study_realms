@@ -1,0 +1,166 @@
+{% extends 'crono_realms/menu.html' %}
+{% load static %}
+
+{% block title %}
+Temporizador
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/time.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="fundo">
+    <div class="estrelas"></div>
+    <div class="brilhos"></div>
+    <div class="cont-geral">
+        <div class="direita">
+            <div class="barra-perfil">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-star"><h3 class="h3">Xp</h3></i>
+                        <h3 class="h3">{{ xp_current }}</h3>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-crown"><h3 class="h3">Level</h3></i>
+                        <h3 class="h3">{{ profile.level }}</h3>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-hat-wizard"><h3 class="h3">Mana</h3></i>
+                        <h3 class="h3">{{ mana_current }}</h3>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-fire-flame-curved"><h3 class="h3">Aura</h3></i>
+                        <h3 class="h3">{{ aura_current }}</h3>
+                    </li>
+                </ul>
+            </div>
+            <div class="time-geral">
+                <div class="timer-container">
+                    <h2>Temporizador de Estudo</h2>
+
+                    <div class="recompensa-preview" style="text-align: center; margin-bottom: 20px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; font-size: 14px;">
+                        <p>🌲 Rendimento: <strong>30 min = 1 Árvore</strong></p>
+                        <p>Estudo atual renderá: <strong id="estimativa-atual">1 Árvore(s)</strong></p>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Tipo de atividade</label>
+                        <select id="tipo-select">
+                            {% for key, label in tipos %}
+                            <option value="{{ key }}">{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Duração (min)</label>
+                        <input id="duracao-input" type="number" min="1" value="30">
+                    </div>
+
+                    <audio id="musica-estudo" loop>
+                        <source src="{% static 'audio/lofi.mp3' %}" type="audio/mpeg">
+                    </audio>
+
+                    <div class="form-row" style="display: flex; gap: 10px;">
+                        <button id="start-btn">Iniciar</button>
+                        <button id="pause-btn" style="background: linear-gradient(135deg, #6b7280, #4b5563); color: white; display: none;">Pausar</button>
+                        <button id="cancel-btn" style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; display: none;">Desistir</button>
+                    </div>
+
+                    <div id="countdown">00:00</div>
+
+                    <form id="complete-form" method="post" action="{% url 'complete_study' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="tipo" id="form-tipo">
+                        <input type="hidden" name="duracao" id="form-duracao">
+                        <input type="hidden" name="concluida" id="form-concluida" value="nao">
+                    </form>
+
+                    <div id="confirm-modal">
+                        <div class="modal-box">
+                            <p>Você concluiu a atividade?</p>
+                            <button id="confirm-yes">Sim</button>
+                            <button id="confirm-no">Não</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contrucao">
+                <div class="card-header">
+                    <i class="fa-solid fa-gavel"></i>
+                    <h3 class="h3">Seu Reino</h3>
+                </div>
+                <div class="mini-inventory">
+                    <div class="inv-item" title="Total de Árvores">
+                        <img src="{% static 'img/icones/ico.arvore1.png' %}" alt="Árvores">
+                        <span>x{{ realm.total_arvores|default:"0" }}</span>
+                    </div>
+                    <div class="inv-item" title="Total de Casas">
+                        <img src="{% static 'img/icones/ico-casas1.png' %}" alt="Casas">
+                        <span>x{{ realm.total_casas|default:"0" }}</span>
+                    </div>
+                    <div class="inv-item" title="Total de Especiais">
+                        <img src="{% static 'img/icones/ico.especial1.png' %}" alt="Especiais">
+                        <span>x{{ realm.total_especiais|default:"0" }}</span>
+                    </div>
+                    <div class="inv-item" title="Total de Castelos">
+                        <img src="{% static 'img/icones/ico.castelo1.png' %}" alt="Castelos">
+                        <span>x{{ realm.total_castelos|default:"0" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="esquerda">
+            
+            <div id="mapa">
+                
+                {% for building in construcoes %}
+                <div class="estrelas"></div>
+                <div class="brilhos"></div>
+                <div class="building"
+                
+                    data-tipo="{{ building.tile.tipo }}"
+                    data-x="{{ building.x }}"
+                    data-y="{{ building.y }}"
+                    data-img="{{ building.tile.imagem.url }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/crono.js' %}"></script>
+<script src="{% static 'js/time.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+    </div>
+</div> FIM DA CLASS FUNDO -->
+
+<!-- MAPA ISOMÉTRICO 
+    <div id="mapa">
+        {% for building in construcoes %}
+        <div class="building"
+             data-tipo="{{ building.tile.tipo }}"
+             data-x="{{ building.x }}"
+             data-y="{{ building.y }}"
+             data-img="{{ building.tile.imagem.url }}">
+        </div>
+        {% endfor %}
+    </div>-->

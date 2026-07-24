@@ -5,22 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/users.style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/geral.css' %}">
+    <link rel="stylesheet" href="{% static 'css/geral/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/geral/efeitos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/geral/separadores.css' %}">
+    <link rel="stylesheet" href="{% static 'css/geral/conteiner.css' %}">
+    <link rel="stylesheet" href="{% static 'css/geral/animacoes.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>{% block titulo %}{% endblock %}</title>
 </head>
 
 <body>
+
     <main class="{% block tipo_fundo %}{% endblock %}">
         <div class="estrelas"></div>
         <div class="brilhos"></div>
-        
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <p class="{{ message.tags }}">
+                    {{ message }}
+                </p>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="conteiner_geral conteiner4">
 
             <header>
                 <div class="logo">
                     <img src="{% static 'img\icones\ico-login1.png' %}" alt="logo-user">
-                    <h1 class="logo_text">RealMify</h1>
+                    <h1 class="titulo-brilho">RealMify</h1>
                 </div>
             </header>
             <div class="cont_form">
@@ -41,5 +55,6 @@
 
     </main>
     <script src="{% static 'js/users.js' %}"></script>
+    {% block js %}{% endblock %}
 </body>
 </html>

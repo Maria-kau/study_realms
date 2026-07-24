@@ -1,0 +1,1057 @@
+/* =====================================================
+        RESET & CONFIGURAÇÕES GERAIS
+===================================================== */
+:root {
+    --tile-w: 60px;
+    --tile-h: 30px;
+}
+
+/* ==========================================================
+   RESET E CONFIGURAÇÃO GLOBAL
+========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100dvh; /* Altura exata da área visível */
+    width: 100vw;
+    overflow-x: none !important; /* FORÇA a desativação de qualquer scroll */
+    position: fixed; /* Fixa o corpo na tela */
+    touch-action: none; /* Desativa gestos de toque (scroll/zoom) */
+}
+
+.fundo {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at top, rgba(0, 210, 255, .15), transparent 40%),
+        radial-gradient(circle at bottom, rgba(130, 50, 255, .18), transparent 45%),
+        linear-gradient(180deg, #070b25, #03040d);
+}
+
+/* =====================================================
+        CONTAINER GERAL E COLUNAS
+===================================================== */
+.cont-geral {
+    width: 100dvw;
+    height: 100dvh;
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    display: flex;
+    flex-direction: row;
+    margin-left: 60px;
+}
+
+.cont-geral .direita {
+    width: 400px;
+    height: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    pointer-events: auto;
+    overflow-y: auto;
+    z-index: 5;
+}
+
+.cont-geral .direita::-webkit-scrollbar {
+    width: 4px;
+}
+.cont-geral .direita::-webkit-scrollbar-thumb {
+    background: rgba(0, 217, 255, 0.3);
+    border-radius: 4px;
+}
+
+.cont-geral .esquerda {
+    position: relative;
+    flex: 1;
+    width: 100dvw;
+    height: 100dvh;
+    pointer-events: auto;
+    overflow: hidden; 
+}
+
+#mapa {
+    position: absolute;
+    left: 44%;
+    top: 10%;
+    transform: translate(-40%, -50%);
+    z-index: 4;
+    background-color: transparent;
+}
+
+/* =====================================================
+        ESTILOS DOS TILES
+===================================================== */
+.tile {
+    position: absolute;
+    width: var(--tile-w);
+    height: var(--tile-h);
+    background: transparent;
+    
+    transition: filter 0.2s ease;
+}
+
+
+
+.tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--tile-w);
+    height: var(--tile-h);
+    
+    /* Mude para a forma correta com tamanho e posição */
+    background-image: url("../img/tiles/tile-base2.jpeg");
+    background-size: cover;          /* Cobre todo o espaço do tile */
+    background-position: center;     /* Centraliza a imagem */
+    background-repeat: no-repeat;
+
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    filter: brightness(0.70) contrast(1.3) saturate(0.8) hue-rotate(30deg);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.561), 0 0 12px rgba(0, 255, 179, 0.463);
+    z-index: 2;
+}
+
+/* =====================================================
+        CONSTRUÇÕES E ÁRVORES (TAMANHOS CONTROLADOS)
+===================================================== */
+.building {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: brightness(0.6) contrast(1.2) saturate(0.9) hue-rotate(15deg) drop-shadow(0 10px 10px rgba(0, 0, 0, 0.8));
+    background-position: bottom center; /* Garante que a base da imagem fique ancorada */
+    pointer-events: none;
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.8));
+    animation: animarSurgir 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Altere aqui o tamanho livremente para diminuir/aumentar */
+.building[data-tipo="tree"] {
+    width: 80px !important;
+    height: 80px !important;
+    transform-origin: bottom center;
+    filter: brightness(0.9) contrast(1.2) saturate(0.9) hue-rotate(15deg) drop-shadow(0 10px 10px rgba(0, 0, 0, 0.8));
+    animation: 
+        animarSurgir 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+        efeitoVento 4s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+.building[data-tipo="house"] { 
+    
+    width: 100px !important; 
+    height: 100px !important;
+}
+
+.building[data-tipo="special"] { 
+    width: 120px !important; 
+    height: 120px !important; 
+}
+
+.building[data-tipo="castle"] { 
+    width: 180px !important; 
+    height: 180px !important; 
+}
+
+@keyframes animarSurgir {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes efeitoVento {
+    0% { transform: scale(1) rotate(0deg); }
+    35% { transform: scale(1) rotate(1.5deg) skewX(0.5deg); }
+    70% { transform: scale(1) rotate(-1deg) skewX(-0.3deg); }
+    100% { transform: scale(1) rotate(2deg) skewX(0.8deg); }
+}
+
+/* =====================================================
+        BARRA DE PERFIL (XP, LEVEL, MANA, AURA)
+===================================================== */
+.barra-perfil {
+    width: 100%;
+    padding: 15px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(20, 30, 80, 0.8), rgba(40, 15, 80, 0.6));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.barra-perfil ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.barra-perfil li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.barra-perfil i {
+    color: #00d9ff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.barra-perfil i h3, 
+.barra-perfil li > h3 {
+    font-size: 12px;
+    color: #cbd5e1;
+    margin: 0;
+}
+
+.barra-perfil li > h3:last-child {
+    font-size: 14px;
+    color: #fff4b0;
+    font-weight: bold;
+}
+
+/* =====================================================
+        PAINÉIS E INTERFACE
+===================================================== */
+.time-geral { width: 100%; }
+
+.timer-container {
+    width: 100%;
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(20, 30, 80, 0.8), rgba(40, 15, 80, 0.6));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.timer-container h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    background: linear-gradient(180deg, #fff4b0, #ffcc66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.recompensa-preview {
+    text-align: center;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.recompensa-preview p { margin-bottom: 4px; color: #cbd5e1; }
+.recompensa-preview strong { color: #38bdf8; }
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.form-row label {
+    color: #cbd5e1;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 220, 255, 0.25);
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+select:focus, input:focus {
+    border-color: #00d9ff;
+    box-shadow: 0 0 12px rgba(0, 217, 255, 0.4);
+}
+
+button {
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+#start-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: #050510;
+    background: linear-gradient(135deg, #ffe89a, #ffbd33);
+    box-shadow: 0 4px 15px rgba(255, 190, 50, 0.3);
+}
+
+#start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 209, 102, 0.5);
+}
+
+#pause-btn, #cancel-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 13px;
+    flex: 1;
+}
+
+#pause-btn:hover, #cancel-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+
+#countdown {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 32px;
+    color: #7ee8ff;
+    text-shadow: 0 0 15px #00d9ff;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* =====================================================
+        MODAL DE CONFIRMAÇÃO (FIM DA CONTAGEM)
+===================================================== */
+#confirm-modal {
+    display: none; 
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+#confirm-modal .modal-box {
+    background: linear-gradient(135deg, rgba(20, 30, 80, 0.95), rgba(40, 15, 80, 0.95));
+    border: 1px solid rgba(0, 220, 255, 0.4);
+    padding: 25px 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 280px;
+    animation: animarSurgir 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+#confirm-modal p {
+    font-size: 16px;
+    color: #f1f5f9;
+    font-family: "Cinzel", serif;
+    margin-bottom: 5px;
+}
+
+#confirm-modal button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: "Cinzel", serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#confirm-yes {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+#confirm-yes:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+#confirm-no {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+#confirm-no:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* =====================================================
+        CONSTRUÇÕES E INVENTÁRIO DO REINO
+===================================================== */
+.contrucao {
+    width: 100%;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(20, 30, 80, 0.8), rgba(40, 15, 80, 0.6));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.contrucao .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    color: #94a3b8;
+}
+
+.contrucao .card-header i { color: #00d9ff; font-size: 15px; }
+.contrucao .card-header h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+
+.mini-inventory {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.inv-item {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 8px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: transform 0.2s ease;
+}
+
+.inv-item:hover {
+    transform: scale(1.05);
+    border-color: rgba(0, 220, 255, 0.3);
+}
+
+.inv-item img { width: 36px; height: 36px; object-fit: contain; }
+.inv-item span { font-size: 11px; color: #f1f5f9; font-weight: bold; font-family: monospace; }
+
+/* =====================================================
+        CELULAR PEQUENO
+        até 360px
+===================================================== */
+@media (max-width:360px){
+
+    :root{
+        --tile-w:34px;
+        --tile-h:18px;
+    }
+
+    .cont-geral{
+        flex-direction:column-reverse;
+        justify-content: flex-start;
+        padding-bottom: 60px;
+        margin-left: 0;
+    }
+
+    .cont-geral .direita{
+        width:80%;
+        height:auto;
+        max-height:60vh;
+        padding:14px;
+        gap:14px;
+        margin-bottom: 80px;
+        overflow-y: auto !important;
+    }
+
+    .cont-geral .esquerda{
+        height:45vh;
+    }
+
+    #mapa{
+        width:1100px;
+        height:600px;
+        left:100%;
+        top:80%;
+        transform:translate(-50%,-50%) scale(.35);
+    }
+
+    .barra-perfil ul{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .timer-container h2{
+        font-size:18px;
+    }
+
+    #countdown{
+        font-size:28px;
+    }
+
+    button{
+        font-size:13px;
+    }
+
+    .mini-inventory{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .inv-item img{
+        width:30px;
+        height:30px;
+    }
+
+    .inv-item span{
+        font-size:10px;
+    }
+
+    .building[data-tipo="tree"]{
+        width:45px !important;
+        height:60px !important;
+    }
+
+    .building[data-tipo="house"]{
+        width:80px !important;
+        height:80px !important;
+    }
+
+    .building[data-tipo="special"]{
+        width:90px !important;
+        height:90px !important;
+    }
+
+    .building[data-tipo="castle"]{
+        width:130px !important;
+        height:130px !important;
+    }
+
+}
+
+/* =====================================================
+        CELULAR MÉDIO
+        361px - 480px
+===================================================== */
+
+@media (min-width:361px) and (max-width:480px){
+
+    :root{
+        --tile-w:36px;
+        --tile-h:18px;
+    }
+
+    .cont-geral{
+        flex-direction:column-reverse;
+        justify-content: flex-start;
+        padding-bottom: 50px;
+        margin-left: 0;
+    }
+
+    .cont-geral .direita {
+        width: 85%;
+        height: auto;
+        max-height: 50vh;
+        padding: 14px;
+        gap: 14px;
+        margin-bottom: 20px;
+        overflow-y: auto !important;
+    }
+
+    .cont-geral .esquerda{
+        
+        height:30px;
+    }
+
+    #mapa {
+        position: absolute;
+        left: 67%;
+        top: clamp(80%, 60% + 15vh, 90%);
+        width: clamp(200px, 100%, 1100px) !important;
+        height: 700px;
+        transform: translate(-50%, -50%) scale(0.52);
+        transform-origin: center center !important;
+    }
+
+    .barra-perfil ul{
+        flex-wrap:wrap;
+    }
+
+    .timer-container h2{
+        font-size:19px;
+    }
+
+    #countdown{
+        font-size:30px;
+    }
+
+    .mini-inventory{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .building[data-tipo="tree"]{
+        width:55px !important;
+        height:75px !important;
+    }
+
+    .building[data-tipo="house"]{
+        width:95px !important;
+        height:95px !important;
+    }
+
+    .building[data-tipo="special"]{
+        width:115px !important;
+        height:115px !important;
+    }
+
+    .building[data-tipo="castle"]{
+        width:155px !important;
+        height:155px !important;
+    }
+
+}
+/* =====================================================
+        TABLET PEQUENO
+        481px - 768px
+===================================================== */
+@media (min-width: 481px) and (max-width: 768px) {
+
+    :root {
+        --tile-w: 40px;
+        --tile-h: 20px;
+    }
+
+    .cont-geral {
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        padding-bottom: 50px;
+        margin-left: 0;
+    }
+
+    .cont-geral .direita {
+        width: 85%;
+        height: auto;
+        max-height: 50vh;
+        padding: 14px;
+        gap: 14px;
+        margin-bottom: 80px;
+        overflow-y: auto !important;
+    }
+
+    .cont-geral .esquerda {
+        width: calc(100dvw - 80px);
+        height: 45vh;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #mapa {
+        position: absolute;
+        left: 75%;
+        top: 70%;
+        width: clamp(200px, 100%, 1100px) !important;
+        height: 700px;
+        transform: translate(-50%, -50%) scale(0.52);
+        transform-origin: center center !important;
+    }
+
+    .building[data-tipo="tree"] {
+        width: 60px !important;
+        height: 80px !important;
+    }
+
+    .building[data-tipo="house"] {
+        width: 110px !important;
+        height: 110px !important;
+    }
+
+    .building[data-tipo="special"] {
+        width: 130px !important;
+        height: 130px !important;
+    }
+
+    .building[data-tipo="castle"] {
+        width: 175px !important;
+        height: 175px !important;
+    }
+
+}
+
+/* =====================================================
+        TABLET MÉDIO
+        769px - 1024px
+===================================================== */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    :root {
+        --tile-w: 46px;
+        --tile-h: 23px;
+    }
+    
+    .cont-geral {
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        padding-bottom: 50px;
+        margin-left: 0;
+    }
+
+    .cont-geral .direita {
+        width: 85%;
+        height: auto;
+        max-height: 50vh;
+        padding: 14px;
+        gap: 14px;
+        margin-bottom: 80px;
+        overflow-y: auto !important;
+    }
+
+    .cont-geral .esquerda {
+        width: calc(100dvw - 80px);
+        height: 45vh;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #mapa {
+        position: absolute;
+        left: 83%;
+        top: 90%;
+        width: clamp(200px, 100%, 1100px) !important;
+        height: 800px;
+        transform: translate(-50%, -50%) scale(0.70);
+        transform-origin: center center;
+    }
+
+    .building[data-tipo="tree"] {
+        width: 70px !important;
+        height: 90px !important;
+    }
+
+    .building[data-tipo="house"] {
+        width: 130px !important;
+        height: 130px !important;
+    }
+
+    .building[data-tipo="special"] {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .building[data-tipo="castle"] {
+        width: 210px !important;
+        height: 210px !important;
+    }
+
+}
+
+/* =====================================================
+        TABLET GRANDE
+        1025px - 1200px
+===================================================== */
+@media (min-width: 1025px) and (max-width: 1200px) {
+
+    :root {
+        --tile-w: 46px;
+        --tile-h: 23px;
+    }
+    
+    .cont-geral {
+        flex-direction: column-reverse;
+        justify-content: flex-start;
+        padding-bottom: 50px;
+    }
+
+    .cont-geral .direita {
+        width: 85%;
+        height: auto;
+        max-height: 50vh;
+        padding: 14px;
+        gap: 14px;
+        overflow-y: auto !important;
+    }
+
+    .cont-geral .esquerda {
+        width: calc(100dvw - 80px);
+        height: 45vh;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #mapa {
+        position: absolute;
+        left: 90%;
+        top: 90%;
+        width: clamp(200px, 100%, 1100px) !important;
+        height: 850px;
+        transform: translate(-50%, -50%) scale(0.82);
+        transform-origin: center center;
+    }
+
+    .building[data-tipo="tree"] {
+        width: 75px !important;
+        height: 95px !important;
+    }
+
+    .building[data-tipo="house"] {
+        width: 140px !important;
+        height: 140px !important;
+    }
+
+    .building[data-tipo="special"] {
+        width: 160px !important;
+        height: 160px !important;
+    }
+
+    .building[data-tipo="castle"] {
+        width: 220px !important;
+        height: 220px !important;
+    }
+
+}
+/* =====================================================
+        NOTEBOOK PEQUENO
+        1201px - 1366px
+===================================================== */
+
+@media (min-width:1201px) and (max-width:1366px){
+
+    :root{
+        --tile-w:40px;
+        --tile-h:20px;
+    }
+    .barra-perfil i h3, 
+    .barra-perfil li > h3 {
+        font-size: clamp(12px, 1rem + 0.5vw, 9px);
+        color: #cbd5e1;
+        margin: 0;
+    }
+    .cont-geral {
+        width: 100dvw;
+        height: 100dvh;
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .cont-geral .direita {
+        width: clamp(200px, 100%, 350px) !important;
+        height: 100%;
+        padding: 25px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 20px;
+        pointer-events: auto;
+        overflow-y: auto;
+        z-index: 5;
+    }
+
+    .cont-geral .direita::-webkit-scrollbar {
+        width: 4px;
+    }
+    .cont-geral .direita::-webkit-scrollbar-thumb {
+        background: rgba(0, 217, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    .cont-geral .esquerda {
+        position: relative;
+        flex: 1;
+        width: 100dvw;
+        height: 100dvh;
+        
+        pointer-events: auto;
+        overflow: hidden; 
+    }
+
+    #mapa {
+        position: absolute;
+        left: 42%;
+        top: 25%;
+        transform: translate(-40%, -50%);
+        z-index: 4;
+        background-color: transparent;
+    }
+
+}
+
+/* =====================================================
+        NOTEBOOK MÉDIO
+        1367px - 1600px
+===================================================== */
+
+@media (min-width:1366px) and (max-width:1600px){
+
+    :root{
+        --tile-w:46px;
+        --tile-h:23px;
+    }
+    .barra-perfil i h3, 
+    .barra-perfil li > h3 {
+        font-size: clamp(12px, 1rem + 0.5vw, 9px);
+        color: #cbd5e1;
+        margin: 0;
+    }
+    .cont-geral {
+        width: 100dvw;
+        height: 100dvh;
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .cont-geral .direita {
+        width: clamp(200px, 100%, 350px) !important;
+        height: 100%;
+        padding: 25px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 20px;
+        pointer-events: auto;
+        overflow-y: auto;
+        z-index: 5;
+    }
+
+    .cont-geral .direita::-webkit-scrollbar {
+        width: 4px;
+    }
+    .cont-geral .direita::-webkit-scrollbar-thumb {
+        background: rgba(0, 217, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    .cont-geral .esquerda {
+        position: relative;
+        flex: 1;
+        width: 100dvw;
+        height: 100dvh;
+        
+        pointer-events: auto;
+        overflow: hidden; 
+    }
+
+    #mapa {
+        position: absolute;
+        left: 42%;
+        top: 25%;
+        transform: translate(-40%, -50%);
+        z-index: 4;
+        background-color: transparent;
+    }
+
+}
+
+
+
+/* =====================================================
+        MONITORES GRANDES
+        acima de 1600px
+===================================================== */
+
+@media (min-width:1601px){
+
+    .barra-perfil i h3, 
+    .barra-perfil li > h3 {
+        font-size: clamp(12px, 1rem + 0.5vw, 9px);
+        color: #cbd5e1;
+        margin: 0;
+    }
+    .cont-geral {
+        width: 100dvw;
+        height: 100dvh;
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .cont-geral .direita {
+        width: clamp(200px, 100%, 350px) !important;
+        height: 100%;
+        padding: 25px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        gap: 20px;
+        pointer-events: auto;
+        overflow-y: auto;
+        z-index: 5;
+    }
+
+    .cont-geral .direita::-webkit-scrollbar {
+        width: 4px;
+    }
+    .cont-geral .direita::-webkit-scrollbar-thumb {
+        background: rgba(0, 217, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    .cont-geral .esquerda {
+        position: relative;
+        flex: 1;
+        width: 100dvw;
+        height: 100dvh;
+        
+        pointer-events: auto;
+        overflow: hidden; 
+    }
+
+    #mapa {
+        position: absolute;
+        left: 45%;
+        top: 20%;
+        transform: translate(-40%, -50%);
+        z-index: 4;
+        background-color: transparent;
+    }
+
+}

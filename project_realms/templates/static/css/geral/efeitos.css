@@ -1,0 +1,467 @@
+
+
+/* ESTRELA */
+.estrela3 {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        #00f2fe 20%,
+        #a254f2 45%,
+        #6a11cb 75%,
+        #1b0b2e 100%
+    );
+
+    clip-path: polygon(
+        50% 0%,
+        62% 38%,
+        100% 50%,
+        62% 62%,
+        50% 100%,
+        38% 62%,
+        0% 50%,
+        38% 38%
+    );
+
+    box-shadow:
+        0 0 10px #00f2fe,
+        0 0 22px rgba(142, 45, 226, 0.7);
+
+    animation: pulsar2 2.2s ease-in-out infinite;
+}
+
+/* AURA */
+.estrela3::before {
+    content: "";
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.8),
+        rgba(0, 242, 254, 0.25),
+        transparent 70%
+    );
+
+    filter: blur(7px);
+    z-index: -1;
+}
+
+/* ✦ CENTRO */
+.estrela3::after {
+    content: "✦";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    color: white;
+
+    text-shadow:
+        0 0 6px #ffffff,
+        0 0 12px #00f2fe;
+}
+/* ======================================
+   BRILHO (O caractere ✦ centralizado)
+====================================== */
+.estrela3::after{
+    content:"✦";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:10px;
+    color:white;
+    text-shadow:
+        0 0 6px white,
+        0 0 10px #00f2fe; /* Brilho final em azul ciano */
+}
+/* ======================================
+   ANIMAÇÕES
+====================================== */
+@keyframes pulsar2{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.18);
+    }
+}
+@keyframes girar2{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+/*efeitos*/
+.estrelas{
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+.estrela{
+    /* O container controla o tamanho, a posição e o brilho neon */
+    position: absolute;
+    width: 10px;  /* Aumentei um pouquinho para destacar o corte */
+    height: 10px;
+    z-index: 2;
+    /* Um degradê de brilho: o primeiro é mais forte e perto, o segundo é mais suave e longe */
+    filter: drop-shadow(0px 10px 3px rgba(255, 255, 255, 0.871)) 
+            drop-shadow(0px 10px 18px rgba(139, 253, 226, 0.904));
+    
+    animation: piscar 2.5s infinite alternate ease-in-out;
+
+    /* Ajustei os pontos para as pontas ficarem um pouco mais finas e elegantes */
+    clip-path: polygon(
+        50% 0%,
+        58% 42%,
+        100% 50%,
+        58% 58%,
+        50% 100%,
+        42% 58%,
+        0% 50%,
+        42% 42%
+    );
+    animation: cor  15s infinite linear;
+}
+/* _____________ ESTILO DAS BOLINHAS BRILHANTES _____________ */
+.brilhos {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.brilho {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    z-index: 6;
+    border-radius: 20px; /* Torna um círculo perfeito */
+    box-shadow:
+        /* Pontinhos Centrais Brancos (Miolo brilhante) */
+        0px 2px 4px rgba(244, 169, 255, 0.9),
+        0px 2px 4px rgba(161, 255, 253, 0.9)
+    ;
+    /* Aplica as duas animações: o piscar (tamanho) e a troca de cores mágica */
+    animation:
+        piscar 2.5s infinite alternate ease-in-out,
+        cor 12s infinite linear;
+}
+
+/*animacoes*/
+
+@keyframes piscar{
+    from{
+        transform: scale(0);
+        opacity: 0.2;
+    }
+    to{
+        transform: scale(5.0);
+        opacity: 1;
+    }
+}
+@keyframes cor{
+    0%{
+        background: #d5b5ed72;
+    }
+    10%{
+        background: #9efcff7b;
+    }
+    25%{
+        background: #bcf2fe;
+    }
+
+    50%{
+        background: #c77dff;
+    }
+
+    75%{
+        background: #ffe066;
+    }
+
+    100%{
+        background: #ffffff;
+    }
+}
+
+/* =========================
+   PULSO
+========================= */
+@keyframes pulsar{
+    0%{
+        transform:
+        scale(1)
+        rotate(0deg);
+    }
+    50%{
+        transform:
+        scale(1.18)
+        rotate(10deg);
+    }
+    100%{
+        transform:
+        scale(1)
+        rotate(0deg);
+    }
+}
+/* =========================
+   GIRO
+========================= */
+@keyframes girar{
+    from{
+        transform:
+        rotate(0deg);
+    }
+    to{
+        transform:
+        rotate(360deg);
+    }
+}
+@keyframes glow{
+    0%{
+        filter:
+        drop-shadow(0 0 8px #a855f7)
+        drop-shadow(0 0 20px #7c3aed);
+    }
+    50%{
+        filter:
+        drop-shadow(0 0 18px #c084fc)
+        drop-shadow(0 0 40px #5ce1ff);
+    }
+    100%{
+        filter:
+        drop-shadow(0 0 8px #a855f7)
+        drop-shadow(0 0 20px #7c3aed);
+    }
+}
+@keyframes glow2{
+    0%{
+        filter:
+        drop-shadow(0 0 4px #a955f79b)
+        drop-shadow(0 0 10px #7c3aed71);
+    }
+    50%{
+        filter:
+        drop-shadow(0 0 9px #c084fc93)
+        drop-shadow(0 0 20px #5ce1ff8e);
+    }
+    100%{
+        filter:
+        drop-shadow(0 0 4px #a955f77c)
+        drop-shadow(0 0 10px #7c3aed83);
+    }
+}
+@keyframes brilho-h1 {
+    from{
+        text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 15px #bf953f;
+    }
+    to{
+        text-shadow:
+        0 0 10px #fff,
+        0 0 20px #fcf6ba,
+        0 0 30px #bf953f;
+    }
+}
+@keyframes brilhoTitulo{
+
+    0%,100%{
+        text-shadow:
+            0 0 4px #ffffff,
+            0 0 10px #c084fc,
+            0 0 20px #8b5cf6,
+            0 0 35px #6d28d9;
+    }
+
+    50%{
+        text-shadow:
+            0 0 8px #ffffff,
+            0 0 18px #d8b4fe,
+            0 0 35px #9333ea,
+            0 0 55px #6d28d9;
+    }
+}
+@keyframes brilho-h2 {
+    from{
+        background-position: 0% center;
+        filter:
+        drop-shadow(0 0 5px #00bfff91)
+        drop-shadow(0 0 10px #9000ff85);
+    }
+    to{
+        background-position: 100% center;
+        filter:
+        drop-shadow(0 0 15px #3356b6)
+        drop-shadow(0 0 25px #c800ff);
+    }
+}
+/* ========================= */
+/* ANIMAÇÕES */
+/* ========================= */
+@keyframes aura{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+/* ========================= */
+/* HOVER GERAL */
+/* ========================= */
+.hover-up{
+    transition: 0.3s ease;
+}
+.hover-up:hover{
+    transform: translateY(-4px);
+}
+
+/* =========================
+   SURGIR
+========================= */
+
+@keyframes surgir{
+
+    0%{
+
+        opacity: 0;
+
+        transform:
+        perspective(1200px)
+        translateY(140px)
+        scale(0.25)
+        rotateX(45deg);
+
+        filter:
+        blur(25px);
+
+    }
+
+    40%{
+
+        opacity: 0.5;
+
+        transform:
+        perspective(1200px)
+        translateY(60px)
+        scale(0.6)
+        rotateX(18deg);
+
+        filter:
+        blur(10px);
+
+    }
+
+    100%{
+
+        opacity: 1;
+
+        transform:
+        perspective(1200px)
+        translateY(0)
+        scale(1)
+        rotateX(0deg);
+
+        filter:
+        blur(0px);
+
+    }
+
+}
+
+
+/* =========================
+   ENERGIA
+========================= */
+
+@keyframes energia{
+
+    0%{
+
+        transform:
+        scale(1);
+
+    }
+
+    50%{
+
+        transform:
+        scale(1.15);
+
+    }
+
+    100%{
+
+        transform:
+        scale(1);
+
+    }
+
+}
+@keyframes sumir{
+
+    0%{
+
+        opacity: 1;
+
+        transform:
+        scale(1);
+
+        filter:
+        blur(0px);
+
+    }
+
+    100%{
+
+        opacity: 0;
+
+        transform:
+        scale(1.15)
+        translateY(-40px);
+
+        filter:
+        blur(20px);
+
+    }
+
+}
+
+/*barra*/
+
+.barra {/*
+    width: 100%;
+    height: 12px;*/
+    background: #170633;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.barra-preenchimento {/*
+    height: 100%;*/
+    background: linear-gradient(90deg, #00ffcc, #0066ff);
+    transition: width 0.6s ease;
+}
+

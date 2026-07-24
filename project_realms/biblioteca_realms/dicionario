@@ -1,0 +1,379 @@
+```python
+# ===========================================
+# DJANGO - DICIONÁRIO DOS PRINCIPAIS COMANDOS
+# ===========================================
+
+
+# ===========================================
+# 🔢 CAMPOS NUMÉRICOS
+# ===========================================
+
+# IntegerField -> números inteiros (1, 2, 100)
+# PositiveIntegerField -> números inteiros positivos
+# PositiveSmallIntegerField -> números pequenos positivos (0 até 32767)
+# BigIntegerField -> números inteiros muito grandes
+# FloatField -> números decimais (3.14)
+# DecimalField -> números com precisão (dinheiro)
+
+
+# ===========================================
+# 🔤 CAMPOS DE TEXTO
+# ===========================================
+
+# CharField -> texto curto
+# Ex.: nome, classe, rank
+
+# TextField -> texto grande
+# Ex.: descrição, biografia
+
+
+# ===========================================
+# 📧 CAMPOS ESPECIAIS
+# ===========================================
+
+# EmailField -> email
+# URLField -> links
+# SlugField -> urls amigáveis
+# UUIDField -> identificador único
+
+
+# ===========================================
+# 📅 DATAS
+# ===========================================
+
+# DateField -> somente data
+# DateTimeField -> data + hora
+# TimeField -> somente hora
+
+
+# ===========================================
+# ✔ BOOLEANO
+# ===========================================
+
+# BooleanField -> True ou False
+
+
+# ===========================================
+# 📁 ARQUIVOS
+# ===========================================
+
+# FileField -> arquivos
+# ImageField -> imagens
+
+
+# ===========================================
+# 📦 DADOS
+# ===========================================
+
+# JSONField -> guardar JSON
+
+
+# ===========================================
+# 🔗 RELACIONAMENTOS
+# ===========================================
+
+# ForeignKey
+# Muitos para um
+
+# Exemplo:
+# vários conteúdos -> uma matéria
+
+# vários perfis -> um usuário
+
+
+# OneToOneField
+# Um para um
+
+# Exemplo:
+# um usuário -> um perfil
+
+
+# ManyToManyField
+# Muitos para muitos
+
+# Exemplo:
+# vários usuários -> várias guildas
+
+
+# ===========================================
+# ⚙ OPÇÕES DOS CAMPOS
+# ===========================================
+
+# choices
+# cria uma lista de opções
+
+# default
+# valor padrão
+
+# blank=True
+# permite deixar vazio no formulário
+
+# null=True
+# permite valor vazio no banco
+
+# unique=True
+# não permite valores repetidos
+
+# max_length
+# tamanho máximo
+
+# upload_to
+# pasta onde será salvo
+
+# auto_now
+# atualiza automaticamente a data
+
+# auto_now_add
+# salva somente na criação
+
+# related_name
+# nome para acessar o relacionamento
+
+# help_text
+# texto de ajuda no Admin
+
+
+# ===========================================
+# 🏛 MODELS
+# ===========================================
+
+# class Nome(models.Model)
+# cria uma tabela
+
+# def __str__(self)
+# nome mostrado no Admin
+
+# class Meta
+# configurações da tabela
+
+# unique_together
+# impede registros duplicados
+
+# ordering
+# ordenação padrão
+
+
+# ===========================================
+# 📚 ORM (BANCO DE DADOS)
+# ===========================================
+
+# objects
+# gerenciador da tabela
+
+# all()
+# todos
+
+# get()
+# buscar um registro
+
+# filter()
+# filtrar registros
+
+# create()
+# criar registro
+
+# get_or_create()
+# procura, se não existir cria
+
+# update_or_create()
+# procura, atualiza ou cria
+
+# exists()
+# verifica se existe
+
+# count()
+# quantidade
+
+# first()
+# primeiro
+
+# last()
+# último
+
+# order_by()
+# ordenar
+
+# update()
+# atualizar
+
+# delete()
+# apagar
+
+# save()
+# salvar alterações
+
+
+# ===========================================
+# 🔎 FILTROS
+# ===========================================
+
+# __icontains
+# contém (ignora maiúsculas)
+
+# __contains
+# contém
+
+# __startswith
+# começa com
+
+# __endswith
+# termina com
+
+# __gt
+# maior que
+
+# __gte
+# maior ou igual
+
+# __lt
+# menor que
+
+# __lte
+# menor ou igual
+
+# __in
+# dentro de uma lista
+
+
+# ===========================================
+# 🌐 REQUEST
+# ===========================================
+
+# request.user
+# usuário logado
+
+# request.POST
+# dados enviados pelo formulário
+
+# request.GET
+# dados enviados pela URL
+
+# request.FILES
+# arquivos enviados
+
+
+# ===========================================
+# 🖥 VIEWS
+# ===========================================
+
+# render()
+# mostrar HTML
+
+# redirect()
+# redirecionar
+
+# HttpResponse()
+# responder texto
+
+# JsonResponse()
+# responder JSON
+
+
+# ===========================================
+# 🔐 LOGIN
+# ===========================================
+
+# authenticate()
+# autenticar usuário
+
+# login()
+# entrar
+
+# logout()
+# sair
+
+
+# ===========================================
+# 🛡 DECORATORS
+# ===========================================
+
+# @login_required
+# exige login
+
+# @transaction.atomic
+# executa tudo ou desfaz tudo
+
+
+# ===========================================
+# 💬 MESSAGES
+# ===========================================
+
+# messages.success()
+# sucesso
+
+# messages.error()
+# erro
+
+# messages.warning()
+# aviso
+
+# messages.info()
+# informação
+
+
+# ===========================================
+# 🛣 URLS
+# ===========================================
+
+# path()
+# criar rota
+
+# include()
+# importar rotas
+
+
+# ===========================================
+# 📄 TEMPLATES
+# ===========================================
+
+# {% extends %}
+# herdar template
+
+# {% block %}
+# criar bloco
+
+# {% endblock %}
+# finalizar bloco
+
+# {% load static %}
+# carregar arquivos estáticos
+
+# {% static %}
+# acessar css/js/imagens
+
+# {% url %}
+# gerar url
+
+# {% csrf_token %}
+# proteção de formulários
+
+# {{ }}
+# mostrar variável
+
+# {% for %}
+# repetição
+
+# {% if %}
+# condição
+
+
+# ===========================================
+# 📝 EXEMPLOS
+# ===========================================
+
+# user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+# profile = Profile.objects.get(user=request.user)
+
+# sessions = StudySession.objects.filter(user=request.user)
+
+# Profile.objects.create(user=user)
+
+# profile.save()
+
+# session.delete()
+
+# if sessions.exists():
+
+# total = sessions.count()
+```

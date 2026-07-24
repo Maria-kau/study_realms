@@ -1,5 +1,34 @@
+/* ==========================================================
+
+   RESET E CONFIGURAÇÃO GLOBAL
+
+========================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+
+    overflow: hidden; /* Trava o scroll do body para manter o estilo App */
+
+    height: 100vh;
+
+}
+
+
+
+
 .fundo-login,.fundo-register,.fundo-reset{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -7,6 +36,47 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+.messages{
+    opacity: 0;
+    transform: translateY(-20px);
+    backdrop-filter: blur(10px);
+    border-radius: 25%;
+    padding: 25px;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    border:
+    1px solid rgba(255, 90, 90, 0.62);
+    box-shadow:
+    0 0 15px rgba(169, 5, 40, 0.691),
+    0 0 25px rgba(187, 20, 84, 0.475);
+    transition: 0.35s ease;
+    animation: slideDown 0.8s ease forwards;
+}
+.messages p {
+    color: rgb(228, 139, 139);
+}
+.messages::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(106, 3, 3, 0.682),
+        transparent 40%,
+        rgba(155, 4, 92, 0.637)
+    );
+    filter: blur(60px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+@keyframes slideDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 .fundo-login{
     background-image: url("../img/fundo/fundo_do_login_01.png");
@@ -163,7 +233,7 @@ h1{
 
 /* input */
 .input-box input{
-    height: 40px;
+
     width: 100%;
 
     padding: 16px 15px;
@@ -461,3 +531,80 @@ input:-webkit-autofill:active {
     flex-direction: column;
     background-color: #00ccff;
 }
+
+/* ==========================================================
+   RESPONSIVIDADE APRIMORADA PARA TABLET E MOBILE
+========================================================== */
+
+/* TABLETS (Telas entre 601px e 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .conteiner_geral {
+        width: 450px; /* Um pouco mais largo que no mobile para tablets */
+        padding: 40px;
+    }
+    .fundo-login { background-image: url("../img/fundo/fundo_do_login_01.png"); }
+    .fundo-register { background-image: url("../img/fundo/fundo.cadastro.jpeg"); }
+    .fundo-reset { background-image: url("../img/fundo/fundo.redefinir.jpeg"); }
+    .logo img {
+        height: 120px;
+        width: 120px;
+    }
+}
+
+/* CELULARES (Telas até 600px) */
+@media (max-width: 600px) {
+    .conteiner_geral {
+        width: 92%; 
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5); /* Leve ajuste na opacidade */
+    }
+    .fundo-login { background-image: url("../img/fundo/login-mobile.jpeg"); }
+    .fundo-register { background-image: url("../img/fundo/cadastro-mobile.jpeg"); }
+    .fundo-reset { background-image: url("../img/fundo/redefinir-mobile.jpeg"); }
+    header {
+        margin-bottom: 15px;
+    }
+
+    .logo img {
+        height: 80px;
+        width: 80px;
+    }
+
+    h1 { font-size: 22px; }
+    
+    .input-box {
+        height: 48px; /* Altura ideal para toque no celular */
+    }
+
+    .btn-login, .btn-cadastro, .btn-redefinir {
+        padding: 16px; /* Botão ligeiramente maior para facilitar clique */
+        font-size: 16px;
+    }
+    
+    .messages {
+        right: 10px;
+        left: 10px;
+    }
+
+    .alert {
+        min-width: unset; /* Permite que o alerta se ajuste à largura da tela */
+        width: 100%;
+    }
+}
+
+/* AJUSTE PARA TELAS MUITO PEQUENAS (Abaixo de 350px) */
+@media (max-width: 350px) {
+    .conteiner_geral {
+        padding: 15px 10px;
+    }
+    h1 { font-size: 18px; }
+}
+
+
+
+
+
+
+
+
+

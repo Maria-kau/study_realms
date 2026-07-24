@@ -1,0 +1,565 @@
+
+
+<div class="todo-container">
+
+
+    <!-- CABEÇALHO -->
+    <div class="criar">
+        <div class="todo-header">
+
+            <h1>
+                <i class="bi bi-journal-check"></i>
+                Minhas Missões
+            </h1>
+
+
+            <button class="btn-new-list"
+                    onclick="abrirModal()">
+
+                <i class="bi bi-plus-circle"></i>
+
+                Nova Lista
+
+            </button>
+
+
+        </div>
+    </div>
+    
+
+
+
+
+    <!-- CRIAR LISTA -->
+
+    <div class="modal" id="modalLista">
+
+
+        <div class="modal-box">
+
+
+            <h2>
+                Criar Lista
+            </h2>
+
+
+
+            <form method="POST"
+                  action="{% url 'create_list' %}">
+
+
+                {% csrf_token %}
+
+
+
+                <input 
+                type="text"
+                name="title"
+                placeholder="Nome da lista..."
+                required>
+
+
+
+                <div class="modal-buttons">
+
+
+                    <button 
+                    type="button"
+                    onclick="fecharModal()">
+
+                        Cancelar
+
+                    </button>
+
+
+
+                    <button type="submit">
+
+                        Criar
+
+                    </button>
+
+
+                </div>
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- LISTAS -->
+
+
+    <div class="lists-grid">
+
+
+
+    {% for lista in lists %}
+
+
+
+        <div class="list-card">
+
+
+
+            <!-- IMAGEM -->
+
+
+            {% if lista.imagem %}
+
+                <img 
+                src="{{ lista.imagem.url }}"
+                class="list-image">
+
+
+            {% endif %}
+
+
+
+
+            <!-- HEADER -->
+
+
+            <div class="list-header">
+
+
+                <h2>
+                    {{ lista.title }}
+                </h2>
+
+
+
+                <form method="POST"
+                action="{% url 'delete_list' lista.id %}">
+
+
+                {% csrf_token %}
+
+
+                <button class="delete-btn">
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+
+
+
+            <!-- PROGRESSO -->
+
+
+            <div class="progress-area">
+
+
+                <span>
+
+                    {{ lista.tasks.filter.is_done.count }}
+
+                    /
+
+                    {{ lista.tasks.count }}
+
+                    concluídas
+
+
+                </span>
+
+
+
+                <div class="progress-bar">
+
+                    <div 
+                    class="progress-fill">
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- TAREFAS -->
+
+
+            <div class="tasks">
+
+
+
+            {% for tarefa in lista.tasks.all %}
+
+
+
+                <div class="task-item
+                {% if tarefa.is_done %}
+                completed
+                {% endif %}">
+
+
+
+                    <form method="POST"
+                    action="{% url 'toggle_item' tarefa.id %}">
+
+
+                    {% csrf_token %}
+
+
+
+                    <input 
+                    type="checkbox"
+
+                    onchange="this.form.submit()"
+
+                    {% if tarefa.is_done %}
+                    checked
+                    {% endif %}
+                    >
+
+
+
+                    </form>
+
+
+
+
+
+
+                    <div class="task-info">
+
+
+                        <h3>
+
+                            {{ tarefa.title }}
+
+                        </h3>
+
+
+
+                        <div class="task-meta">
+
+
+                            {% if tarefa.category == "study" %}
+
+                            📚 Estudo
+
+
+                            {% elif tarefa.category == "work" %}
+
+                            💼 Trabalho
+
+
+                            {% elif tarefa.category == "personal" %}
+
+                            🎯 Pessoal
+
+
+                            {% elif tarefa.category == "routine" %}
+
+                            🔄 Rotina
+
+
+                            {% elif tarefa.category == "project" %}
+
+                            🚀 Projeto
+
+
+                            {% else %}
+
+                            📌 Outros
+
+
+                            {% endif %}
+
+
+
+
+                            <span>
+
+                            ✨ {{ tarefa.xp_reward }} XP
+
+                            </span>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                    <a href="{% url 'delete_item' tarefa.id %}"
+                    class="delete-task">
+
+                        <i class="bi bi-x"></i>
+
+                    </a>
+
+
+
+                </div>
+
+
+
+            {% empty %}
+
+
+                <p class="empty">
+
+                    Nenhuma missão criada
+
+                </p>
+
+
+            {% endfor %}
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- ADICIONAR ITEM -->
+
+
+            <form method="POST"
+                action="{% url 'add_item' lista.id %}"
+                class="add-task">
+
+
+                {% csrf_token %}
+
+
+                <input 
+                type="text"
+                name="title"
+                placeholder="Nova missão..."
+                required>
+
+
+
+                <textarea 
+                name="description"
+                placeholder="Descrição da missão...">
+                </textarea>
+
+
+
+
+                <select name="category">
+
+
+                <option value="study">
+                📚 Estudo
+                </option>
+
+
+                <option value="work">
+                💼 Trabalho
+                </option>
+
+
+                <option value="personal">
+                🎯 Pessoal
+                </option>
+
+
+                <option value="routine">
+                🔄 Rotina
+                </option>
+
+
+                <option value="project">
+                🚀 Projeto
+                </option>
+
+
+                <option value="others">
+                📌 Outros
+                </option>
+
+
+                </select>
+
+
+
+
+                <select name="priority">
+
+                <option value="low">
+                🟢 Baixa
+                </option>
+
+                <option value="medium" selected>
+                🟡 Média
+                </option>
+
+                <option value="high">
+                🔴 Alta
+                </option>
+
+                </select>
+
+
+
+
+                <label>
+                📅 Data da missão
+                </label>
+
+
+                <input 
+                type="date"
+                name="task_date">
+
+
+
+
+
+                <label>
+                ⏳ Data final
+                </label>
+
+
+                <input 
+                type="date"
+                name="due_date">
+
+
+
+
+
+                <label>
+                🕒 Horário
+                </label>
+
+
+                <input 
+                type="time"
+                name="due_time">
+
+
+
+
+
+                <button>
+
+                <i class="bi bi-plus"></i>
+
+                Adicionar
+
+                </button>
+
+
+
+                </form>
+
+
+
+
+        </div>
+
+
+
+    {% empty %}
+
+
+
+        <div class="empty-page">
+
+
+            <h2>
+                Nenhuma lista encontrada
+            </h2>
+
+
+            <p>
+                Crie sua primeira missão.
+            </p>
+
+
+        </div>
+
+
+
+    {% endfor %}
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+function abrirModal(){
+
+    document
+    .getElementById(
+        "modalLista"
+    )
+    .style.display="flex";
+
+}
+
+
+
+function fecharModal(){
+
+    document
+    .getElementById(
+        "modalLista"
+    )
+    .style.display="none";
+
+}
+
+
+
+</script>
+

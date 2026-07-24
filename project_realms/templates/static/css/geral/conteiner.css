@@ -1,0 +1,285 @@
+
+/*conteiner*/
+.conteiner{
+    background: 
+    rgb(29, 29, 88);
+    backdrop-filter: blur(10px);
+    border:
+    1px solid rgba(64, 62, 103, 0.688);
+    box-shadow:
+    0 0 15px rgba(121, 44, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+}/*conteiner normal, sem animação*/
+.conteiner2{
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,25,55,0.78),
+        rgba(8,10,25,0.88)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    transition: 0.35s ease;
+}/* conteiner com animação com giro de cores + onde passa o mouse cria uma borda brilhante*/
+/* brilho interno */
+.conteiner2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner2 > *{
+    position: relative;
+    z-index: 2;
+}
+/* hover mágico */
+.conteiner2:hover{
+    border:
+    1px solid rgb(120,255,253);
+    box-shadow:
+    0 0 15px rgba(82,255,243,0.5),
+    0 0 35px rgba(59,130,246,0.18);
+}
+/* brilho interno */
+
+.conteiner2::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner2 > *{
+    position: relative;
+    z-index: 2;
+}
+/* hover mágico */
+.conteiner2:hover{
+    border:
+    1px solid rgb(120,255,253);
+    box-shadow:
+    0 0 15px rgba(82,255,243,0.5),
+    0 0 35px rgba(59,130,246,0.18);
+}
+
+.conteiner3{
+
+    
+    overflow: hidden;
+    background:
+    linear-gradient(
+        180deg,
+        rgb(18, 25, 55),
+        rgb(8, 10, 25)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    box-shadow:
+    0 0 15px rgba(121, 44, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+    transition: 0.35s ease;
+} /*conteiner3 so tem a animação com giro de cor*/
+.conteiner3::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner4{
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,25,55,0.78),
+        rgba(8,10,25,0.88)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    transition: 0.35s ease;
+}/*conteiner com giro de e sombra roxa*/ 
+/* brilho interno */
+.conteiner4::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner4 > *{
+    position: relative;
+    z-index: 2;
+}
+/* hover mágico */
+.conteiner4:hover{
+    border:
+    1px solid #7b5cff;
+    box-shadow:
+    0 0 15px rgba(82,255,243,0.5),
+    0 0 35px rgba(59,130,246,0.18);
+}
+
+.conteiner_vermelho{
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    
+    border:
+    1px solid rgba(120,90,255,0.18);
+    box-shadow:
+    0 0 15px rgba(188, 18, 55, 0.201),
+    0 0 25px rgba(255, 44, 125, 0.208);
+    transition: 0.35s ease;
+}
+.conteiner_vermelho::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(147, 6, 6, 0.45),
+        transparent 40%,
+        rgba(202, 2, 119, 0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner_azul{
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(18,25,55,0.78),
+        rgba(8,10,25,0.88)
+    );
+    border:
+    1px solid rgba(120,90,255,0.18);
+    box-shadow:
+    0 0 15px rgba(44, 48, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+    transition: 0.35s ease;
+}
+.conteiner_azul::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0, 119, 255, 0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner_dourado{
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(55, 46, 18, 0.78),
+        rgba(25, 22, 8, 0.88)
+    );
+    border:
+    1px solid rgba(252, 255, 90, 0.18);
+    box-shadow:
+    0 0 15px rgba(255, 216, 44, 0.416),
+    0 0 25px rgba(255, 199, 44, 0.252);
+    transition: 0.35s ease;
+} /*conteiner3 so tem a animação com giro de cor*/
+.conteiner_dourado::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255, 217, 1, 0.336),
+        transparent 40%,
+        rgba(255, 238, 0, 0.266)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}
+.conteiner_roxo{
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    background:
+    linear-gradient(
+        180deg,
+        rgba(37, 18, 55, 0.78),
+        rgba(13, 8, 25, 0.88)
+    );
+    border:
+    1px solid rgba(159, 90, 255, 0.18);
+    box-shadow:
+    0 0 15px rgba(121, 44, 255, 0.559),
+    0 0 25px rgba(121, 44, 255, 0.353);
+    transition: 0.35s ease;
+} /*conteiner3 so tem a animação com giro de cor*/
+.conteiner_roxo::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(196,1,255,0.45),
+        transparent 40%,
+        rgba(85,0,255,0.35)
+    );
+    filter: blur(30px);
+    animation: aura 10s linear infinite;
+    pointer-events: none;
+}

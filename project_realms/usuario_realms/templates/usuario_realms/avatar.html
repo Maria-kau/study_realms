@@ -1,0 +1,255 @@
+{% extends 'crono_realms/menu.html' %}
+{% load static %}
+
+{% block title %}
+Escolher Avatar
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/avatar.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="cont-geral">
+
+    <header class="header-avatar">
+
+        <h1>Escolha seu Avatar</h1>
+
+        <p>
+            Selecione o herói que irá representar sua jornada.
+        </p>
+
+    </header>
+
+
+    <section class="grid-avatar">
+
+        {% for avatar in avatars %}
+
+        <form
+            method="POST"
+            action="{% url 'escolher_avatar' %}"
+            class="form-avatar">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="avatar"
+                value="{{ avatar.id }}"
+            >
+
+            <button
+                class="card-avatar"
+                type="submit">
+
+                <!-- BADGE DA RARIDADE -->
+
+                <div class="badge-raridade">
+                    {{ avatar.get_raridade_display }}
+                </div>
+
+
+                <!-- PERSONAGEM -->
+
+                <div class="avatar-corpo">
+
+                    {% if avatar.imagem_corpo %}
+
+                    <img
+                        src="{{ avatar.imagem_corpo.url }}"
+                        alt="{{ avatar.nome }}">
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- MINI AVATAR -->
+
+                {% if avatar.imagem_mini %}
+
+                <div class="avatar-mini">
+
+                    <img
+                        src="{{ avatar.imagem_mini.url }}"
+                        alt="{{ avatar.nome }}">
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- INFORMAÇÕES -->
+
+                <div class="avatar-info">
+
+                    <h2>{{ avatar.nome }}</h2>
+
+                    <div class="linha-info">
+
+                        <span>⚔ Classe</span>
+
+                        <strong>
+                            {{ avatar.get_classe_display }}
+                        </strong>
+
+                    </div>
+
+                    <div class="linha-info">
+
+                        <span>⭐ Nível</span>
+
+                        <strong>
+                            {{ avatar.level_minimo }}
+                        </strong>
+
+                    </div>
+
+                    <div class="linha-info">
+
+                        <span>✦ Raridade</span>
+
+                        <strong>
+                            {{ avatar.get_raridade_display }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <div class="botao-avatar">
+
+                    <span>Selecionar</span>
+
+                </div>
+
+            </button>
+
+        </form>
+
+        {% empty %}
+
+        <div class="sem-avatar">
+
+            <h2>Nenhum avatar disponível.</h2>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+</div>
+
+{% endblock %}
+<!--
+
+<div class="avatar-page">
+
+    <h1 class="titulo-avatar">
+        Escolha seu Avatar
+    </h1>
+
+
+    <div class="grid-avatar">
+
+        {% for avatar in avatars %}
+
+        <form method="POST" action="{% url 'escolher_avatar' %}" class="form-avatar">
+            {% csrf_token %}
+
+            <input 
+                type="hidden"
+                name="avatar"
+                value="{{ avatar.id }}"
+            >
+
+
+            <button class="card-avatar" type="submit">
+
+
+                <div class="avatar-imagens">
+
+
+                    {% if avatar.imagem_mini %}
+                    <div class="avatar-mini">
+                        <img 
+                        src="{{ avatar.imagem_mini.url }}"
+                        alt="{{ avatar.nome }}">
+                    </div>
+                    {% endif %}
+
+
+
+                    {% if avatar.imagem_corpo %}
+                    <div class="avatar-corpo">
+                        <img 
+                        src="{{ avatar.imagem_corpo.url }}"
+                        alt="{{ avatar.nome }}">
+                    </div>
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <div class="avatar-info">
+
+                    <h2>
+                        {{ avatar.nome }}
+                    </h2>
+
+
+                    <p>
+                        ⚔ Classe:
+                        {{ avatar.get_classe_display }}
+                    </p>
+
+
+                    <p>
+                        ⭐ Nível mínimo:
+                        {{ avatar.level_minimo }}
+                    </p>
+
+
+                    <p>
+                        ✦ Raridade:
+                        {{ avatar.get_raridade_display }}
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+        {% empty %}
+
+
+        <div class="sem-avatar">
+
+            <h2>
+                Nenhum avatar disponível
+            </h2>
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</div>
+-->

@@ -1,18 +1,299 @@
+{% extends 'crono_realms/menu.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronograma</title>
-    <link rel="stylesheet" href="{% static 'css/crono.style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/geral.css' %}">
-    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-</head>
-<body>
-    {% include 'crono_realms/menu.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsivdade-home.css' %}">
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="cont-home">
     
-    <script src="{% static 'js/crono.js' %}"></script>
-</body>
-</html>
+    <header class="header-home">
+        <span class="ico-home"></span>
+        <h1>
+            home
+        </h1>
+    </header>
+    <section class="topo">
+        <div class="perfil-geral">
+            
+            <h2>Perfil</h2>
+            
+            <div class="perfil">
+                <div class="img-perfil">
+                    {% if profile.avatar and profile.avatar.imagem_mini %}
+
+                        <img src="{{ profile.avatar.imagem_mini.url }}"
+                        alt="Mini Avatar">
+
+
+                    {% elif default_avatar and default_avatar.imagem_mini %}
+
+                        <img src="{{ default_avatar.imagem_mini.url }}"
+                        alt="Avatar Padrão">
+
+                    {% endif %}
+                </div>
+                <div class="discription">
+                    <h2>
+                        {{ profile.user }}
+                    </h2>
+                    <div class="level">
+                        <h2>level</h2>
+                        <span class="ico-level">
+                            <i class="fa-solid fa-crown">{{ profile.level }}</i>
+                        </span>
+                        
+                    </div>
+                    <div class="xp-cont">
+                        <div class="energia-box">
+                            <div class="discricao-xp">
+                                <h2>
+                                    XP
+                                </h2>
+                                <h2>
+                                    {{ xp_current }} / {{ xp_max }}
+                                </h2>
+                            </div>
+                            <div class="barra">
+
+                                <div class="barra-preenchimento"
+                                data-progresso="{{ xp_current }}"
+                                data-max="{{ xp_max }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="status">
+
+            
+            <h2>Status do Personagem</h2>
+                
+            
+
+            <div class="campo-mana conteiner_roxo">
+
+                <span class="ico-infor">
+                    <div class="circulo1">
+                        <span class="circulo2">
+                            <i class="fa-solid fa-hat-wizard"></i>
+                        </span>
+                    </div>
+                </span>
+
+                <div class="energia-cont">
+                    <div class="energia-box">
+                        <h3>
+                            Mana
+                        </h3>
+                        <h3>
+                            {{ mana_current }} / {{ mana_max }}
+                        </h3>
+                        <div class="barra">
+                            <div class="barra-preenchimento"
+                            data-progresso="{{ mana_current }}"
+                            data-max="{{ mana_max }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="campo-aura conteiner_azul">
+
+                <span class="ico-infor">
+                    <div class="circulo1">
+                        <span class="circulo2">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </span>
+                    </div>
+                </span>
+
+                <div class="energia-cont">
+
+                    <div class="energia-box">
+                        <h3>
+                            Aura
+                        </h3>
+                        <h3>
+                            {{ aura_current }} / {{ aura_max }}
+                        </h3>
+
+                        <div class="barra">
+
+                            <div class="barra-preenchimento"
+                            data-progresso="{{ aura_current }}"
+                            data-max="{{ aura_max }}">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="biblioteca">
+            
+            <h2>
+                 Biblioteca Arcana
+            </h2>
+            <div class="rodagem">
+                {% for item in biblioteca_progress %}
+
+                    <article class="materia-card">
+
+                        <h3>
+                            {{ item.materia.nome }}
+                        </h3>
+                        <p>
+                            ✨ Progresso:
+                            <strong>
+                                {{ item.progress }}%
+                            </strong>
+                        </p>
+                        <p>
+                            📖
+                            {{ item.completed }}/{{ item.total_contents }}
+                            conteúdos concluídos
+                        </p>
+
+                    </article>
+
+                {% empty %}
+
+                    <p class="biblioteca-vazia">
+                        Nenhuma matéria cadastrada.
+                    </p>
+
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+    <section class="inferior">
+        <div class="missoes">
+            
+            <h2>
+                 Missões de Hoje
+            </h2>
+            <div class="rodagem">
+                {% for tarefa in tarefas_do_dia %}
+
+                    <article class="missao-card">
+
+                        {% if tarefa.is_done %}
+
+                            <p>
+                                ✅ {{ tarefa.title }}
+                            </p>
+
+                        {% else %}
+
+                            <p>
+                                ⬜ {{ tarefa.title }}
+                            </p>
+
+                        {% endif %}
+
+                        {% if tarefa.due_time %}
+
+                            <small>
+
+                                🕒 Horário:
+                                {{ tarefa.due_time }}
+
+                            </small>
+
+                        {% endif %}
+
+                    </article>
+
+                {% empty %}
+
+                    <p>
+                        Nenhuma missão para hoje.
+                    </p>
+
+                {% endfor %}
+            </div>
+        
+        </div>
+        
+        <div class="progresso">
+            <h2>
+                 Progresso Diário
+            </h2>
+            <section class="progresso-diario">
+                
+
+                <div class="grafico-progresso">
+
+                    
+                        <canvas
+                            id="graficoProgresso"
+                            data-progresso="{{ todo_progresso }}">
+                        </canvas>
+
+                    <div class="valor-progresso">
+
+                        <h1>{{ todo_progresso }}%</h1>
+
+                        <span>
+                            Progresso Geral
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="estatisticas">
+
+                    <p>
+                        📋 Total de tarefas:
+                        <strong>
+                            {{ todo_total }}
+                        </strong>
+                    </p>
+
+                    <p>
+                        ✅ Concluídas:
+                        <strong>
+                            {{ todo_concluidas }}
+                        </strong>
+                    </p>
+                    <p>
+                        ⏳ Pendentes:
+                        <strong>
+                            {{ todo_pendentes }}
+                        </strong>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{% static 'js/home.js' %}"></script>
+<script src="{% static 'js/crono.js' %}"></script>
+
+{% endblock %}
