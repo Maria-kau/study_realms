@@ -4,6 +4,7 @@ Django settings for project_realms project.
 
 from pathlib import Path
 import os
+import dj_database_url
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,40 +130,12 @@ WSGI_APPLICATION = 'project_realms.wsgi.application'
 # =====================================================
 # DATABASE
 # =====================================================
-
 DATABASES = {
-
-    'default': {
-
-        'ENGINE': 'django.db.backends.mysql',
-
-        'NAME': os.environ.get(
-            "DB_NAME",
-            "study_banck"
-        ),
-
-        'USER': os.environ.get(
-            "DB_USER",
-            "root"
-        ),
-
-        'PASSWORD': os.environ.get(
-            "DB_PASSWORD",
-            "kau12345"
-        ),
-
-        'HOST': os.environ.get(
-            "DB_HOST",
-            "127.0.0.1"
-        ),
-
-        'PORT': os.environ.get(
-            "DB_PORT",
-            "3306"
-        ),
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600
+    )
 }
-
 
 # =====================================================
 # VALIDADORES DE SENHA
