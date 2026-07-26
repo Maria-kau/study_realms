@@ -209,6 +209,10 @@ MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
 
+MEDIAFILES_DIRS = [
+    BASE_DIR / "media"
+]
+
 
 # =====================================================
 # LOGIN
