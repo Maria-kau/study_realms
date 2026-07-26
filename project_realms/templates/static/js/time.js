@@ -15,127 +15,111 @@ document.addEventListener("DOMContentLoaded", () => {
     let intervalo = null;
     let pausado = false;
 
-
     function atualizarTela() {
 
-        let minutos = Math.floor(tempo / 60);
-        let segundos = tempo % 60;
+        const minutos = Math.floor(tempo / 60);
+        const segundos = tempo % 60;
 
         countdown.textContent =
-            String(minutos).padStart(2,"0") +
+            String(minutos).padStart(2, "0") +
             ":" +
-            String(segundos).padStart(2,"0");
+            String(segundos).padStart(2, "0");
     }
 
+    function finalizarEstudo() {
 
-    startBtn.addEventListener("click", () => {
+        clearInterval(intervalo);
+        intervalo = null;
 
-        if(intervalo) return;
+        document.getElementById("form-tipo").value = tipoSelect.value;
+        document.getElementById("form-duracao").value = duracaoInput.value;
+        document.getElementById("form-concluida").value = "sim";
 
+        form.submit();
+    }
 
-        if(!pausado){
+    function iniciarContagem() {
 
-            tempo = Number(duracaoInput.value) * 60;
-
-        }
-
-
-        pausado = false;
-
-
-        startBtn.style.display = "none";
-        pauseBtn.style.display = "block";
-        cancelBtn.style.display = "block";
-
-
-        intervalo = setInterval(()=>{
+        intervalo = setInterval(() => {
 
             tempo--;
 
             atualizarTela();
 
+            if (tempo <= 0) {
 
-            if(tempo <= 0){
-
-                clearInterval(intervalo);
-                intervalo = null;
-
-
-                document.getElementById("form-tipo").value =
-                    tipoSelect.value;
-
-
-                document.getElementById("form-duracao").value =
-                    duracaoInput.value;
-
-
-                document.getElementById("form-concluida").value =
-                    "sim";
-
-
-                form.submit();
+                finalizarEstudo();
 
             }
 
+        }, 1000);
 
-        },1000);
+    }
 
+    startBtn.addEventListener("click", () => {
+
+        if (intervalo) return;
+
+        if (!pausado) {
+
+            tempo = Number(duracaoInput.value) * 60;
+
+        }
+
+        pausado = false;
+
+        atualizarTela();
+        countdown.style.display = "block";
+
+        startBtn.style.display = "none";
+        pauseBtn.style.display = "block";
+        cancelBtn.style.display = "block";
+
+        pauseBtn.textContent = "Pausar";
+
+        iniciarContagem();
 
     });
 
+    pauseBtn.addEventListener("click", () => {
 
-
-    pauseBtn.addEventListener("click",()=>{
-
-        if(intervalo){
+        if (intervalo) {
 
             clearInterval(intervalo);
-            intervalo=null;
+            intervalo = null;
 
-            pausado=true;
+            pausado = true;
 
-            pauseBtn.textContent="Continuar";
+            pauseBtn.textContent = "Continuar";
 
-        }else{
+        } else {
 
-            intervalo=setInterval(()=>{
+            pauseBtn.textContent = "Pausar";
 
-                tempo--;
-
-                atualizarTela();
-
-                if(tempo<=0){
-                    clearInterval(intervalo);
-                    form.submit();
-                }
-
-            },1000);
-
-            pauseBtn.textContent="Pausar";
+            iniciarContagem();
 
         }
 
     });
 
-
-
-    cancelBtn.addEventListener("click",()=>{
+    cancelBtn.addEventListener("click", () => {
 
         clearInterval(intervalo);
 
-        intervalo=null;
-
-        tempo=0;
+        intervalo = null;
+        tempo = 0;
+        pausado = false;
 
         atualizarTela();
 
+        countdown.style.display = "none";
 
-        startBtn.style.display="block";
-        pauseBtn.style.display="none";
-        cancelBtn.style.display="none";
+        startBtn.style.display = "block";
+        pauseBtn.style.display = "none";
+        cancelBtn.style.display = "none";
 
+        pauseBtn.textContent = "Pausar";
 
     });
-
 
 });
