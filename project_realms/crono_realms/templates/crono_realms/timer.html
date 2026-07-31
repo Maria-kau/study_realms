@@ -113,13 +113,11 @@ Temporizador
                 
                 {% for building in construcoes %}
 
-                <p>
-                Imagem:
-                {{ building.tile.imagem }}
-                </p>
-
                 <div class="building"
-                    data-img="{% static 'img/tiles/' %}{{ building.tile.imagem }}">
+                    data-img="{% static 'img/tiles/' %}{{ building.tile.imagem }}"
+                    data-tipo="{{ building.tile.tipo }}"
+                    data-x="{{ building.x }}"
+                    data-y="{{ building.y }}">
                 </div>
 
                 {% endfor %}
