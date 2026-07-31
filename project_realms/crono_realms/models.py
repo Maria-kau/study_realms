@@ -92,8 +92,8 @@ class Tile(models.Model):
     )
 
 
-    imagem = models.ImageField(
-        upload_to="tiles/"
+    imagem = models.CharField(
+        max_length=100
     )
 
 

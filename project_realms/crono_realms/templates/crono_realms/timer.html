@@ -112,15 +112,16 @@ Temporizador
             <div id="mapa">
                 
                 {% for building in construcoes %}
-                <div class="estrelas"></div>
-                <div class="brilhos"></div>
+
+                <p>
+                Imagem:
+                {{ building.tile.imagem }}
+                </p>
+
                 <div class="building"
-                
-                    data-tipo="{{ building.tile.tipo }}"
-                    data-x="{{ building.x }}"
-                    data-y="{{ building.y }}"
-                    data-img="{{ building.tile.imagem.url }}">
+                    data-img="{% static 'img/tiles/' %}{{ building.tile.imagem }}">
                 </div>
+
                 {% endfor %}
             </div>
         </div>

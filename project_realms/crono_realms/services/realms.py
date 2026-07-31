@@ -59,10 +59,10 @@ def generate_realm(user, minutos):
     construcoes = []
 
     # Cálculos das quantidades
-    qtd_castelos = minutos // 10080
-    qtd_especiais = minutos // 1440
-    qtd_casas = minutos // 2
-    qtd_arvores = minutos // 1
+    qtd_castelos = minutos // 4200
+    qtd_especiais = minutos // 600
+    qtd_casas = minutos // 60
+    qtd_arvores = minutos // 30
 
     # Processamento de cada tipo
     def processar_criacao(tipo, quantidade):

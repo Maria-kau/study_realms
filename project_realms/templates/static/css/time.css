@@ -334,7 +334,7 @@ button {
 }
 
 #countdown {
-    display: none;
+    display: block;
     margin-top: 10px;
     text-align: center;
     font-size: 32px;
