@@ -32,10 +32,10 @@
                     <div class="card-conteudo">
 
                         {% if item.conteudo.thumbnail %}
-                            <img
+                            <img 
                                 class="card-img"
-                                src="{{ item.conteudo.thumbnail.url }}"
-                                alt="{{ item.conteudo.titulo }}">
+                                src="{% static 'img/biblioteca/thumbs/' %}{{ conteudo.thumbnail }}"
+                                alt="{{ conteudo.titulo }}">
                         {% endif %}
 
                         <h3>{{ item.conteudo.titulo }}</h3>

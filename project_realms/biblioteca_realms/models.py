@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 # ==========================
 class Subject(models.Model):
     nome = models.CharField(max_length=100)
-    imagem = models.ImageField(
-        upload_to="biblioteca/subjects/",
+    imagem = models.CharField(
+        max_length=200,
         blank=True,
         null=True
     )
@@ -25,8 +25,8 @@ class Module(models.Model):
         on_delete=models.CASCADE,
         related_name="modulos"
     )
-    imagem = models.ImageField(
-        upload_to="biblioteca/modules/",
+    imagem = models.CharField(
+        max_length=200,
         blank=True,
         null=True
     )
@@ -78,8 +78,8 @@ class LibraryContent(models.Model):
         help_text="Duração em segundos"
     )
     # Arquivos
-    thumbnail = models.ImageField(
-        upload_to="biblioteca/thumbs/",
+    thumbnail = models.CharField(
+        max_length=200,
         blank=True,
         null=True
     )

@@ -58,7 +58,7 @@
                                         {% if materia.imagem %}
                                             <img
                                                 class="card-img"
-                                                src="{{ materia.imagem.url }}"
+                                                src="{% static 'img/biblioteca/' %}{{ materia.imagem }}"
                                                 alt="{{ materia.nome }}">
                                         {% endif %}
                                         <div class="card-conteudo">

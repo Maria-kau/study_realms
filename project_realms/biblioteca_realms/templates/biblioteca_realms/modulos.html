@@ -30,8 +30,8 @@
                     {% if item.modulo.imagem %}
                         <img
                             class="card-img"
-                            src="{{ item.modulo.imagem.url }}"
-                            alt="{{ item.modulo.nome }}">
+                            src="{% static 'img/biblioteca/' %}{{ modulo.imagem }}"
+                            alt="{{ modulo.nome }}">
                     {% endif %}
 
                     <h3>{{ item.modulo.nome }}</h3>
