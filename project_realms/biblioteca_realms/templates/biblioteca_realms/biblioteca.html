@@ -2,185 +2,470 @@
 {% load static %}
 {% load duration %}
 
+
 {% block title %}Biblioteca{% endblock %}
 
+
+
 {% block extra_head %}
+
 <link rel="stylesheet" href="{% static 'css/biblioteca/componentes.css' %}">
 <link rel="stylesheet" href="{% static 'css/biblioteca/biblioteca.css' %}">
+
 {% endblock %}
 
+
+
+
+
 {% block content %}
+
+
 <div class="cont-geral">
 
+
+
     <header class="header-biblioteca">
-        <h1>Biblioteca Arcana</h1>
-        <p>Explore conhecimentos e evolua seu reino</p>
+
+
+        <h1>
+            Biblioteca Arcana
+        </h1>
+
+
+        <p>
+            Explore conhecimentos e evolua seu reino
+        </p>
+
+
 
         <form method="GET" class="pesquisa-biblioteca">
-            <input
-                type="text"
-                name="q"
-                placeholder="Buscar matéria, módulo ou conteúdo..."
-                value="{{ busca }}">
+
+
+            <input type="text" name="q" placeholder="Buscar matéria, módulo ou conteúdo..." value="{{ busca }}">
+
+
+
             <button type="submit">
                 Buscar
             </button>
+
+
+
         </form>
+
+
+
     </header>
+
+
+
+
+
 
     {% if is_search %}
 
-        <div class="separador3">
-            <span class="linha3"></span>
-            <span class="estrela3"></span>
+
+
+
+
+    <div class="separador3">
+
+
+        <span class="linha3"></span>
+
+        <span class="estrela3"></span>
+
+
+
+        <h2 class="letra-roxa">
+
 
             {% if tipo == "materia" %}
-                <h2 class="letra-roxa">Matérias Encontradas</h2>
+
+            Matérias Encontradas
+
+
             {% elif tipo == "modulo" %}
-                <h2 class="letra-roxa">Módulos Encontrados</h2>
+
+            Módulos Encontrados
+
+
             {% else %}
-                <h2 class="letra-roxa">Conteúdos Encontrados</h2>
+
+            Conteúdos Encontrados
+
+
             {% endif %}
 
-            <span class="estrela3"></span>
-            <span class="linha3"></span>
-        </div>
 
-        <div class="area-inferior">
-            <div class="area-direita">
-                <section class="bloco">
-                    <div class="grid-conteudos">
+        </h2>
 
-                        {% if tipo == "materia" %}
-                            {% for materia in results %}
-                                <a href="{% url 'subject_modules' materia.id %}" class="card-link">
-                                    <div class="card-conteudo-geral">
-                                        {% if materia.imagem %}
-                                            <img
-                                                class="card-img"
-                                                src="{% static 'img/biblioteca/' %}{{ materia.imagem }}"
-                                                alt="{{ materia.nome }}">
-                                        {% endif %}
-                                        <div class="card-conteudo">
-                                            <h3>{{ materia.nome }}</h3>
-                                        </div>
-                                    </div>
-                                </a>
-                            {% empty %}
-                                <p>Nenhuma matéria encontrada.</p>
-                            {% endfor %}
 
-                        {% elif tipo == "modulo" %}
-                            {% for modulo in results %}
-                                <a href="{% url 'module_contents' modulo.id %}" class="card-link">
-                                    <div class="card-conteudo-geral">
-                                        {% if modulo.imagem %}
-                                            <img
-                                                class="card-img"
-                                                src="{{ modulo.imagem.url }}"
-                                                alt="{{ modulo.nome }}">
-                                        {% endif %}
-                                        <div class="card-conteudo">
-                                            <h3>{{ modulo.nome }}</h3>
-                                            <p><strong>Matéria:</strong> {{ modulo.materia.nome }}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            {% empty %}
-                                <p>Nenhum módulo encontrado.</p>
-                            {% endfor %}
 
-                        {% else %}
-                            {% for conteudo in results %}
-                                <a href="{% url 'module_contents' conteudo.modulo.id %}" class="card-link">
-                                    <div class="card-conteudo-geral">
-                                        <div class="card-conteudo">
-                                            <h3>{{ conteudo.titulo }}</h3>
-                                            <p><strong>Módulo:</strong> {{ conteudo.modulo.nome }}</p>
-                                            <p><strong>Matéria:</strong> {{ conteudo.materia.nome }}</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            {% empty %}
-                                <p>Nenhum conteúdo encontrado.</p>
-                            {% endfor %}
-                        {% endif %}
+        <span class="estrela3"></span>
+
+        <span class="linha3"></span>
+
+
+    </div>
+
+
+
+
+
+
+    <section class="bloco">
+
+
+        <div class="grid-conteudos">
+
+
+
+
+
+            {% if tipo == "materia" %}
+
+
+
+            {% for materia in results %}
+
+
+
+            <a href="{% url 'subject_modules' materia.id %}" class="card-link">
+
+
+
+                <div class="card-conteudo-geral card-materia">
+
+
+
+                    <div class="icone-materia">
+
+                        {{ materia.icone }}
 
                     </div>
-                </section>
-            </div>
+
+
+
+
+
+                    <div class="card-conteudo">
+
+
+                        <h3>
+                            {{ materia.nome }}
+                        </h3>
+
+
+                        <p>
+                            Explore os conteúdos desta matéria
+                        </p>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </a>
+
+
+
+            {% empty %}
+
+
+            <p>
+                Nenhuma matéria encontrada.
+            </p>
+
+
+            {% endfor %}
+
+
+
+
+
+            {% elif tipo == "modulo" %}
+
+
+
+
+
+            {% for modulo in results %}
+
+
+
+
+            <a href="{% url 'module_contents' modulo.id %}" class="card-link">
+
+
+
+                <div class="card-conteudo-geral card-modulo">
+
+
+
+                    <div class="icone-materia">
+
+                        {{ modulo.materia.icone }}
+
+                    </div>
+
+
+
+
+
+                    <div class="card-conteudo">
+
+
+                        <h3>
+                            {{ modulo.nome }}
+                        </h3>
+
+
+
+                        <p>
+
+                            <strong>
+                                Matéria:
+                            </strong>
+
+                            {{ modulo.materia.nome }}
+
+                        </p>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+            </a>
+
+
+
+
+            {% empty %}
+
+
+            <p>
+                Nenhum módulo encontrado.
+            </p>
+
+
+            {% endfor %}
+
+
+
+
+
+
+
+            {% else %}
+
+
+
+
+
+            {% for conteudo in results %}
+
+
+
+            <a href="{% url 'module_contents' conteudo.modulo.id %}" class="card-link">
+
+
+
+                <div class="card-conteudo-geral card-conteudo-item">
+
+
+
+
+
+                    <div class="card-conteudo">
+
+
+
+                        <h3>
+                            {{ conteudo.titulo }}
+                        </h3>
+
+
+
+                        <p>
+
+                            <strong>
+                                Módulo:
+                            </strong>
+
+                            {{ conteudo.modulo.nome }}
+
+                        </p>
+
+
+
+
+                        <p>
+
+                            <strong>
+                                Matéria:
+                            </strong>
+
+                            {{ conteudo.modulo.materia.nome }}
+
+                        </p>
+
+
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </a>
+
+
+
+
+            {% empty %}
+
+
+            <p>
+                Nenhum conteúdo encontrado.
+            </p>
+
+
+            {% endfor %}
+
+
+
+
+            {% endif %}
+
+
+
+
         </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
 
     {% else %}
 
-        <div class="separador3">
-            <span class="linha3"></span>
-            <span class="estrela3"></span>
-            <h2 class="letra-roxa">Matérias</h2>
-            <span class="estrela3"></span>
-            <span class="linha3"></span>
-        </div>
 
-        <div class="area-inferior">
-            <div class="area-direita">
-                <section class="bloco">
-                    <div class="grid-conteudos">
 
-                        {% for item in materias %}
-                            <a href="{% url 'subject_modules' item.materia.id %}" class="card-link">
-                                <div class="card-conteudo-geral">
-                                    {% if item.materia.imagem %}
-                                        <img
-                                            class="card-img"
-                                            src="{{ item.materia.imagem.url }}"
-                                            alt="{{ item.materia.nome }}">
-                                    {% endif %}
 
-                                    <div class="card-conteudo">
-                                        <h3>{{ item.materia.nome }}</h3>
-                                    </div>
 
-                                    <div style="width: 100%;">
-                                        <div class="barra">
-                                            <div
-                                                class="barra-preenchimento"
-                                                data-progresso="{{ item.progress.percentage|floatformat:0 }}">
-                                            </div>
-                                        </div>
-                                        <span class="status-conclusao">
-                                            {{ item.progress.percentage|floatformat:0 }}% Concluído
-                                        </span>
-                                    </div>
 
-                                </div>
-                            </a>
-                        {% endfor %}
+
+    <div class="separador3">
+
+
+        <span class="linha3"></span>
+
+        <span class="estrela3"></span>
+
+
+
+        <h2 class="letra-roxa">
+            Matérias
+        </h2>
+
+
+
+        <span class="estrela3"></span>
+
+        <span class="linha3"></span>
+
+
+    </div>
+
+
+
+
+
+
+    <section class="bloco">
+
+
+        <div class="grid-conteudos">
+
+
+
+
+
+            {% for item in materias %}
+
+
+
+
+            <a href="{% url 'subject_modules' item.materia.id %}" class="card-link">
+                <div class="card-conteudo-geral card-materia">
+                    <div class="icone-materia">
+
+                        {{ item.materia.icone }}
 
                     </div>
-                </section>
-            </div>
+                    <div class="card-conteudo">
+                        <h3>
+                            {{ item.materia.nome }}
+                        </h3>
+                        <p>
+                            Acompanhe seu progresso
+                        </p>
+                    </div>
+                    <div class="progresso-area">
+                        <div class="barra">
+                            <div class="barra-preenchimento"
+                                data-progresso="{{ item.progress.percentage|floatformat:0 }}">
+                            </div>
+                        </div>
+                        <span class="status-conclusao">
+
+                            {{ item.progress.percentage|floatformat:0 }}% Concluído
+
+                        </span>
+                    </div>
+                </div>
+            </a>
+
+            {% empty %}
+
+            <p>
+                Nenhuma matéria cadastrada.
+            </p>
+
+            {% endfor %}
+
         </div>
 
+    </section>
     {% endif %}
-
 </div>
 {% endblock %}
 
+
+
 {% block js %}
+
 <script src="{% static 'js/biblioteca.js' %}"></script>
 {% endblock %}
-<!--
-    {% if conteudos %}
-        {% for conteudo in conteudos %}
-            <div class="conteudo">
-                <h2>{{ conteudo.titulo|default:"Título não disponível" }}</h2>
-                <p>{{ conteudo.descricao|default:"Descrição não disponível" }}</p>
-                <p><strong>Matéria:</strong> {{ conteudo.materia.nome|default:"Matéria não disponível" }}</p>
-                <p><strong>Categoria:</strong> {{ conteudo.categoria|default:"Categoria não disponível" }}</p>
-                <p><strong>Dificuldade:</strong> {{ conteudo.dificuldade|default:"Dificuldade não disponível" }}</p>
-                <p><strong>Duração:</strong> {{ conteudo.duracao|default:"Duração não disponível" }} min</p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Nenhum conteúdo encontrado.</p>
-    {% endif %}-->
