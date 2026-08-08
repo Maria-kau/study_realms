@@ -759,7 +759,7 @@ Além de seu objetivo funcional, o projeto serviu como uma experiência prática
 
 ## Desenvolvedora
 
-**Maria-Kau**
+**Maria_Kauéllene**
 
 Projeto desenvolvido para estudo e portfólio profissional.
 
