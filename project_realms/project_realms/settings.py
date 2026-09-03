@@ -26,12 +26,12 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "realmify.onrender.com",
+    "study-realms.onrender.com",
 ]
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://realmify.onrender.com",
+    "https://study-realms.onrender.com",
 ]
 
 
