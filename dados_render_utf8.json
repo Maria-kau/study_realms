@@ -1,0 +1,306 @@
+﻿[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-07-25T22:26:09.691Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "Elena",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-08-01T00:09:28.252Z",
+    "user": 1,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "Matemática",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-08-01T00:15:11.342Z",
+    "user": 1,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "Biologia",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-08-01T00:29:08.018Z",
+    "user": 1,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "Biologia",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-08-01T00:49:37.183Z",
+    "user": 1,
+    "content_type": 17,
+    "object_id": "1",
+    "object_repr": "Matemática - Aritmética",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-08-01T00:50:12.895Z",
+    "user": 1,
+    "content_type": 16,
+    "object_id": "1",
+    "object_repr": "Conjuntos Numericos - Aula 1",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$TDbNy9KMXdF7rwFtU41fUZ$8K9qqT0Mu5h2VzVOVG+ZA/AFPIjjx67YtR/gp+io+eU=",
+    "last_login": "2026-07-25T22:21:56.557Z",
+    "is_superuser": true,
+    "username": "kau",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-25T22:14:21.592Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$GuswteSeuzb4PyJWE0PlwY$0pCo8tbpgvfRq4qhIq1wo17Bla2PYT28lJkDnVDqlog=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "Kau",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-07-25T22:35:27.468Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$n6tp3d9as8QTpatiX5IQaS$Sm1JsTdHuzURPLwA416bfEMhT6HuTnE+UYB444bcf0Q=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "kau22",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-03T18:01:30.167Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$FSMnfQvE2MGOYjCu3fhnUm$fz06NnFDvekfvzAlvf6QEkgHIVqTKiRobNjg3IVXY94=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "kau0022",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-03T18:03:38.126Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$1j8BoGaRSoqE5sh4dd9GxB$i4dLI5zOimF43Bji2UlY4sNJBnNsinQ3LWGvK/bv7jI=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "kaukau",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-09-03T18:08:39.189Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario_realms.fixausuario",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "genero_usuario": "",
+    "objetivo": "",
+    "tipo_universidade": [],
+    "tipo_vestibular": [],
+    "curso": null,
+    "nivel_escolar": "",
+    "horas_estudos": 0,
+    "turno_escolar": "",
+    "materia_dificuldade": []
+  }
+},
+{
+  "model": "usuario_realms.avatar",
+  "pk": 1,
+  "fields": {
+    "raridade": "comum",
+    "classe": "iniciante",
+    "genero": "feminino",
+    "nome": "Elena",
+    "imagem_mini": "avatars/feminino/Elena/iniciante/mini/WhatsApp_Image_2026-07-25_at_19.25.10.jpeg",
+    "imagem_corpo": "avatars/feminino/Elena/iniciante/corpo/WhatsApp_Image_2026-07-22_at_10.56.03.jpeg",
+    "level_minimo": 1
+  }
+},
+{
+  "model": "usuario_realms.profile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "genero_personagem": "",
+    "energia": "nenhuma",
+    "mana_level": 1,
+    "mana_xp": 11,
+    "aura_level": 1,
+    "aura_xp": 1,
+    "classe": "iniciante",
+    "level": 1,
+    "xp": 51,
+    "rank": "Iniciante",
+    "avatar": null
+  }
+},
+{
+  "model": "usuario_realms.attributes",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "inteligencia": 1,
+    "xp_inteligencia": 21,
+    "sabedoria": 1,
+    "xp_sabedoria": 1,
+    "forca": 1,
+    "xp_forca": 1,
+    "destreza": 1,
+    "xp_destreza": 1
+  }
+},
+{
+  "model": "crono_realms.realm",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "arvores": 0,
+    "casas": 0,
+    "especiais": 0,
+    "castelos": 0,
+    "total_arvores": 0,
+    "total_casas": 0,
+    "total_especiais": 0,
+    "total_castelos": 0,
+    "ultimo_reset": "2026-07-25T22:21:56.651Z"
+  }
+},
+{
+  "model": "biblioteca_realms.subject",
+  "pk": 1,
+  "fields": {
+    "nome": "Matemática"
+  }
+},
+{
+  "model": "biblioteca_realms.subject",
+  "pk": 2,
+  "fields": {
+    "nome": "Biologia"
+  }
+},
+{
+  "model": "biblioteca_realms.module",
+  "pk": 1,
+  "fields": {
+    "nome": "Aritmética",
+    "materia": 1
+  }
+},
+{
+  "model": "biblioteca_realms.librarycontent",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "titulo": "Conjuntos Numericos - Aula 1",
+    "descricao": "",
+    "fonte": "Professor Ferreto",
+    "materia": 1,
+    "modulo": 1,
+    "categoria": "video",
+    "dificuldade": "medio",
+    "duracao": 0,
+    "video_url": "https://www.youtube.com/watch?v=Y_mYgLkuEl4&list=PLQS5wKV644fU&index=2",
+    "resumo_url": "",
+    "criado_em": "2026-08-01T00:50:12.893Z",
+    "atualizado_em": "2026-08-01T00:50:12.893Z"
+  }
+},
+{
+  "model": "biblioteca_realms.userlibrary",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "conteudo": 1,
+    "favorito": false,
+    "iniciado": false,
+    "concluido": true,
+    "porcentagem": 100,
+    "tempo_estudado": 0,
+    "ultimo_acesso": "2026-08-01T00:50:20.006Z",
+    "data_inicio": null,
+    "data_conclusao": null
+  }
+}
+]
+
