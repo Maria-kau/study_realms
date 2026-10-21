@@ -11,10 +11,10 @@ from ..models import (
 # Valores REAIS: árvore 30 | casa 60 | especial 1440 (1 dia) | castelo 10080 (1 semana)
 # Para TESTAR, troque pelos valores de teste abaixo (crescentes!):
 #   LIM_ARVORE = 1, LIM_CASA = 2, LIM_ESPECIAL = 3, LIM_CASTELO = 4
-LIM_ARVORE = 1
-LIM_CASA = 2
-LIM_ESPECIAL = 3
-LIM_CASTELO = 4
+LIM_ARVORE = 30
+LIM_CASA = 60
+LIM_ESPECIAL = 1440
+LIM_CASTELO = 10080
 
 # =====================================
 # PEGAR OU CRIAR REINO
