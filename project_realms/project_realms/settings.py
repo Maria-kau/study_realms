@@ -26,12 +26,12 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "study-realms.onrender.com",
+    ".onrender.com",
 ]
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://study-realms.onrender.com",
+    "https://*.onrender.com",
 ]
 
 
