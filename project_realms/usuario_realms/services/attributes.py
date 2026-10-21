@@ -5,10 +5,9 @@ def gain_attribute(user, tipo, duracao_minutos=None):
     attributes = Attributes.objects.get(user=user)
     profile = user.profile
 
-    # Lógica de definição de tipo e quantidade
-    # 1 dia = 1440 min | 1 semana = 10080 min
+    # árvore = 30 min | casa = 60 min | especial = 1 dia | castelo = 1 semana
     if duracao_minutos is None:
-        # To-Do padrão: Dá 1 árvore
+        # To-Do padrão: dá 1 árvore
         total_construcoes = 1
         tipo_construcao = 'tree'
     elif duracao_minutos >= 10080:
@@ -21,8 +20,8 @@ def gain_attribute(user, tipo, duracao_minutos=None):
         total_construcoes = duracao_minutos // 60
         tipo_construcao = 'house'
     else:
-        # Padrão para tempos menores que 60min (ex: 30min)
-        total_construcoes = max(1, duracao_minutos // 30)
+        # Menos de 60 min: 1 árvore a cada 30 min (mínimo 1)
+        total_construcoes = max(1, duracao_minutos // 1)
         tipo_construcao = 'tree'
 
     # Regra de negócio (XP/Energia multiplicados pelo total)
